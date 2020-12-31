@@ -1,0 +1,191 @@
+apiVersion: v1
+kind: Template
+labels:
+  template: mysql-template #${NAMESPACE}-template
+message: Your template has been created.
+metadata:
+  name: mysql-template #${NAMESPACE}-template
+objects:
+
+#image stream
+- apiVersion: image.openshift.io/v1
+  kind: ImageStream
+  metadata:
+    labels:
+      app: ${NAME}
+    name: ${NAME}
+    namespace: ${NAMESPACE}
+
+#build config
+- apiVersion: build.openshift.io/v1
+  kind: BuildConfig
+  metadata:
+    labels:
+      app: ${NAME}
+    name: ${NAME}
+    namespace: ${NAMESPACE}
+  spec:
+    nodeSelector: null
+    output:
+      to:
+        kind: ImageStreamTag
+        name: '${NAME}:latest'
+    postCommit: {}
+    resources: {}
+    runPolicy: Serial
+    source:
+      git:
+        ref: master
+        uri: '${SOURCE_REPOSITORY_URL}'
+      type: Git
+    strategy:
+      dockerStrategy:
+        # from:
+        #   kind: DockerImage
+        #   name: 'mysql:8.0.20'
+      type: Docker
+    triggers:
+      - imageChange:
+          lastTriggeredImageID: #>-
+            #docker.io/openshift/wildfly-101-centos7@sha256:7775d40f77e22897dc760b76f1656f67ef6bd5561b4d74fbb030b977f61d48e8
+        type: ImageChange
+      - type: ConfigChange
+      - generic:
+          secret: 9fdf619e0aea935a
+        type: Generic
+      - github:
+          secret: 43ac13d4078565c4
+        type: GitHub
+
+#route
+- apiVersion: route.openshift.io/v1
+  kind: Route
+  metadata:
+    labels:
+      app: ${NAME}
+    name: ${NAME}-admin
+    namespace: ${NAMESPACE}
+  spec:
+    port:
+      targetPort: 7474-tcp
+    to:
+      kind: Service
+      name: ${NAME}
+      weight: 100
+    wildcardPolicy: None
+
+#service
+- apiVersion: v1
+  kind: Service
+  metadata:
+    labels:
+      app: ${NAME}
+    name: ${NAME}
+    namespace: ${NAMESPACE}
+  spec:
+    ports:
+      - name: 7474-tcp
+        port: 7474
+        protocol: TCP
+        targetPort: 7474
+      - name: 7687-tcp
+        port: 7687
+        protocol: TCP
+        targetPort: 7687
+    selector:
+      deploymentconfig: ${NAME}
+
+#deployment
+- apiVersion: apps.openshift.io/v1
+  kind: DeploymentConfig
+  metadata:
+    labels:
+      app: ${NAME}
+    name: ${NAME}
+    namespace: ${NAMESPACE}
+  spec:
+    replicas: 1
+    selector:
+      deploymentconfig: ${NAME}
+    strategy:
+      activeDeadlineSeconds: 21600
+      resources: {}
+      rollingParams:
+        intervalSeconds: 1
+        maxSurge: 25%
+        maxUnavailable: 25%
+        timeoutSeconds: 600
+        updatePeriodSeconds: 1
+      type: Recreate
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: ${NAME}
+          deploymentconfig: ${NAME}
+      spec:
+        containers:
+          #mysql container
+          - image: '${NAME}:latest'
+            name: ${NAME}
+            ports:
+              - containerPort: 7474
+                protocol: TCP
+              - containerPort: 7474
+                protocol: TCP
+            resources: {}
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            env:
+            - name: NEO4J_AUTH
+              value: ${NEO4J_AUTH}
+            volumeMounts:
+              - mountPath: ${MOUNT_PATH}
+                name: db-data
+        volumes:
+          - name: db-data
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+    test: false
+    triggers:
+    - imageChangeParams:
+          automatic: true
+          containerNames:
+            - ${NAME}
+          from:
+            kind: ImageStreamTag
+            name: '${NAME}:latest'
+            namespace: ${NAMESPACE}
+      type: ImageChange
+    - type: ConfigChange
+
+#parametri
+parameters:
+- description: The name assigned to all of the frontend objects defined in this template.
+  displayName: Name
+  name: NAME
+  value: "neo4j"
+
+- description: The URL of the repository with your application source code.
+  displayName: Git Repository URL
+  name: SOURCE_REPOSITORY_URL
+  value: "https://github.com/faber03/ProjectTest.git"
+
+- description: The OpenShift Namespace where the ImageStream resides.
+  displayName: Namespace
+  name: NAMESPACE
+  value: "ProjectTest"
+
+- description: Mounth path.
+  displayName: Mounth path
+  name: MOUNT_PATH
+  value: "/neo4j/data"
+
+#environment
+- description: Authorization.
+  displayName: Authorization
+  name: NEO4J_AUTH
+  value: "none"
