@@ -65,7 +65,7 @@ objects:
   metadata:
     labels:
       app: ${NAME}
-    name: ${NAME}-admin
+    name: ${NAME}-browser
     namespace: ${NAMESPACE}
   spec:
     port:

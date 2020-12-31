@@ -8,7 +8,7 @@ RUN sed -i 's/#dbms.connector.bolt.listen_address=:7687/dbms.connector.bolt.list
 RUN sed -i 's/#dbms.connector.bolt.tls_level=DISABLED/dbms.connector.bolt.tls_level=OPTIONAL/' ./conf/neo4j.conf 
 
 EXPOSE 7474
-#EXPOSE 7687
+EXPOSE 7687
 
 USER neo4j
 
