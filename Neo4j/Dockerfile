@@ -1,7 +1,7 @@
 FROM neo4j:enterprise
 
 # ENV MYSQL_ROOT_PASSWORD DEFAULT_PASS
-ENV NEO4J_AUTH=none
+#ENV NEO4J_AUTH=none
 ENV NEO4J_ACCEPT_LICENSE_AGREEMENT=yes
 
 #cat ./conf/neo4j.conf | grep dbms.connector.bolt
