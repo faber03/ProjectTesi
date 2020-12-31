@@ -34,13 +34,14 @@ objects:
     resources: {}
     runPolicy: Serial
     source:
+      contextDir: /Neo4j
       git:
-        ref: master
+        ref: main
         uri: '${SOURCE_REPOSITORY_URL}'
       type: Git
     strategy:
-      dockerStrategy:
-        dockerfilePath: Neo4j/Dockerfile
+      #dockerStrategy:
+        #dockerfilePath: Neo4j/Dockerfile
         # from:
         #   kind: DockerImage
         #   name: 'mysql:8.0.20'
