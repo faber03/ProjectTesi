@@ -3,7 +3,7 @@ FROM neo4j:latest
 # ENV MYSQL_ROOT_PASSWORD DEFAULT_PASS
 ENV NEO4J_AUTH=none
 
-RUN sed -i 's/#dbms.connector.bolt.listen_address=:7687/dbms.connector.bolt.listen_address=:7687/' ./conf/neo4j.conf 
+RUN sed -i 's/#dbms.connector.bolt.listen_address=:7687/dbms.connector.bolt.listen_address=0.0.0.0:7687/' ./conf/neo4j.conf 
 
 EXPOSE 7474
 #EXPOSE 7687
