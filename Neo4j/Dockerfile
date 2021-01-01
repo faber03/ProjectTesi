@@ -13,6 +13,8 @@ ENV NEO4J_AUTH=neo4j/password
 #RUN rm -f ${HOME}/conf/neo4j.conf
 ADD neo4j.conf ${HOME}/conf/
 
+#RUN sed -i 's/<OLD_TEXT>/<NEW_TEXT>/' ./conf/neo4j.conf
+
 EXPOSE 7474
 EXPOSE 7687
 EXPOSE 7473
