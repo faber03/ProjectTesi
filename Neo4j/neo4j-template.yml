@@ -215,4 +215,5 @@ parameters:
 - description: Authorization.
   displayName: Authorization
   name: NEO4J_AUTH
-  value: "neo4j/password"
+  value: "none"
+  #value: "neo4j/password"
