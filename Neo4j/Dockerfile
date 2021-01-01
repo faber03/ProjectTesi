@@ -20,5 +20,5 @@ EXPOSE 7687
 
 #USER neo4j
 
-ENTRYPOINT ["neo4j", "start"]
+#ENTRYPOINT ["neo4j", "start"]
 #mysqld --initialize --user=mysql && mysqld --skip-symbolic-links
