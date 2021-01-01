@@ -1,4 +1,4 @@
-FROM neo4j:4.1.3-enterprise
+FROM neo4j:3.5.5-enterprise
 
 # ENV MYSQL_ROOT_PASSWORD DEFAULT_PASS
 ENV NEO4J_AUTH=none
@@ -6,7 +6,7 @@ ENV NEO4J_ACCEPT_LICENSE_AGREEMENT=yes
 ENV SECURE_FILE_PERMISSIONS=yes
 #ENV NEO4J_dbms_connector_bolt_address=0.0.0.0:7687
 
-USER root
+#USER root
 
 #RUN chmod -R 777 /var/lib/neo4j
 
@@ -20,7 +20,7 @@ USER root
 #RUN sed -i 's/#dbms.default_listen_address=0.0.0.0/dbms.default_listen_address=0.0.0.0/' ./conf/neo4j.conf
 
 #RUN rm -f ${HOME}/conf/neo4j.conf
-ADD neo4j.conf ${HOME}/conf/
+#ADD neo4j.conf ${HOME}/conf/
 
 #dbms.ssl.policy.https.client_auth=NONE
 
@@ -28,7 +28,7 @@ EXPOSE 7474
 EXPOSE 7687
 #EXPOSE 443
 
-USER neo4j
+#USER neo4j
 
 #ENTRYPOINT ["neo4j", "start"]
 #mysqld --initialize --user=mysql && mysqld --skip-symbolic-links
