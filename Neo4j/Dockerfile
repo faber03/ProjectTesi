@@ -7,7 +7,7 @@ ENV NEO4J_ACCEPT_LICENSE_AGREEMENT=yes
 
 USER root
 
-RUN chmod -R 777 /var/lib/neo4j
+#RUN chmod -R 777 /var/lib/neo4j
 
 #cat ./conf/neo4j.conf | grep dbms.connector.bolt
 #cat /logs/neo4j.log
