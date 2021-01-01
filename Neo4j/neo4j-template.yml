@@ -155,9 +155,9 @@ objects:
             resources: {}
             terminationMessagePath: /dev/termination-log
             terminationMessagePolicy: File
-            # env:
-            # - name: NEO4J_AUTH
-            #   value: ${NEO4J_AUTH}
+            env:
+              - name: NEO4J_AUTH
+                value: ${NEO4J_AUTH}
             volumeMounts:
               - mountPath: ${MOUNT_PATH_DATA}
                 name: db-data
@@ -207,21 +207,21 @@ parameters:
 - description: Mounth path data.
   displayName: Mounth path data
   name: MOUNT_PATH_DATA
-  value: "/neo4j/data:/data"
+  value: "/neo4j/data/data"
 
 - description: Mounth path logs.
   displayName: Mounth path logs
   name: MOUNT_PATH_LOGS
-  value: "/neo4j/logs:/logs"
+  value: "/neo4j/logs/logs"
 
 - description: Mounth path conf.
   displayName: Mounth path conf
   name: MOUNT_PATH_CONF
-  value: "/neo4j/conf:/conf"
+  value: "/neo4j/conf/conf"
 
 #environment
-# - description: Authorization.
-#   displayName: Authorization
-#   name: NEO4J_AUTH
-#   value: "none"
-  #value: "neo4j/password"
+- description: Authorization.
+  displayName: Authorization
+  name: NEO4J_AUTH
+  #value: "none"
+  value: "neo4j/password"
