@@ -45,7 +45,7 @@ objects:
         # from:
         #   kind: DockerImage
         #   name: 'mysql:8.0.20'
-      type: Docker      
+      type: Docker
     triggers:
       - imageChange:
           lastTriggeredImageID: #>-
@@ -159,10 +159,13 @@ objects:
             - name: NEO4J_AUTH
               value: ${NEO4J_AUTH}
             volumeMounts:
-              - mountPath: ${MOUNT_PATH}
+              - mountPath: ${MOUNT_PATH_DATA}
                 name: db-data
+              - mountPath: ${MOUNT_PATH_LOGS}
+                name: db-logs
         volumes:
           - name: db-data
+          - name: db-logs
         dnsPolicy: ClusterFirst
         restartPolicy: Always
         schedulerName: default-scheduler
@@ -198,13 +201,18 @@ parameters:
   name: NAMESPACE
   value: "project-test"
 
-- description: Mounth path.
-  displayName: Mounth path
-  name: MOUNT_PATH
+- description: Mounth path data.
+  displayName: Mounth path data
+  name: MOUNT_PATH_DATA
   value: "/neo4j/data"
+
+- description: Mounth path logs.
+  displayName: Mounth path logs
+  name: MOUNT_PATH_LOGS
+  value: "/neo4j/logs"
 
 #environment
 - description: Authorization.
   displayName: Authorization
   name: NEO4J_AUTH
-  value: "none"
+  value: "neo4j/password"
