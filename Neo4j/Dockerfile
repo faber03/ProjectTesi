@@ -15,6 +15,7 @@ ADD neo4j.conf ${HOME}/conf/
 
 EXPOSE 7474
 EXPOSE 7687
+EXPOSE 7473
 
 #USER neo4j
 
