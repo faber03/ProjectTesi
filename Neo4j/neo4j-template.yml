@@ -60,38 +60,55 @@ objects:
         type: GitHub
 
 #route
-- apiVersion: route.openshift.io/v1
-  kind: Route
-  metadata:
-    labels:
-      app: ${NAME}
-    name: ${NAME}-7474
-    namespace: ${NAMESPACE}
-  spec:
-    port:
-      targetPort: 7474-tcp
-    to:
-      kind: Service
-      name: ${NAME}
-      weight: 100
-    wildcardPolicy: None
+# - apiVersion: route.openshift.io/v1
+#   kind: Route
+#   metadata:
+#     labels:
+#       app: ${NAME}
+#     name: ${NAME}-7474
+#     namespace: ${NAMESPACE}
+#   spec:
+#     port:
+#       targetPort: 7474-tcp
+#     to:
+#       kind: Service
+#       name: ${NAME}
+#       weight: 100
+#     wildcardPolicy: None
 
 #route
-- apiVersion: route.openshift.io/v1
-  kind: Route
-  metadata:
-    labels:
-      app: ${NAME}
-    name: ${NAME}-7687
-    namespace: ${NAMESPACE}
-  spec:
-    port:
-      targetPort: 7687-tcp
-    to:
-      kind: Service
-      name: ${NAME}
-      weight: 100
-    wildcardPolicy: None
+# - apiVersion: route.openshift.io/v1
+#   kind: Route
+#   metadata:
+#     labels:
+#       app: ${NAME}
+#     name: ${NAME}-7687
+#     namespace: ${NAMESPACE}
+#   spec:
+#     port:
+#       targetPort: 7687-tcp
+#     to:
+#       kind: Service
+#       name: ${NAME}
+#       weight: 100
+#     wildcardPolicy: None
+
+#route https
+# - apiVersion: route.openshift.io/v1
+#   kind: Route
+#   metadata:
+#     labels:
+#       app: ${NAME}
+#     name: ${NAME}-7473
+#     namespace: ${NAMESPACE}
+#   spec:
+#     port:
+#       targetPort: 7473-tcp
+#     to:
+#       kind: Service
+#       name: ${NAME}
+#       weight: 100
+#     wildcardPolicy: None
 
 #service
 - apiVersion: v1
@@ -102,15 +119,20 @@ objects:
     name: ${NAME}
     namespace: ${NAMESPACE}
   spec:
+    type: LoadBalancer
     ports:
       - name: 7474-tcp
-        port: 7474
+        port: 80
         protocol: TCP
         targetPort: 7474
       - name: 7687-tcp
         port: 7687
         protocol: TCP
         targetPort: 7687
+      - name: 7473-tcp
+        port: 7473
+        protocol: TCP
+        targetPort: 7473
     selector:
       deploymentconfig: ${NAME}
 
