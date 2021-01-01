@@ -133,7 +133,7 @@ objects:
             ports:
               - containerPort: 7474
                 protocol: TCP
-              - containerPort: 7474
+              - containerPort: 7687
                 protocol: TCP
             resources: {}
             terminationMessagePath: /dev/termination-log
