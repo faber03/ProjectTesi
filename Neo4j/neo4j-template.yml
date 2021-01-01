@@ -207,17 +207,17 @@ parameters:
 - description: Mounth path data.
   displayName: Mounth path data
   name: MOUNT_PATH_DATA
-  value: "/neo4j/data"
+  value: "/neo4j/data:/data"
 
 - description: Mounth path logs.
   displayName: Mounth path logs
   name: MOUNT_PATH_LOGS
-  value: "/neo4j/logs"
+  value: "/neo4j/logs:/logs"
 
 - description: Mounth path conf.
   displayName: Mounth path conf
   name: MOUNT_PATH_CONF
-  value: "/neo4j/conf"
+  value: "/neo4j/conf:/conf"
 
 #environment
 # - description: Authorization.
