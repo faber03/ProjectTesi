@@ -20,7 +20,7 @@ ENV SECURE_FILE_PERMISSIONS=yes
 #RUN sed -i 's/#dbms.default_listen_address=0.0.0.0/dbms.default_listen_address=0.0.0.0/' ./conf/neo4j.conf
 
 #RUN rm -f ${HOME}/conf/neo4j.conf
-#ADD neo4j.conf ${HOME}/conf/
+ADD neo4j.conf ${HOME}/conf/
 
 #dbms.ssl.policy.https.client_auth=NONE
 
