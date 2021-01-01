@@ -59,7 +59,7 @@ objects:
           secret: 43ac13d4078565c4
         type: GitHub
 
-#route
+#route http
 - apiVersion: route.openshift.io/v1
   kind: Route
   metadata:
@@ -69,14 +69,14 @@ objects:
     namespace: ${NAMESPACE}
   spec:
     port:
-      targetPort: 7474-tcp
+      targetPort: http
     to:
       kind: Service
       name: ${NAME}
       weight: 100
     wildcardPolicy: None
 
-#route
+#route bolt
 - apiVersion: route.openshift.io/v1
   kind: Route
   metadata:
@@ -86,7 +86,7 @@ objects:
     namespace: ${NAMESPACE}
   spec:
     port:
-      targetPort: 7687-tcp
+      targetPort: bolt
     to:
       kind: Service
       name: ${NAME}
@@ -103,7 +103,7 @@ objects:
     namespace: ${NAMESPACE}
   spec:
     port:
-      targetPort: 7473-tcp
+      targetPort: https
     to:
       kind: Service
       name: ${NAME}
@@ -122,7 +122,7 @@ objects:
     #type: LoadBalancer
     ports:
       - name: http
-        port: 80
+        port: 7474
         protocol: TCP
         targetPort: 7474
       - name: bolt

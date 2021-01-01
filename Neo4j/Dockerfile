@@ -11,7 +11,7 @@ ENV NEO4J_AUTH=neo4j/password
 #RUN chmod -R 777 /var/lib/neo4j
 
 #RUN rm -f ${HOME}/conf/neo4j.conf
-#ADD neo4j.conf ${HOME}/conf/
+ADD neo4j.conf ${HOME}/conf/
 
 EXPOSE 7474
 EXPOSE 7687
