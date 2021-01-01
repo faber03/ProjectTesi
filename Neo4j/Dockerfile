@@ -14,6 +14,6 @@ ENV NEO4J_ACCEPT_LICENSE_AGREEMENT=yes
 EXPOSE 7474
 EXPOSE 7687
 
-USER neo4j
+#USER neo4j
 
 #ENTRYPOINT mysqld --initialize --user=mysql && mysqld --skip-symbolic-links
