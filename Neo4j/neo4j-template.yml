@@ -65,11 +65,28 @@ objects:
   metadata:
     labels:
       app: ${NAME}
-    name: ${NAME}-browser
+    name: ${NAME}-7474
     namespace: ${NAMESPACE}
   spec:
     port:
       targetPort: 7474-tcp
+    to:
+      kind: Service
+      name: ${NAME}
+      weight: 100
+    wildcardPolicy: None
+
+#route
+- apiVersion: route.openshift.io/v1
+  kind: Route
+  metadata:
+    labels:
+      app: ${NAME}
+    name: ${NAME}-7687
+    namespace: ${NAMESPACE}
+  spec:
+    port:
+      targetPort: 7687-tcp
     to:
       kind: Service
       name: ${NAME}
