@@ -4,6 +4,7 @@ FROM neo4j:4.1.3-enterprise
 #ENV NEO4J_AUTH=none
 ENV NEO4J_ACCEPT_LICENSE_AGREEMENT=yes
 ENV NEO4J_AUTH=neo4j/password
+ENV NEO4J_dbms_connector_bolt_address=0.0.0.0:7687
 #ENV SECURE_FILE_PERMISSIONS=yes
 #ENV NEO4J_dbms_connector_bolt_address=0.0.0.0:7687
 
