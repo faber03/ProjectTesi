@@ -2,7 +2,7 @@
 FROM openjdk:latest
 
 #aggiungo il jar creato tramite MAVEN nella folder principale del container
-ADD jar/neo4jConnector-1.0.jar neo4jConnector-1.0.jar
+ADD jar/neo4jConnector.jar neo4jConnector.jar
 
 #espongo la porta 8085
 #EXPOSE 8085
