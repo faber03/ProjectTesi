@@ -45,7 +45,7 @@ public class Connector implements AutoCloseable{
 
     public static void main( String... args ) throws Exception
     {
-        try ( Connector connector = new Connector( "bolt://neo4j:7687", "neo4j", "admin" ) )
+        try ( Connector connector = new Connector( "bolt://neo4j:7687", "neo4j", "password" ) )
         {
             connector.printGreeting( "hello, world" );
         }
