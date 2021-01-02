@@ -59,7 +59,7 @@
             </plugin>
         </plugins>
 
-        <finalName>neo4jConnector</finalName>
+<!--        <finalName>neo4jConnector</finalName>-->
 
     </build>
 
