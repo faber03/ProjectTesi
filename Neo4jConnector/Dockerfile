@@ -8,4 +8,4 @@ ADD jar/neo4jConnector-1.0-jar-with-dependencies.jar neo4jConnector-1.0-jar-with
 #EXPOSE 8085
 
 #comandi per l'esecuzione del jar caricato
-ENTRYPOINT ["java", "-jar", "neo4jConnector-1.0.jar"]
+ENTRYPOINT ["java", "-jar", "neo4jConnector-1.0-jar-with-dependencies.jar"]
