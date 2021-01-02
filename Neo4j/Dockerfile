@@ -20,3 +20,4 @@ EXPOSE 7473
 EXPOSE 22
 
 #USER neo4j
+#oc port-forward neo4j-1-jpn62 7474:7474 7687:7687 7473:7473
