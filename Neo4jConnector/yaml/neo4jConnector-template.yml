@@ -34,7 +34,7 @@ objects:
       resources: {}
       runPolicy: Serial
       source:
-        #contextDir: ${SOURCE_REPOSITORY_CONTEXT_DIR}
+        contextDir: ${SOURCE_REPOSITORY_CONTEXT_DIR}
         git:
           ref: main
           uri: '${SOURCE_REPOSITORY_URL}'
@@ -146,10 +146,10 @@ parameters:
     name: SOURCE_REPOSITORY_URL
     value: "https://github.com/faber03/ProjectTest.git"
 
-#  - description: The repository directory subpath of Dockerfile.
-#    displayName: Git Repository subpath
-#    name: SOURCE_REPOSITORY_CONTEXT_DIR
-#    value: "Neo4jConnector/docker"
+  - description: The repository directory subpath of Dockerfile.
+    displayName: Git Repository subpath
+    name: SOURCE_REPOSITORY_CONTEXT_DIR
+    value: "/Neo4jConnector"
 
   - description: The OpenShift Namespace where the ImageStream resides.
     displayName: Namespace
