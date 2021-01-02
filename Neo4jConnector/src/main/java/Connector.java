@@ -1,10 +1,4 @@
-import org.neo4j.driver.AuthTokens;
-import org.neo4j.driver.Driver;
-import org.neo4j.driver.GraphDatabase;
-import org.neo4j.driver.Result;
-import org.neo4j.driver.Session;
-import org.neo4j.driver.Transaction;
-import org.neo4j.driver.TransactionWork;
+import org.neo4j.driver.*;
 
 import static org.neo4j.driver.Values.parameters;
 
@@ -32,14 +26,26 @@ public class Connector implements AutoCloseable{
                 @Override
                 public String execute( Transaction tx )
                 {
-                    Result result = tx.run( "CREATE (a:Greeting) " +
-                                    "SET a.message = $message " +
-                                    "RETURN a.message + ', from node ' + id(a)",
-                            parameters( "message", message ) );
-                    return result.single().get( 0 ).asString();
+                    boolean result1 = tx.run( "MATCH (a:Greeting) " +
+                                    "WHERE a.message = $message " +
+                                    "RETURN a.message",
+                            parameters( "message", message ) ).hasNext();
+
+                    String res = null;
+                    if(!result1) {
+                        Result result = tx.run("CREATE (a:Greeting) " +
+                                        "SET a.message = $message " +
+                                        "RETURN a.message + ', from node ' + id(a)",
+                                parameters("message", message));
+                        res =  result.single().get(0).asString();
+                    }
+
+                    return res;
                 }
             } );
-            System.out.println( greeting );
+
+            if(greeting != null)
+                System.out.println( greeting );
         }
     }
 
@@ -47,7 +53,8 @@ public class Connector implements AutoCloseable{
     {
         try ( Connector connector = new Connector( "bolt://neo4j:7687", "neo4j", "password" ) )
         {
-            connector.printGreeting( "hello, world" );
+            while(true)
+                connector.printGreeting( "hello, world" );
         }
     }
 }
