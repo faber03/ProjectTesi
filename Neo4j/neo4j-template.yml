@@ -60,55 +60,55 @@ objects:
         type: GitHub
 
 #route http
-- apiVersion: route.openshift.io/v1
-  kind: Route
-  metadata:
-    labels:
-      app: ${NAME}
-    name: ${NAME}-http
-    namespace: ${NAMESPACE}
-  spec:
-    port:
-      targetPort: http
-    to:
-      kind: Service
-      name: ${NAME}
-      weight: 100
-    wildcardPolicy: None
+# - apiVersion: route.openshift.io/v1
+#   kind: Route
+#   metadata:
+#     labels:
+#       app: ${NAME}
+#     name: ${NAME}-http
+#     namespace: ${NAMESPACE}
+#   spec:
+#     port:
+#       targetPort: http
+#     to:
+#       kind: Service
+#       name: ${NAME}
+#       weight: 100
+#     wildcardPolicy: None
 
 #route bolt
-- apiVersion: route.openshift.io/v1
-  kind: Route
-  metadata:
-    labels:
-      app: ${NAME}
-    name: ${NAME}-bolt
-    namespace: ${NAMESPACE}
-  spec:
-    port:
-      targetPort: bolt
-    to:
-      kind: Service
-      name: ${NAME}
-      weight: 100
-    wildcardPolicy: None
+# - apiVersion: route.openshift.io/v1
+#   kind: Route
+#   metadata:
+#     labels:
+#       app: ${NAME}
+#     name: ${NAME}-bolt
+#     namespace: ${NAMESPACE}
+#   spec:
+#     port:
+#       targetPort: bolt
+#     to:
+#       kind: Service
+#       name: ${NAME}
+#       weight: 100
+#     wildcardPolicy: None
 
 #route https
-- apiVersion: route.openshift.io/v1
-  kind: Route
-  metadata:
-    labels:
-      app: ${NAME}
-    name: ${NAME}-https
-    namespace: ${NAMESPACE}
-  spec:
-    port:
-      targetPort: https
-    to:
-      kind: Service
-      name: ${NAME}
-      weight: 100
-    wildcardPolicy: None
+# - apiVersion: route.openshift.io/v1
+#   kind: Route
+#   metadata:
+#     labels:
+#       app: ${NAME}
+#     name: ${NAME}-https
+#     namespace: ${NAMESPACE}
+#   spec:
+#     port:
+#       targetPort: https
+#     to:
+#       kind: Service
+#       name: ${NAME}
+#       weight: 100
+#     wildcardPolicy: None
 
 #service
 - apiVersion: v1
@@ -119,7 +119,7 @@ objects:
     name: ${NAME}
     namespace: ${NAMESPACE}
   spec:
-    #type: LoadBalancer
+    type: LoadBalancer
     ports:
       - name: http
         port: 7474
