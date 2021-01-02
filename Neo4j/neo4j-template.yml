@@ -119,7 +119,7 @@ objects:
     name: ${NAME}
     namespace: ${NAMESPACE}
   spec:
-    type: LoadBalancer
+    #type: LoadBalancer
     ports:
       - name: http
         port: 7474
