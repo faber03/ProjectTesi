@@ -1,5 +1,3 @@
-package org.agostino.delucia;
-
 import org.neo4j.driver.AuthTokens;
 import org.neo4j.driver.Driver;
 import org.neo4j.driver.GraphDatabase;
