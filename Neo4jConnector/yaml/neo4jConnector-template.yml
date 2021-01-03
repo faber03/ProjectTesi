@@ -109,6 +109,8 @@ objects:
                   value: ${NEO4J_PASSWORD}
                 - name: NEO4J_HOST
                   value: ${NEO4J_HOST}
+                - name: NEO4J_DBNAME
+                  value: ${NEO4J_DBNAME}
           dnsPolicy: ClusterFirst
           restartPolicy: Always
           schedulerName: default-scheduler
@@ -149,7 +151,7 @@ parameters:
     name: NAMESPACE
     value: "project-test"
 
-  #environment
+  #environment variables
   - description: Neo4j username.
     displayName: Neo4j username
     name: NEO4J_USERNAME
@@ -164,3 +166,8 @@ parameters:
     displayName: Neo4j host
     name: NEO4J_HOST
     value: "neo4j:7687"
+
+  - description: Neo4j db name.
+    displayName: Neo4j db name
+    name: NEO4J_DBNAME
+    value: "neo4j"
