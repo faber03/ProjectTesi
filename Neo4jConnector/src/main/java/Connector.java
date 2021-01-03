@@ -1,6 +1,8 @@
 import org.neo4j.driver.*;
 import org.neo4j.driver.Record;
 
+import java.net.InetAddress;
+
 import static java.lang.Thread.sleep;
 import static org.neo4j.driver.Values.parameters;
 
@@ -150,9 +152,10 @@ public class Connector implements AutoCloseable{
                 neo4jUsername != null ? neo4jUsername : "neo4j",
                 neo4jPassword != null ? neo4jPassword : "admin"))
         {
-            long pid = ProcessHandle.current().pid();
+            //long pid = ProcessHandle.current().pid();
+            var hostname = InetAddress.getLocalHost().getHostName();
 
-            var nodeName = "node-"+ pid;
+            var nodeName = hostname;
             connector.createNode(nodeName);
 
             while(true)
