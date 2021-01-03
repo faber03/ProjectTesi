@@ -103,19 +103,12 @@ objects:
               terminationMessagePath: /dev/termination-log
               terminationMessagePolicy: File
               env:
-                - name: NEO4J_AUTH
-                  value: ${NEO4J_AUTH}
-#              volumeMounts:
-#                - mountPath: ${MOUNT_PATH_DATA}
-#                  name: db-data
-#                - mountPath: ${MOUNT_PATH_LOGS}
-#                  name: db-logs
-#                - mountPath: ${MOUNT_PATH_CONF}
-#                  name: db-conf
-#          volumes:
-#            - name: db-data
-#            - name: db-logs
-#            - name: db-conf
+                - name: NEO4J_USERNAME
+                  value: ${NEO4J_USERNAME}
+                - name: NEO4J_PASSWORD
+                  value: ${NEO4J_PASSWORD}
+                - name: NEO4J_HOST
+                  value: ${NEO4J_HOST}
           dnsPolicy: ClusterFirst
           restartPolicy: Always
           schedulerName: default-scheduler
@@ -155,3 +148,19 @@ parameters:
     displayName: Namespace
     name: NAMESPACE
     value: "project-test"
+
+  #environment
+  - description: Neo4j username.
+    displayName: Neo4j username
+    name: NEO4J_USERNAME
+    value: "neo4j"
+
+  - description: Neo4j password.
+    displayName: Neo4j password
+    name: NEO4J_PASSWORD
+    value: "password"
+
+  - description: Neo4j host.
+    displayName: Neo4j host
+    name: NEO4J_HOST
+    value: "neo4j:7687"

@@ -1,5 +1,6 @@
 import org.neo4j.driver.*;
 
+import static java.lang.Thread.sleep;
 import static org.neo4j.driver.Values.parameters;
 
 public class Connector implements AutoCloseable{
@@ -33,6 +34,13 @@ public class Connector implements AutoCloseable{
 
                     String res = null;
                     if(!result1) {
+
+                        try {
+                            Thread.sleep(2000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
                         Result result = tx.run("CREATE (a:Greeting) " +
                                         "SET a.message = $message " +
                                         "RETURN a.message + ', from node ' + id(a)",
@@ -51,7 +59,14 @@ public class Connector implements AutoCloseable{
 
     public static void main( String... args ) throws Exception
     {
-        try ( Connector connector = new Connector( "bolt://neo4j:7687", "neo4j", "password" ) )
+        String neo4jUsername = System.getenv("NEO4J_USERNAME");
+        String neo4jPassword = System.getenv("NEO4J_PASSWORD");
+        String neo4jHost = System.getenv("NEO4J_HOST");
+
+        try ( Connector connector = new Connector(
+                "bolt://" + (neo4jHost != null ? neo4jHost : "localhost:7687"),
+                neo4jUsername != null ? neo4jUsername : "neo4j",
+                neo4jPassword != null ? neo4jPassword : "admin" ) )
         {
             while(true)
                 connector.printGreeting( "hello, world" );
