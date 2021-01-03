@@ -119,6 +119,13 @@ public class Connector implements AutoCloseable{
                             parameters( "name", name ));
 
                     Record record = null;
+
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
                     if(result.hasNext())
                     {
                         record = tx.run("MATCH (a:Node { name: $name }) " +
@@ -160,7 +167,7 @@ public class Connector implements AutoCloseable{
 
             while(true)
             {
-                Thread.sleep(5000);
+                Thread.sleep(2000);
                 connector.updateNodeCount(nodeName);
             }
         }
