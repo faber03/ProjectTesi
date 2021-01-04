@@ -14,7 +14,7 @@ ENV NEO4J_dbms_connector_bolt_address=0.0.0.0:7687
 #ADD neo4j.conf #${HOME}/conf/
 ADD neo4j.conf /var/lib/neo4j/conf/
 ADD jmx.password /var/lib/neo4j/conf/
-RUN chmod 444 /var/lib/neo4j/jmx.password
+RUN chmod 444 /var/lib/neo4j/conf/jmx.password
 
 #RUN rm -f ${HOME}/conf/neo4j.conf
 #ADD neo4j.conf ${HOME}/conf/
