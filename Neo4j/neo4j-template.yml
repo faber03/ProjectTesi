@@ -110,6 +110,23 @@ objects:
 #       weight: 100
 #     wildcardPolicy: None
 
+#route jmx
+- apiVersion: route.openshift.io/v1
+  kind: Route
+  metadata:
+    labels:
+      app: ${NAME}
+    name: ${NAME}-jmx
+    namespace: ${NAMESPACE}
+  spec:
+    port:
+      targetPort: jmx
+    to:
+      kind: Service
+      name: ${NAME}
+      weight: 100
+    wildcardPolicy: None
+
 #service
 - apiVersion: v1
   kind: Service
@@ -133,6 +150,10 @@ objects:
         port: 7473
         protocol: TCP
         targetPort: 7473
+      - name: jmx
+        port: 3637
+        protocol: TCP
+        targetPort: 3637
     selector:
       deploymentconfig: ${NAME}
 
@@ -175,6 +196,8 @@ objects:
               - containerPort: 7687
                 protocol: TCP
               - containerPort: 7473
+                protocol: TCP
+              - containerPort: 3637
                 protocol: TCP
             resources: {}
             terminationMessagePath: /dev/termination-log
