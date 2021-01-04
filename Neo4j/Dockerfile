@@ -14,7 +14,7 @@ USER neo4j
 ADD neo4j.conf ${HOME}/conf/
 #ADD jmx.password ${HOME}/conf/
 #RUN chown root ./conf/jmx.password
-RUN chmod 400 ./conf/jmx.password
+RUN chmod 0600 ./conf/jmx.password
 
 #ADD neo4j.conf /var/lib/neo4j/conf/
 #ADD jmx.password /var/lib/neo4j/conf/
