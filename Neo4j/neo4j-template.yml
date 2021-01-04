@@ -133,6 +133,10 @@ objects:
         port: 7473
         protocol: TCP
         targetPort: 7473
+      - name: jmx
+        port: 3637
+        protocol: TCP
+        targetPort: 3637
     selector:
       deploymentconfig: ${NAME}
 
@@ -175,6 +179,8 @@ objects:
               - containerPort: 7687
                 protocol: TCP
               - containerPort: 7473
+                protocol: TCP
+              - containerPort: 3637
                 protocol: TCP
             resources: {}
             terminationMessagePath: /dev/termination-log
