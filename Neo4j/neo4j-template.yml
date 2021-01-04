@@ -256,15 +256,15 @@ parameters:
   name: NAMESPACE
   value: "project-test"
 
-# - description: Mounth path data.
-#   displayName: Mounth path data
-#   name: MOUNT_PATH_DATA
-#   value: "/neo4j/data/data"
+- description: Mounth path data.
+  displayName: Mounth path data
+  name: MOUNT_PATH_DATA
+  value: "/neo4j/data/data"
 
-# - description: Mounth path logs.
-#   displayName: Mounth path logs
-#   name: MOUNT_PATH_LOGS
-#   value: "/neo4j/logs/logs"
+- description: Mounth path logs.
+  displayName: Mounth path logs
+  name: MOUNT_PATH_LOGS
+  value: "/neo4j/logs/logs"
 
 - description: Mounth path conf.
   displayName: Mounth path conf
