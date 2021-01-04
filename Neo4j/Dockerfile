@@ -15,9 +15,9 @@ USER root
 
 ADD neo4j.conf ${HOME}/conf/
 #ADD jmx.password ${HOME}/conf/
-RUN chown -R neo4j:neo4j /var/lib/neo4j/conf/
+#RUN chown -R root:root /var/lib/neo4j/conf/
 #./conf/jmx.password
-RUN chmod 0600 /var/lib/neo4j/conf/jmx.password
+#RUN chmod 0600 /var/lib/neo4j/conf/jmx.password
 #./conf/jmx.password
 
 #ADD neo4j.conf /var/lib/neo4j/conf/
@@ -33,7 +33,7 @@ EXPOSE 7473
 #EXPOSE 3637
 #EXPOSE 22
 
-USER neo4j
+USER root
 
 #RUN whoami
 #oc port-forward neo4j-1-26674 7474:7474 7687:7687 7473:7473 3637:3637 
