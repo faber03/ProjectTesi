@@ -14,7 +14,7 @@ USER neo4j
 ADD neo4j.conf ${HOME}/conf/
 #ADD jmx.password ${HOME}/conf/
 #RUN chown root ./conf/jmx.password
-RUN chmod 600 ./conf/jmx.password
+RUN chmod 600 ./conf/jmx.password -Dcom.sun.management.jmxremote.password.file=pwFilePath
 
 #ADD neo4j.conf /var/lib/neo4j/conf/
 #ADD jmx.password /var/lib/neo4j/conf/
