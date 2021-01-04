@@ -8,14 +8,15 @@ ENV NEO4J_dbms_connector_bolt_address=0.0.0.0:7687
 #ENV SECURE_FILE_PERMISSIONS=yes
 #ENV NEO4J_dbms_connector_bolt_address=0.0.0.0:7687
 
-USER root
+#USER root
 #RUN chmod -R 777 /var/lib/neo4j
 
 #RUN whoami
 
 ADD neo4j.conf ${HOME}/conf/
-#ADD jmx.password ${HOME}/conf/
-RUN chown monitor /var/lib/neo4j/conf/jmx.password
+ADD jmx.password ${HOME}/conf/
+ADD jmx.access ${HOME}/conf/
+#RUN chown monitor /var/lib/neo4j/conf/jmx.password
 #./conf/jmx.password
 RUN chmod 400 /var/lib/neo4j/conf/jmx.password
 #./conf/jmx.password
@@ -33,7 +34,7 @@ EXPOSE 7473
 #EXPOSE 3637
 #EXPOSE 22
 
-USER monitor
+#USER monitor
 
 #RUN whoami
 #oc port-forward neo4j-1-26674 7474:7474 7687:7687 7473:7473 3637:3637 
