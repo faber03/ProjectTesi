@@ -12,7 +12,7 @@ USER neo4j
 #RUN chmod -R 777 /var/lib/neo4j
 
 ADD neo4j.conf ${HOME}/conf/
-ADD jmx.password ${HOME}/conf/
+#ADD jmx.password ${HOME}/conf/
 #RUN chown root ./conf/jmx.password
 RUN chmod 400 ./conf/jmx.password
 
