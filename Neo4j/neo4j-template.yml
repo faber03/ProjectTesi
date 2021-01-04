@@ -253,4 +253,4 @@ parameters:
   displayName: Authorization
   name: NEO4J_AUTH
   #value: "none"
-  value: "neo4j/password"
+  value: "root/password"
