@@ -8,7 +8,7 @@ ENV NEO4J_dbms_connector_bolt_address=0.0.0.0:7687
 #ENV SECURE_FILE_PERMISSIONS=yes
 #ENV NEO4J_dbms_connector_bolt_address=0.0.0.0:7687
 
-SHELL ["/bin/bash", "-c"]
+#SHELL ["/bin/bash", "-c"]
 
 USER root
 #RUN chmod -R 777 /var/lib/neo4j
