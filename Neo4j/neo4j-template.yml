@@ -233,7 +233,7 @@ parameters:
   name: NAMESPACE
   value: "project-test"
 
-- description: Mounth path data.
+- description: Mounth path data
   displayName: Mounth path data
   name: MOUNT_PATH_DATA
   value: "/neo4j/data"
