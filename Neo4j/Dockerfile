@@ -8,7 +8,7 @@ ENV NEO4J_dbms_connector_bolt_address=0.0.0.0:7687
 #ENV SECURE_FILE_PERMISSIONS=yes
 #ENV NEO4J_dbms_connector_bolt_address=0.0.0.0:7687
 
-#USER root
+USER root
 #RUN chmod -R 777 /var/lib/neo4j
 
 #ADD neo4j.conf #${HOME}/conf/
@@ -27,4 +27,4 @@ EXPOSE 3637
 #EXPOSE 22
 
 #USER neo4j
-#oc port-forward neo4j-1-k4v8m 7474:7474 7687:7687 3637:3637 7473:7473
+#oc port-forward neo4j-1-x2krb 7474:7474 7687:7687 3637:3637 7473:7473
