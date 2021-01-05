@@ -121,7 +121,7 @@ public class Connector implements AutoCloseable{
                     Record record = null;
 
                     try {
-                        Thread.sleep(2000);
+                        Thread.sleep(3000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
