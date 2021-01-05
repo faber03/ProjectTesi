@@ -56,8 +56,10 @@ public class Monitor {
         String[]  credentials = new String[] {"monitor", "password"};
         environment.put (JMXConnector.CREDENTIALS, credentials);
 
+        String neo4jHost = System.getenv("NEO4J_HOST");
+
         JMXServiceURL url =
-                new JMXServiceURL("service:jmx:rmi:///jndi/rmi://localhost:3637/jmxrmi");
+                new JMXServiceURL("service:jmx:rmi:///jndi/rmi://" + (neo4jHost != null ? neo4jHost : "localhost:3637") + "/jmxrmi");
                 //new JMXServiceURL("service:jmx:rmi:///jndi/rmi://:9999/jmxrmi");
 
         JMXConnector jmxc = JMXConnectorFactory.connect(url, environment);

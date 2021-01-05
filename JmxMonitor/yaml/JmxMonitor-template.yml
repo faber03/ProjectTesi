@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Template
 labels:
-  template: neo4jConnector-template
+  template: jmxMonitor-template
 message: Your template has been created.
 metadata:
-  name: neo4jConnector-template
+  name: jmxMonitor-template
 objects:
 
   #image stream
@@ -102,15 +102,15 @@ objects:
               resources: {}
               terminationMessagePath: /dev/termination-log
               terminationMessagePolicy: File
-              env:
-                - name: NEO4J_USERNAME
-                  value: ${NEO4J_USERNAME}
-                - name: NEO4J_PASSWORD
-                  value: ${NEO4J_PASSWORD}
+#              env:
+#                - name: NEO4J_USERNAME
+#                  value: ${NEO4J_USERNAME}
+#                - name: NEO4J_PASSWORD
+#                  value: ${NEO4J_PASSWORD}
                 - name: NEO4J_HOST
                   value: ${NEO4J_HOST}
-                - name: NEO4J_DBNAME
-                  value: ${NEO4J_DBNAME}
+#                - name: NEO4J_DBNAME
+#                  value: ${NEO4J_DBNAME}
           dnsPolicy: ClusterFirst
           restartPolicy: Always
           schedulerName: default-scheduler
@@ -134,7 +134,7 @@ parameters:
   - description: The name assigned to all of the frontend objects defined in this template.
     displayName: Name
     name: NAME
-    value: "neo4j-connector"
+    value: "jmx-monitor"
 
   - description: The URL of the repository with your application source code.
     displayName: Git Repository URL
@@ -144,7 +144,7 @@ parameters:
   - description: The repository directory subpath of Dockerfile.
     displayName: Git Repository subpath
     name: SOURCE_REPOSITORY_CONTEXT_DIR
-    value: "/Neo4jConnector"
+    value: "/JmxMonitor"
 
   - description: The OpenShift Namespace where the ImageStream resides.
     displayName: Namespace
@@ -152,22 +152,22 @@ parameters:
     value: "project-test"
 
   #environment variables
-  - description: Neo4j username.
-    displayName: Neo4j username
-    name: NEO4J_USERNAME
-    value: "neo4j"
+#  - description: Neo4j username.
+#    displayName: Neo4j username
+#    name: NEO4J_USERNAME
+#    value: "neo4j"
 
-  - description: Neo4j password.
-    displayName: Neo4j password
-    name: NEO4J_PASSWORD
-    value: "password"
+#  - description: Neo4j password.
+#    displayName: Neo4j password
+#    name: NEO4J_PASSWORD
+#    value: "password"
 
   - description: Neo4j host.
     displayName: Neo4j host
     name: NEO4J_HOST
     value: "neo4j:7687"
 
-  - description: Neo4j db name.
-    displayName: Neo4j db name
-    name: NEO4J_DBNAME
-    value: "neo4j"
+#  - description: Neo4j db name.
+#    displayName: Neo4j db name
+#    name: NEO4J_DBNAME
+#    value: "neo4j"
