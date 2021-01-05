@@ -28,7 +28,7 @@
                             <archive>
                                 <manifest>
                                     <mainClass>
-                                        Connector
+                                        Monitor
                                     </mainClass>
                                 </manifest>
                             </archive>

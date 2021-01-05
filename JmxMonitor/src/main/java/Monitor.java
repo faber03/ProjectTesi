@@ -18,7 +18,7 @@ import javax.management.remote.JMXServiceURL;
 import static javax.management.JMX.*;
 
 
-public class Client {
+public class Monitor {
 
     /**
      * Inner class that will handle the notifications.
