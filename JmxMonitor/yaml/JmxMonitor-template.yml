@@ -167,7 +167,7 @@ parameters:
   - description: Neo4j host.
     displayName: Neo4j host
     name: NEO4J_JMX_HOST
-    value: "neo4j:7687"
+    value: "neo4j:3637"
 
   - description: Neo4j jmx username.
     displayName: Neo4j jmx username
@@ -177,7 +177,7 @@ parameters:
   - description: Neo4j jmx password.
     displayName: Neo4j jmx password
     name: NEO4J_JMX_PASSWORD
-    value: "monitor"
+    value: "password"
 
 #  - description: Neo4j db name.
 #    displayName: Neo4j db name
