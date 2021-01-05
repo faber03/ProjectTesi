@@ -102,13 +102,15 @@ objects:
               resources: {}
               terminationMessagePath: /dev/termination-log
               terminationMessagePolicy: File
-#              env:
-#                - name: NEO4J_USERNAME
-#                  value: ${NEO4J_USERNAME}
+              env:
+                - name: NEO4J_JMX_USERNAME
+                  value: ${NEO4J_JMX_USERNAME}
+                - name: NEO4J_JMX_PASSWORD
+                  value: ${NEO4J_JMX_PASSWORD}
 #                - name: NEO4J_PASSWORD
 #                  value: ${NEO4J_PASSWORD}
-                - name: NEO4J_HOST
-                  value: ${NEO4J_HOST}
+                - name: NEO4J_JMX_HOST
+                  value: ${NEO4J_JMX_HOST}
 #                - name: NEO4J_DBNAME
 #                  value: ${NEO4J_DBNAME}
           dnsPolicy: ClusterFirst
@@ -164,8 +166,18 @@ parameters:
 
   - description: Neo4j host.
     displayName: Neo4j host
-    name: NEO4J_HOST
+    name: NEO4J_JMX_HOST
     value: "neo4j:7687"
+
+  - description: Neo4j jmx username.
+    displayName: Neo4j jmx username
+    name: NEO4J_JMX_USERNAME
+    value: "monitor"
+
+  - description: Neo4j jmx password.
+    displayName: Neo4j jmx password
+    name: NEO4J_JMX_PASSWORD
+    value: "monitor"
 
 #  - description: Neo4j db name.
 #    displayName: Neo4j db name

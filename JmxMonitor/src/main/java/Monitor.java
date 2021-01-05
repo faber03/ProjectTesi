@@ -48,18 +48,21 @@ public class Monitor {
         // Create an RMI connector client and
         // connect it to the RMI connector server
         //
+        String neo4jJmxHost = System.getenv("NEO4J_JMX_HOST");
+        String neo4jJmxUsername = System.getenv("NEO4J_JMX_USERNAME");
+        String neo4jJmxPassword = System.getenv("NEO4J_JMX_PASSWORD");
+
         echo("\nCreate an RMI connector client and " +
                 "connect it to the RMI connector server");
 
         //  Provide credentials required by server for user authentication
         HashMap   environment = new HashMap();
-        String[]  credentials = new String[] {"monitor", "password"};
+        String[]  credentials = new String[] { neo4jJmxUsername != null ? neo4jJmxUsername : "monitor",
+                                               neo4jJmxPassword != null ? neo4jJmxPassword :"password"};
         environment.put (JMXConnector.CREDENTIALS, credentials);
 
-        String neo4jHost = System.getenv("NEO4J_HOST");
-
         JMXServiceURL url =
-                new JMXServiceURL("service:jmx:rmi:///jndi/rmi://" + (neo4jHost != null ? neo4jHost : "localhost:3637") + "/jmxrmi");
+                new JMXServiceURL("service:jmx:rmi:///jndi/rmi://" + (neo4jJmxHost != null ? neo4jJmxHost : "localhost:3637") + "/jmxrmi");
                 //new JMXServiceURL("service:jmx:rmi:///jndi/rmi://:9999/jmxrmi");
 
         JMXConnector jmxc = JMXConnectorFactory.connect(url, environment);
