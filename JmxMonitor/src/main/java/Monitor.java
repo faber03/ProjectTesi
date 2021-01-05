@@ -87,7 +87,7 @@ public class Monitor {
             echo("\tDomain = " + domain);
         }
 
-        Thread.sleep(2000);
+        sleep(2000);
         //waitForEnterPressed();
 
         // Get MBeanServer's default domain
@@ -107,7 +107,7 @@ public class Monitor {
             echo("\tObjectName = " + name);
         }
 
-        Thread.sleep(2000);
+        sleep(2000);
         //waitForEnterPressed();
 
         // ----------------------
@@ -127,7 +127,7 @@ public class Monitor {
                 newMBeanProxy(mbsc, mbeanName, TransactionActiveMBean.class, true);
 
         while(true) {
-            Thread.sleep(2000);
+            sleep(2000);
             echo("\nTransactionActive = " + mbeanProxy.getNumber());
         }
     }
