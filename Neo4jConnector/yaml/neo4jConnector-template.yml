@@ -69,7 +69,7 @@ objects:
       name: ${NAME}
       namespace: ${NAMESPACE}
     spec:
-      replicas: 2
+      replicas: 1
       selector:
         deploymentconfig: ${NAME}
       strategy:
