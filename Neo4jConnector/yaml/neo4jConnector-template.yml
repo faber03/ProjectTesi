@@ -16,6 +16,7 @@ objects:
       name: ${NAME}
       namespace: ${NAMESPACE}
 
+
   #build config
   - apiVersion: build.openshift.io/v1
     kind: BuildConfig
