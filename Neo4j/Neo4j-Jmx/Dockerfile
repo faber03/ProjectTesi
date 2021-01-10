@@ -30,10 +30,10 @@ RUN chmod 0600 /var/lib/neo4j/conf/jmx.password
 #RUN rm -f ${HOME}/conf/neo4j.conf
 #ADD neo4j.conf ${HOME}/conf/
 
-EXPOSE 7474
-EXPOSE 7687
-EXPOSE 7473
-EXPOSE 3637
-#EXPOSE 22
+EXPOSE 7474 #http
+EXPOSE 7687 #bolt
+EXPOSE 7473 #https
+EXPOSE 3637 #jmx
 
-#oc port-forward neo4j-1-wphcd 7474:7474 7687:7687 7473:7473 3637:3637 
+#port forwarding from oc
+#oc port-forward <neo4j pod name> 7474:7474 7687:7687 7473:7473 3637:3637

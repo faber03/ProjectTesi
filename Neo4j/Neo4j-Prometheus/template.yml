@@ -1,0 +1,327 @@
+apiVersion: v1
+kind: Template
+labels:
+  template: neo4j-template #${NAMESPACE}-template
+message: Your template has been created.
+metadata:
+  name: neo4j-template #${NAMESPACE}-template
+objects:
+
+#image stream Neo4j
+- apiVersion: image.openshift.io/v1
+  kind: ImageStream
+  metadata:
+    labels:
+      app: ${NAME}
+    name: ${NEO4J_NAME}
+    namespace: ${NAMESPACE}
+
+#image stream Prometheus
+- apiVersion: image.openshift.io/v1
+  kind: ImageStream
+  metadata:
+    labels:
+      app: ${NAME}
+    name: ${PROMETHEUS_NAME}
+    namespace: ${NAMESPACE}
+
+#build config Neo4j
+- apiVersion: build.openshift.io/v1
+  kind: BuildConfig
+  metadata:
+    labels:
+      app: ${NAME}
+    name: ${NEO4J_NAME}
+    namespace: ${NAMESPACE}
+  spec:
+    nodeSelector: null
+    output:
+      to:
+        kind: ImageStreamTag
+        name: '${NEO4J_NAME}:latest'
+    postCommit: {}
+    resources: {}
+    runPolicy: Serial
+    source:
+      contextDir: ${SOURCE_REPOSITORY_CONTEXT_DIR_NEO4J}
+      git:
+        ref: main
+        uri: '${SOURCE_REPOSITORY_URL}'
+      type: Git
+    strategy:
+      dockerStrategy:
+        #dockerfilePath: neo4j/Dockerfile
+        # from:
+        #   kind: DockerImage
+        #   name: 'mysql:8.0.20'
+      type: Docker
+    triggers:
+      - imageChange:
+          lastTriggeredImageID: #>-
+            #docker.io/openshift/wildfly-101-centos7@sha256:7775d40f77e22897dc760b76f1656f67ef6bd5561b4d74fbb030b977f61d48e8
+        type: ImageChange
+      - type: ConfigChange
+      - generic:
+          secret: 9fdf619e0aea935a
+        type: Generic
+      - github:
+          secret: 43ac13d4078565c4
+        type: GitHub
+
+#build config Prometheus
+- apiVersion: build.openshift.io/v1
+  kind: BuildConfig
+  metadata:
+    labels:
+      app: ${NAME}
+    name: ${PROMETHEUS_NAME}
+    namespace: ${NAMESPACE}
+  spec:
+    nodeSelector: null
+    output:
+      to:
+        kind: ImageStreamTag
+        name: '${PROMETHEUS_NAME}:latest'
+    postCommit: {}
+    resources: {}
+    runPolicy: Serial
+    source:
+      contextDir: ${SOURCE_REPOSITORY_CONTEXT_DIR_PROMETHEUS}
+      git:
+        ref: main
+        uri: '${SOURCE_REPOSITORY_URL}'
+      type: Git
+    strategy:
+      dockerStrategy:
+      #dockerfilePath: neo4j/Dockerfile
+      # from:
+      #   kind: DockerImage
+      #   name: 'mysql:8.0.20'
+      type: Docker
+    triggers:
+      - imageChange:
+          lastTriggeredImageID: #>-
+          #docker.io/openshift/wildfly-101-centos7@sha256:7775d40f77e22897dc760b76f1656f67ef6bd5561b4d74fbb030b977f61d48e8
+        type: ImageChange
+      - type: ConfigChange
+      - generic:
+          secret: 9fdf619e0aea935a
+        type: Generic
+      - github:
+          secret: 43ac13d4078565c4
+        type: GitHub
+
+#service
+- apiVersion: v1
+  kind: Service
+  metadata:
+    labels:
+      app: ${NAME}
+    name: ${NAME}
+    namespace: ${NAMESPACE}
+  spec:
+    #type: LoadBalancer
+    ports:
+      #neo4j ports
+      - name: ${NEO4J_NAME}-http
+        port: 7474
+        protocol: TCP
+        targetPort: 7474
+      - name: ${NEO4J_NAME}-bolt
+        port: 7687
+        protocol: TCP
+        targetPort: 7687
+      - name: ${NEO4J_NAME}-https
+        port: 7473
+        protocol: TCP
+        targetPort: 7473
+      #prometheus port
+      - name: ${PROMETHEUS_NAME}-http
+        port: 9090
+        protocol: TCP
+        targetPort: 9090
+    selector:
+      deploymentconfig: ${NAME}
+
+#deployment
+- apiVersion: apps.openshift.io/v1
+  kind: DeploymentConfig
+  metadata:
+    labels:
+      app: ${NAME}
+    name: ${NAME}
+    namespace: ${NAMESPACE}
+  spec:
+    replicas: 1
+    selector:
+      deploymentconfig: ${NAME}
+    strategy:
+      activeDeadlineSeconds: 21600
+      resources: {}
+      rollingParams:
+        intervalSeconds: 1
+        maxSurge: 25%
+        maxUnavailable: 25%
+        timeoutSeconds: 600
+        updatePeriodSeconds: 1
+      type: Recreate
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: ${NAME}
+          deploymentconfig: ${NAME}
+      spec:
+        containers:
+          #----------------
+          # neo4j container
+          #----------------
+          - image: '${NEO4J_NAME}:latest'
+            name: ${NEO4J_NAME}
+            ports:
+              - containerPort: 7474
+                protocol: TCP
+              - containerPort: 7687
+                protocol: TCP
+              - containerPort: 7473
+                protocol: TCP
+              #- containerPort: 3637
+              #  protocol: TCP
+            resources: {}
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            env:
+              - name: NEO4J_AUTH
+                value: ${NEO4J_AUTH}
+            volumeMounts:
+              - mountPath: ${MOUNT_PATH_NEO4J_DATA}
+                name: neo4j-data
+              - mountPath: ${MOUNT_PATH_NEO4J_LOGS}
+                name: neo4j-logs
+              - mountPath: ${MOUNT_PATH_NEO4J_CONF}
+                name: neo4j-conf
+          #---------------------
+          # prometheus container
+          #---------------------
+          - image: '${PROMETHEUS_NAME}:latest'
+            name: ${PROMETHEUS_NAME}
+            ports:
+              - containerPort: 9090
+                protocol: TCP
+            resources: { }
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            #env:
+            #  - name: NEO4J_AUTH
+            #    value: ${NEO4J_AUTH}
+            volumeMounts:
+              - mountPath: ${MOUNT_PATH_PROMETHEUS_CONF}
+                name: prometheus-conf
+
+        volumes:
+          #neo4j volumes
+          - name: neo4j-data
+          - name: neo4j-logs
+          - name: neo4j-conf
+          #prometheus volumes
+          - name: prometheus-conf
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+    test: false
+    triggers:
+    #trigget neo4j
+    - imageChangeParams:
+          automatic: true
+          containerNames:
+            - ${NAME}
+          from:
+            kind: ImageStreamTag
+            name: '${NEO4J_NAME}:latest'
+            namespace: ${NAMESPACE}
+      type: ImageChange
+    #trigget prometheus
+    - imageChangeParams:
+        automatic: true
+        containerNames:
+          - ${NAME}
+        from:
+          kind: ImageStreamTag
+          name: '${PROMETHEUS_NAME}:latest'
+          namespace: ${NAMESPACE}
+        type: ImageChange
+    - type: ConfigChange
+
+#parametri
+parameters:
+
+#---------------------------------------------------------------------------NAMES
+
+- description: The OpenShift Namespace where the ImageStream resides.
+  displayName: Namespace
+  name: NAMESPACE
+  value: "project-test"
+
+- description: The name assigned to all of the frontend objects defined in this template.
+  displayName: Name
+  name: NAME
+  value: "neo4j-prometheus"
+
+- description: The name assigned to Neo4j image stream.
+  displayName: Neo4j Image Name
+  name: NEO4J_NAME
+  value: "neo4j"
+
+- description: The name assigned to Prometheus image stream.
+  displayName: Prometheus Image Name
+  name: PROMETHEUS_NAME
+  value: "prometheus"
+
+#---------------------------------------------------------------------------GIT
+-
+- description: The URL of the repository with your application source code.
+  displayName: Git Repository URL
+  name: SOURCE_REPOSITORY_URL
+  value: "https://github.com/faber03/ProjectTest.git"
+
+- description: The repository directory subpath of Neo4j Dockerfile.
+  displayName: Git Repository subpath
+  name: SOURCE_REPOSITORY_CONTEXT_DIR_NEO4J
+  value: "/Neo4j-Prometheus/Neo4j"
+
+- description: The repository directory subpath of Prometheus Dockerfile.
+  displayName: Git Repository subpath
+  name: SOURCE_REPOSITORY_CONTEXT_DIR_PROMETHEUS
+  value: "/Neo4j-Prometheus/Prometheus"
+
+  #---------------------------------------------------------------------------VOLUMES
+
+- description: Mounth path Neo4j data
+  displayName: Mounth path Neo4j data
+  name: MOUNT_PATH_NEO4J_DATA
+  value: "/neo4j/data"
+
+- description: Mounth path Neo4j logs.
+  displayName: Mounth path Neo4j logs
+  name: MOUNT_PATH_NEO4J_LOGS
+  value: "/neo4j/logs"
+
+- description: Mounth path Neo4j conf.
+  displayName: Mounth path Neo4j conf
+  name: MOUNT_PATH_NEO4J_CONF
+  value: "/neo4j/conf"
+
+- description: Mounth path Prometheus conf.
+  displayName: Mounth path Prometheus conf
+  name: MOUNT_PATH_PROMETHEUS_CONF
+  value: "/etc/prometheus"
+
+#---------------------------------------------------------------------------ENVIRONMENT
+
+- description: Authorization.
+  displayName: Authorization
+  name: NEO4J_AUTH
+  #value: "none"
+  value: "neo4j/password"
