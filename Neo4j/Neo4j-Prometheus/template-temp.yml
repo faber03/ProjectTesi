@@ -195,9 +195,3 @@ parameters:
 #  value: "/data/prometheus"
 
 #---------------------------------------------------------------------------ENVIRONMENT
-
-- description: Authorization.
-  displayName: Authorization
-  name: NEO4J_AUTH
-  #value: "none"
-  value: "neo4j/password"
