@@ -111,6 +111,23 @@ objects:
           secret: 43ac13d4078565c4
         type: GitHub
 
+#route prometheus
+- apiVersion: route.openshift.io/v1
+  kind: Route
+  metadata:
+    labels:
+      app: ${NAME}
+    name: ${PROMETHEUS_NAME}
+    namespace: ${NAMESPACE}
+    spec:
+    port:
+      targetPort: ${PROMETHEUS_NAME}-http
+    to:
+      kind: Service
+      name: ${NAME}
+      weight: 100
+    wildcardPolicy: None
+
 #service
 - apiVersion: v1
   kind: Service
@@ -323,7 +340,7 @@ parameters:
 - description: Mounth path Prometheus data.
   displayName: Mounth path Prometheus data
   name: MOUNT_PATH_PROMETHEUS_DATA
-  value: "/data/prometheus"
+  value: "/prometheus"
 
 #---------------------------------------------------------------------------ENVIRONMENT
 
