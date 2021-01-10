@@ -125,13 +125,13 @@ objects:
             volumeMounts:
               - mountPath: ${MOUNT_PATH_PROMETHEUS_CONF}
                 name: prometheus-conf
-#              - mountPath: ${MOUNT_PATH_PROMETHEUS_DATA}
-#                name: prometheus-data
+              - mountPath: ${MOUNT_PATH_PROMETHEUS_DATA}
+                name: prometheus-data
 
         volumes:
           #prometheus volumes
           - name: prometheus-conf
-          #- name: prometheus-data
+          - name: prometheus-data
         dnsPolicy: ClusterFirst
         restartPolicy: Always
         schedulerName: default-scheduler
