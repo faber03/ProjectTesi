@@ -7,7 +7,7 @@ FROM prom/prometheus
 #ADD prometheus.yml /etc/prometheus/
 #ADD prometheus.yml /path/to/config
 
-RUN chown 1000170000 ${HOME}/data/
+RUN chown 1000170000 ${HOME}/data
 #RUN chmod 777 /etc/prometheus/queries.active
 
 EXPOSE 9090
