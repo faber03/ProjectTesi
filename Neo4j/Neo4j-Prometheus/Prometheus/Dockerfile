@@ -8,6 +8,6 @@ USER root
 #ADD prometheus.yml /path/to/config
 
 RUN chown 1000170000 /etc/prometheus
-#RUN chmod 777 /etc/prometheus/queries.active
+RUN chmod -R 444 /etc/prometheus
 
 EXPOSE 9090
