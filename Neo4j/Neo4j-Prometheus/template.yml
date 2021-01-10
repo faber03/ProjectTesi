@@ -315,7 +315,7 @@ parameters:
 - description: Mounth path Prometheus conf.
   displayName: Mounth path Prometheus conf
   name: MOUNT_PATH_PROMETHEUS_CONF
-  value: "/etc/prometheus"
+  value: "/path/to/config"
 
 #---------------------------------------------------------------------------ENVIRONMENT
 
