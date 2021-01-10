@@ -11,7 +11,7 @@ USER root
 #RUN chmod -R 755 /etc/prometheus/*
 
 RUN chown -R 1000:2000 /etc/prometheus/*
-RUN chmod -R 755 /etc/prometheus/*
+RUN chmod -R 777 /etc/prometheus/*
 
 USER 1000:2000
 
