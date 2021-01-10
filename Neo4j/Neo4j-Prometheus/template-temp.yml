@@ -78,6 +78,20 @@ objects:
     selector:
       deploymentconfig: ${NAME}
 
+#persistent volume
+#- apiVersion: v1
+#  kind: PersistentVolumeClaim
+#  metadata:
+#    name: prometheus-pvc
+#    labels:
+#      app: ${NAME}
+#  spec:
+#    accessModes:
+#      - ReadWriteOnce
+#    resources:
+#      requests:
+#        storage: 1Gi
+
 #deployment
 - apiVersion: apps.openshift.io/v1
   kind: DeploymentConfig
@@ -107,13 +121,6 @@ objects:
           app: ${NAME}
           deploymentconfig: ${NAME}
       spec:
-        initContainers:
-          - name: prometheus-data-permission-fix
-            image: busybox
-            command: [ "/bin/chmod","-R","777", "/data" ]
-            volumeMounts:
-              - name: prometheus-data
-                mountPath: /data
         containers:
           #---------------------
           # prometheus container
@@ -134,13 +141,19 @@ objects:
                 name: prometheus-conf
               - mountPath: ${MOUNT_PATH_PROMETHEUS_DATA}
                 name: prometheus-data
-
+#        initContainers:
+#          - name: prometheus-data-permission-fix
+#            image: busybox
+#            command: [ "sh", "-c", 'chown -R 1000170000 /data/*' ]
+#            volumeMounts:
+#              - name: prometheus-data
+#                mountPath: /data
         volumes:
           #prometheus volumes
           - name: prometheus-conf
           - name: prometheus-data
-            persistentVolumeClaim:
-              claimName: prometheus-pvc
+#            persistentVolumeClaim:
+#              claimName: prometheus-pvc
         dnsPolicy: ClusterFirst
         restartPolicy: Always
         schedulerName: default-scheduler
