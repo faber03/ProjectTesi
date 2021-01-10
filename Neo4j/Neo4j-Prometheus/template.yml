@@ -236,7 +236,7 @@ objects:
     - imageChangeParams:
           automatic: true
           containerNames:
-            - ${NAME}
+            - ${NEO4J_NAME}
           from:
             kind: ImageStreamTag
             name: '${NEO4J_NAME}:latest'
@@ -246,12 +246,12 @@ objects:
     - imageChangeParams:
         automatic: true
         containerNames:
-          - ${NAME}
+          - ${PROMETHEUS_NAME}
         from:
           kind: ImageStreamTag
           name: '${PROMETHEUS_NAME}:latest'
           namespace: ${NAMESPACE}
-        type: ImageChange
+      type: ImageChange
     - type: ConfigChange
 
 #parametri
