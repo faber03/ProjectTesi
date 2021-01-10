@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Template
 labels:
-  template: neo4j-template #${NAMESPACE}-template
+  template: neo4j-prometheus-template #${NAMESPACE}-template
 message: Your template has been created.
 metadata:
-  name: neo4j-template #${NAMESPACE}-template
+  name: neo4j-prometheus-template #${NAMESPACE}-template
 objects:
 
 #image stream Neo4j
@@ -280,7 +280,6 @@ parameters:
   value: "prometheus"
 
 #---------------------------------------------------------------------------GIT
--
 - description: The URL of the repository with your application source code.
   displayName: Git Repository URL
   name: SOURCE_REPOSITORY_URL
@@ -289,12 +288,12 @@ parameters:
 - description: The repository directory subpath of Neo4j Dockerfile.
   displayName: Git Repository subpath
   name: SOURCE_REPOSITORY_CONTEXT_DIR_NEO4J
-  value: "/Neo4j-Prometheus/Neo4j"
+  value: "/Neo4j/Neo4j-Prometheus/Neo4j"
 
 - description: The repository directory subpath of Prometheus Dockerfile.
   displayName: Git Repository subpath
   name: SOURCE_REPOSITORY_CONTEXT_DIR_PROMETHEUS
-  value: "/Neo4j-Prometheus/Prometheus"
+  value: "/Neo4j/Neo4j-Prometheus/Prometheus"
 
   #---------------------------------------------------------------------------VOLUMES
 
