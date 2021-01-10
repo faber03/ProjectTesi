@@ -214,6 +214,6 @@ parameters:
 - description: Mounth path Prometheus data.
   displayName: Mounth path Prometheus data
   name: MOUNT_PATH_PROMETHEUS_DATA
-  value: "/prometheus/data"
+  value: "/prometheus"
 
 #---------------------------------------------------------------------------ENVIRONMENT

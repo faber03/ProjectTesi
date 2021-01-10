@@ -10,7 +10,7 @@ USER root
 #RUN chown -R 1000170000 /etc/prometheus/*
 #RUN chmod -R 755 /etc/prometheus/*
 
-RUN chown -R 65534:65534 /etc/prometheus/data
+RUN chown -R 65534:65534 /etc/prometheus
 #RUN chmod -R 777 /etc/prometheus/*
 
 #USER 1000170000
