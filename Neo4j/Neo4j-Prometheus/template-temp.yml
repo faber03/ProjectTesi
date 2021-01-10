@@ -107,6 +107,13 @@ objects:
           app: ${NAME}
           deploymentconfig: ${NAME}
       spec:
+        initContainers:
+          - name: prometheus-data-permission-fix
+            image: busybox
+            command: [ "/bin/chmod","-R","777", "/data" ]
+            volumeMounts:
+              - name: prometheus-data
+                mountPath: /data
         containers:
           #---------------------
           # prometheus container
@@ -132,6 +139,8 @@ objects:
           #prometheus volumes
           - name: prometheus-conf
           - name: prometheus-data
+            persistentVolumeClaim:
+              claimName: prometheus-pvc
         dnsPolicy: ClusterFirst
         restartPolicy: Always
         schedulerName: default-scheduler
