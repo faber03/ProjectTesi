@@ -2,7 +2,7 @@ FROM prom/prometheus
 
 #SHELL ["/bin/bash", "-c"]
 
-USER root
+#USER root
 
 #ADD prometheus.yml /etc/prometheus/
 #ADD prometheus.yml /path/to/config
@@ -10,9 +10,7 @@ USER root
 #RUN chown -R 1000170000 /etc/prometheus/*
 #RUN chmod -R 755 /etc/prometheus/*
 
-RUN chown -R 1000:2000 /etc/prometheus/*
+RUN chown -R 1000170000 /etc/prometheus/*
 RUN chmod -R 777 /etc/prometheus/*
-
-USER 1000:2000
 
 EXPOSE 9090
