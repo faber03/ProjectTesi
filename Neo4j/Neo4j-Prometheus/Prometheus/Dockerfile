@@ -4,8 +4,8 @@ FROM prom/prometheus
 
 USER root
 
-#ADD prometheus.yml /etc/prometheus/
-ADD prometheus.yml /path/to/config
+ADD prometheus.yml /etc/prometheus/
+#ADD prometheus.yml /path/to/config
 
 #RUN chown -R 1000170000 /etc/prometheus/*
 #RUN chmod -R 755 /etc/prometheus/*
