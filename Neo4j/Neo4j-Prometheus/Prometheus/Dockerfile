@@ -10,9 +10,9 @@ USER root
 #RUN chown -R 1000170000 /etc/prometheus/*
 #RUN chmod -R 755 /etc/prometheus/*
 
-RUN chown -R 1000:65534 /etc/prometheus/*
+RUN chown -R 1000:2000 /etc/prometheus/*
 RUN chmod -R 755 /etc/prometheus/*
 
-USER 1000:65534
+USER 1000:2000
 
 EXPOSE 9090
