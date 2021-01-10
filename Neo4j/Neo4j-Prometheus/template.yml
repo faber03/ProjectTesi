@@ -217,6 +217,8 @@ objects:
             volumeMounts:
               - mountPath: ${MOUNT_PATH_PROMETHEUS_CONF}
                 name: prometheus-conf
+              - mountPath: ${MOUNT_PATH_PROMETHEUS_DATA}
+                  name: prometheus-data
 
         volumes:
           #neo4j volumes
@@ -225,6 +227,7 @@ objects:
           - name: neo4j-conf
           #prometheus volumes
           - name: prometheus-conf
+          - name: prometheus-data
         dnsPolicy: ClusterFirst
         restartPolicy: Always
         schedulerName: default-scheduler
@@ -316,6 +319,11 @@ parameters:
   displayName: Mounth path Prometheus conf
   name: MOUNT_PATH_PROMETHEUS_CONF
   value: "/path/to/config"
+
+- description: Mounth path Prometheus data.
+  displayName: Mounth path Prometheus data
+  name: MOUNT_PATH_PROMETHEUS_DATA
+  value: "/data/prometheus"
 
 #---------------------------------------------------------------------------ENVIRONMENT
 
