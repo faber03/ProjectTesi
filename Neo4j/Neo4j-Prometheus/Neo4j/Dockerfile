@@ -8,7 +8,11 @@ SHELL ["/bin/bash", "-c"]
 
 ADD neo4j.conf ${HOME}/conf/
 
-EXPOSE 7474 #http
-EXPOSE 7687 #bolt
-EXPOSE 7473 #https
-EXPOSE 2004 #prometheus endpoint
+#http
+EXPOSE 7474
+#bolt
+EXPOSE 7687
+#https
+EXPOSE 7473
+#prometheus endpoint
+EXPOSE 2004
