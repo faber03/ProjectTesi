@@ -132,7 +132,6 @@ metadata:
     app: example-app
   name: example-app
 spec:
-  type: NodePort
   ports:
     - name: web
       #port: 2004
