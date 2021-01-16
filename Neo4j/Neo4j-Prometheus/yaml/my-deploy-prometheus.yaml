@@ -1,0 +1,194 @@
+#------------------------------------------------------ServiceMonitor
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: example-app
+  labels:
+    team: frontend
+spec:
+  selector:
+    matchLabels:
+      app: example-app
+  endpoints:
+    - port: web
+#-----------------------------------------------------------PROMETHEUS
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: prometheus
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRole
+metadata:
+  name: prometheus
+rules:
+  - apiGroups: [""]
+    resources:
+      - nodes
+      - nodes/metrics
+      - services
+      - endpoints
+      - pods
+    verbs: ["get", "list", "watch"]
+  - apiGroups: [""]
+    resources:
+      - configmaps
+    verbs: ["get"]
+  - apiGroups:
+      - networking.k8s.io
+    resources:
+      - ingresses
+    verbs: ["get", "list", "watch"]
+  - nonResourceURLs: ["/metrics"]
+    verbs: ["get"]
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  name: prometheus
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: prometheus
+subjects:
+  - kind: ServiceAccount
+    name: prometheus
+    namespace: default
+---
+apiVersion: monitoring.coreos.com/v1
+kind: Prometheus
+metadata:
+  name: prometheus
+spec:
+  serviceAccountName: prometheus
+  serviceMonitorSelector:
+    matchLabels:
+      team: frontend
+#  resources:
+#    requests:
+#      memory: 400Mi
+#  enableAdminAPI: false
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: prometheus
+spec:
+  ports:
+    - name: web
+#      nodePort: 30900
+      port: 9090
+      protocol: TCP
+      targetPort: web
+  selector:
+    prometheus: prometheus
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#
+#
+#
+##---------------------------------------------------------------------------------------------------------ServiceMonitor
+#apiVersion: monitoring.coreos.com/v1
+#kind: ServiceMonitor
+#metadata:
+#  name: servicemonitor-neo4j
+#  labels:
+#    name: servicemonitor-neo4j
+#    app: neo4j
+#  namespace: default
+#spec:
+#  selector:
+#    matchLabels:
+#      app: neo4j
+#  endpoints:
+#    - port: neo4j-export
+#---
+##-------------------------------------------------------------------------------------------------------------Prometheus
+#apiVersion: v1
+#kind: ServiceAccount
+#metadata:
+#  name: prometheus
+#---
+#apiVersion: rbac.authorization.k8s.io/v1
+#kind: ClusterRole
+#metadata:
+#  name: prometheus
+#rules:
+#  - apiGroups: [""]
+#    resources:
+#      - nodes
+#      - nodes/metrics
+#      - services
+#      - endpoints
+#      - pods
+#    verbs: ["get", "list", "watch"]
+#  - apiGroups: [""]
+#    resources:
+#      - configmaps
+#    verbs: ["get"]
+#  - apiGroups:
+#      - networking.k8s.io
+#    resources:
+#      - ingresses
+#    verbs: ["get", "list", "watch"]
+#  - nonResourceURLs: ["/"]
+#    verbs: ["get"]
+#---
+#apiVersion: rbac.authorization.k8s.io/v1beta1
+#kind: ClusterRoleBinding
+#metadata:
+#  name: prometheus
+#roleRef:
+#  apiGroup: rbac.authorization.k8s.io
+#  kind: ClusterRole
+#  name: prometheus
+#subjects:
+#  - kind: ServiceAccount
+#    name: prometheus
+#    namespace: default
+#---
+#apiVersion: monitoring.coreos.com/v1
+#kind: Prometheus
+#metadata:
+#  name: prometheus-neo4j
+#  labels:
+#    app: neo4j
+#    #prometheus: prometheus-neo4j
+#    prometheus: prometheus-neo4j
+#  namespace: default
+#spec:
+#  replicas: 1
+#  version: v2.3.2
+#  #serviceAccountName: prometheus-k8s
+#  serviceAccountName: prometheus
+#  #securityContext: {}
+#  serviceMonitorSelector:
+#    matchLabels:
+#      app: neo4j
+#---
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  namespace: default
+#  name: prometheus
+#spec:
+#  ports:
+#    - name: web
+#      port: 9090
+#      protocol: TCP
+#      targetPort: web
+#  selector:
+#    prometheus: prometheus-neo4j
