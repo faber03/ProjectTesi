@@ -10,7 +10,7 @@ spec:
     matchLabels:
       app: example-app
   endpoints:
-    - port: export
+    - port: web
 #-----------------------------------------------------------PROMETHEUS
 ---
 apiVersion: v1
@@ -75,7 +75,6 @@ kind: Service
 metadata:
   name: prometheus
 spec:
-  type: NodePort
   ports:
     - name: web
 #      nodePort: 30900
