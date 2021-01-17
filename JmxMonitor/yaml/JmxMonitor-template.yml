@@ -151,7 +151,8 @@ parameters:
   - description: The OpenShift Namespace where the ImageStream resides.
     displayName: Namespace
     name: NAMESPACE
-    value: "custom-prometheus"
+    #value: "custom-prometheus"
+    value: "default"
 
   #environment variables
 #  - description: Neo4j username.
