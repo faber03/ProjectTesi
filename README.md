@@ -14,7 +14,7 @@ crea un proxy ad all'MBean di una metrica specifica e continuamente legge e stam
 
 La cartella JmxMonitor contiene sia il codice della JavaApplication, sia i file .yaml e il Dockerfile per il deploy in Openshift. in Openshift.
 
-#Neo4j
+##Neo4j
 
 All'interno della sottocartella "Neo4j-Jmx" è presente il Dockerfile ed il file .yaml per il deploy in Openshift
 di Neo4j con abilitazione all'esportazione delle metriche tramite JMX.
