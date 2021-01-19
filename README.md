@@ -9,8 +9,8 @@ La cartella Neo4jConnector contiene sia il codice della JavaApplication, sia i f
 
 Una JavaApplication che realizza un Client JMX di test per Neo4j. 
 Neo4j espone metriche che ne consentono il monitoraggio, attraverso un MBeanServer.
-Tramite connettore RMI, il Client apre una connessione all' MBeanServer di Neo4j, 
-crea un proxy all'MBean attraverso cui è esposta una metrica specifica e continuamente legge e stampa in console il valore di questa metrica.
+Tramite connettore RMI, il Client apre una connessione JMX all' MBeanServer, 
+crea un proxy all'MBean su cui è esposta una metrica specifica e continuamente legge e stampa in console il valore di questa metrica.
 
 La cartella JmxMonitor contiene sia il codice della JavaApplication, sia i file .yaml e il Dockerfile per il deploy in Openshift. in Openshift.
 
