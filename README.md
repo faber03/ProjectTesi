@@ -19,13 +19,13 @@ La cartella JmxMonitor contiene sia il codice della JavaApplication, sia i file 
 All'interno della sottocartella "Neo4j-Jmx" è presente il Dockerfile ed il file .yaml per il deploy in Openshift
 di Neo4j con abilitazione all'esportazione delle metriche tramite JMX.
 
-la sottocartella "Neo4j-Prometheus/Neo4j" continene il Dockerfile per il deploy in Openshift
+La sottocartella "Neo4j-Prometheus/Neo4j" continene il Dockerfile per il deploy in Openshift
 di Neo4j con abilitazione all'esportazione delle metriche tramite Prometheus endpoint.
 
-la sottocartella "Neo4j-Prometheus/Prometheus" continene il Dockerfile per il deploy di Prometheus 
+La sottocartella "Neo4j-Prometheus/Prometheus" continene il Dockerfile per il deploy di Prometheus 
 configurato per la lettura delle metriche dall'endpoint di Neo4j.
 
-la sottocartella "Neo4j-Prometheus/PrometheusOperator" contiene il bundle per l'installazione del
+La sottocartella "Neo4j-Prometheus/PrometheusOperator" contiene il bundle per l'installazione del
 Prometheus Operator in Openshift
 
 All'interno della sottocartella "Neo4j-Prometheus/yaml" sono presenti i file .yaml per il deploy in Openshift
