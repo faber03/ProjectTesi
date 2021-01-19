@@ -1,11 +1,12 @@
-#Neo4jConnector
+## Neo4jConnector
 
 Una semplice JavaApplication che realizza un client Neo4j di test. 
 Apre una connessione con il DBMS, crea un nodo e ne aggiorna continuamente un'attributo.
 
 La cartella Neo4jConnector contiene sia il codice della JavaApplication, sia i file .yaml e il Dockerfile per il deploy in Openshift.
 
-#JmxMonitor
+## JmxMonitor
+
 Una JavaApplication che realizza un Client JMX per Neo4j. 
 Neo4j espone metriche che ne consentono il monitoraggio, attraverso un MBeanServer.
 Tramite connettore RMI, l'applicazione apre una connessione all' MBeanServer di Neo4j, 
