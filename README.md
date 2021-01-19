@@ -1,11 +1,11 @@
-## Neo4jConnector
+# Neo4jConnector
 
 Una semplice JavaApplication che realizza un client Neo4j di test. 
 Il Client apre una connessione con il DBMS, crea un nodo e ne aggiorna continuamente un'attributo.
 
 La cartella Neo4jConnector contiene sia il codice della JavaApplication, sia i file .yaml e il Dockerfile per il deploy in Openshift.
 
-## JmxMonitor
+# JmxMonitor
 
 Una JavaApplication che realizza un Client JMX di test per Neo4j. 
 Neo4j espone metriche che ne consentono il monitoraggio, attraverso un MBeanServer.
@@ -14,13 +14,13 @@ crea un proxy all'MBean attraverso cui è esposta una metrica specifica e contin
 
 La cartella JmxMonitor contiene sia il codice della JavaApplication, sia i file .yaml e il Dockerfile per il deploy in Openshift. in Openshift.
 
-## Neo4j
+# Neo4j
 
 ### Neo4j-Jmx
 All'interno della sottocartella "Neo4j-Jmx" è presente il Dockerfile ed il file .yaml per il deploy in Openshift
 di Neo4j con abilitazione all'esportazione delle metriche tramite JMX.
 
-#### Neo4j-Prometheus
+### Neo4j-Prometheus
 La sottocartella "Neo4j-Prometheus/Neo4j" continene il Dockerfile per il deploy in Openshift
 di Neo4j con abilitazione all'esportazione delle metriche tramite Prometheus endpoint.
 
