@@ -12,7 +12,7 @@ Neo4j espone metriche che ne consentono il monitoraggio, attraverso un MBeanServ
 Tramite connettore RMI, il Client apre una connessione JMX all' MBeanServer, 
 crea un proxy all'MBean su cui è esposta una metrica specifica e continuamente legge e stampa in console il valore di questa metrica.
 
-La cartella JmxMonitor contiene sia il codice della JavaApplication, sia i file .yaml e il Dockerfile per il deploy in Openshift. in Openshift.
+La cartella JmxMonitor contiene sia il codice della JavaApplication, sia i file .yaml e il Dockerfile per il deploy in Openshift.
 
 # Neo4j
 
