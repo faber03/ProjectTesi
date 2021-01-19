@@ -29,7 +29,7 @@ La sottocartella "Neo4j-Prometheus/PrometheusOperator" contiene il bundle per l'
 Prometheus Operator in Openshift
 
 All'interno della sottocartella "Neo4j-Prometheus/yaml" sono presenti i file .yaml per il deploy in Openshift
-di una serie di componenti per il test dell'autoscaling di un'applicazione sulla base di una metrica custom.
-Il file README.txt contiene le info sugli step da seguire per il deploy in Openshift.
+di una serie di componenti per il test dell'autoscaling di un'applicazione, sulla base di una metrica custom.
+Il file README.txt contiene gli step da seguire per il deploy in Openshift.
 
 
