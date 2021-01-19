@@ -82,15 +82,12 @@ spec:
             - containerPort: 7687
               protocol: TCP
               name: bolt
-            - containerPort: 7473
-              protocol: TCP
-              name: https
-#            - containerPort: 8080
+#            - containerPort: 7473
 #              protocol: TCP
-#              name: web
+#              name: https
             - containerPort: 2004
               protocol: TCP
-              name: web
+              name: metrics
           resources: {}
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
@@ -136,27 +133,51 @@ metadata:
   name: neo4j
 spec:
   ports:
-    - name: web
+    - name: metrics
       port: 2004
-      #port: 8080
       protocol: TCP
       targetPort: 2004
+    - name: http
+      port: 7474
+      protocol: TCP
+      targetPort: 7474
+    - name: bolt
+      port: 7687
+      protocol: TCP
+      targetPort: 7687
   selector:
     app: neo4j
 ---
-#route
+#route metrics
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
   labels:
     app: neo4j
-  name: neo4j
+  name: neo4j-metrics
 spec:
   port:
-    targetPort: web
+    targetPort: metrics
   path: /metrics
   to:
     kind: Service
     name: neo4j
     weight: 100
   wildcardPolicy: None
+#---
+#route http
+#apiVersion: route.openshift.io/v1
+#kind: Route
+#metadata:
+#  labels:
+#    app: neo4j
+#  name: neo4j-http
+#spec:
+#  port:
+#    targetPort: http
+#  #path: /metrics
+#  to:
+#    kind: Service
+#    name: neo4j
+#    weight: 100
+#  wildcardPolicy: None

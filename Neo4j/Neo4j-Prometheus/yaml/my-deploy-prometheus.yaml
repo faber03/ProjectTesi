@@ -2,16 +2,19 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: neo4j-monitor
+  #name: neo4j-monitor
+  name: sample-app-monitor
   labels:
-    #team: frontend
-    app: neo4j
+    #app: neo4j
+    app: sample-app
 spec:
   selector:
     matchLabels:
-      app: neo4j
+      #app: neo4j
+      app: sample-app
   endpoints:
-    - port: web
+    #- port: metrics
+    - port: exporter
 #-----------------------------------------------------------PROMETHEUS
 ---
 apiVersion: v1
@@ -19,7 +22,8 @@ kind: ServiceAccount
 metadata:
   name: prometheus
 ---
-apiVersion: rbac.authorization.k8s.io/v1beta1
+#apiVersion: rbac.authorization.k8s.io/v1beta1
+apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   name: prometheus
@@ -44,7 +48,8 @@ rules:
   - nonResourceURLs: ["/metrics"]
     verbs: ["get"]
 ---
-apiVersion: rbac.authorization.k8s.io/v1beta1
+#apiVersion: rbac.authorization.k8s.io/v1beta1
+apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   name: prometheus
@@ -65,8 +70,8 @@ spec:
   serviceAccountName: prometheus
   serviceMonitorSelector:
     matchLabels:
-      #team: frontend
-      app: neo4j
+      #app: neo4j
+      app: sample-app
 #  resources:
 #    requests:
 #      memory: 400Mi
