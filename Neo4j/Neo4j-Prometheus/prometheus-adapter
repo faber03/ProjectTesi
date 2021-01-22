@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-01-22T11:36:49.241Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36" etag="36FUSKYCyApRfVhdNii9" version="14.2.6" type="github">
+<mxfile host="app.diagrams.net" modified="2021-01-22T11:37:50.880Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36" etag="-Ay7uKf3iq4l6qxwkNBi" version="14.2.6" type="github">
   <diagram id="xOZ6pFFlx78OtIV-ZSv9" name="Page-1">
     <mxGraphModel dx="1185" dy="643" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
@@ -13,7 +13,7 @@
         <mxCell id="B6HmZtWwo_ITNAK4TB0--34" value="" style="group" vertex="1" connectable="0" parent="B6HmZtWwo_ITNAK4TB0--49">
           <mxGeometry x="235" y="80" width="140" height="110" as="geometry" />
         </mxCell>
-        <mxCell id="B6HmZtWwo_ITNAK4TB0--39" value="Adapter Service&lt;br&gt;&amp;lt;&amp;lt;Service&amp;gt;&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;strokeColor=#808080;" vertex="1" parent="B6HmZtWwo_ITNAK4TB0--34">
+        <mxCell id="B6HmZtWwo_ITNAK4TB0--39" value="&lt;font color=&quot;#808080&quot;&gt;Adapter Service&lt;br&gt;&amp;lt;&amp;lt;Service&amp;gt;&amp;gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;strokeColor=#808080;" vertex="1" parent="B6HmZtWwo_ITNAK4TB0--34">
           <mxGeometry x="-10" y="-39" width="140" height="146" as="geometry" />
         </mxCell>
         <mxCell id="B6HmZtWwo_ITNAK4TB0--32" value="Adapter&lt;br&gt;&amp;lt;&amp;lt;Deployment&amp;gt;&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;" vertex="1" parent="B6HmZtWwo_ITNAK4TB0--34">
@@ -92,10 +92,10 @@
         <mxCell id="B6HmZtWwo_ITNAK4TB0--25" value="Prometheus Operator" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;dashed=1;" vertex="1" parent="B6HmZtWwo_ITNAK4TB0--48">
           <mxGeometry width="320" height="330" as="geometry" />
         </mxCell>
-        <mxCell id="B6HmZtWwo_ITNAK4TB0--23" value="Collector Route&lt;br&gt;&amp;lt;&amp;lt;Route&amp;gt;&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;strokeColor=#808080;" vertex="1" parent="B6HmZtWwo_ITNAK4TB0--48">
+        <mxCell id="B6HmZtWwo_ITNAK4TB0--23" value="&lt;font color=&quot;#808080&quot;&gt;Collector Route&lt;br&gt;&amp;lt;&amp;lt;Route&amp;gt;&amp;gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;strokeColor=#808080;" vertex="1" parent="B6HmZtWwo_ITNAK4TB0--48">
           <mxGeometry x="20" y="110" width="160" height="200" as="geometry" />
         </mxCell>
-        <mxCell id="B6HmZtWwo_ITNAK4TB0--21" value="Collector Service&lt;br&gt;&amp;lt;&amp;lt;Service&amp;gt;&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;strokeColor=#808080;" vertex="1" parent="B6HmZtWwo_ITNAK4TB0--48">
+        <mxCell id="B6HmZtWwo_ITNAK4TB0--21" value="&lt;font color=&quot;#808080&quot;&gt;Collector Service&lt;br&gt;&amp;lt;&amp;lt;Service&amp;gt;&amp;gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;strokeColor=#808080;" vertex="1" parent="B6HmZtWwo_ITNAK4TB0--48">
           <mxGeometry x="30" y="150" width="140" height="150" as="geometry" />
         </mxCell>
         <mxCell id="B6HmZtWwo_ITNAK4TB0--16" value="App Monitor&lt;br&gt;&amp;lt;&amp;lt;ServiceMonitort&amp;gt;&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;" vertex="1" parent="B6HmZtWwo_ITNAK4TB0--48">
