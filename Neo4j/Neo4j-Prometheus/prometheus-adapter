@@ -1,45 +1,51 @@
-<mxfile host="app.diagrams.net" modified="2021-01-22T11:13:22.760Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36" etag="FPRvaLPbGiIjbY0rH9SN" version="14.2.6" type="github">
+<mxfile host="app.diagrams.net" modified="2021-01-22T11:36:49.241Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36" etag="36FUSKYCyApRfVhdNii9" version="14.2.6" type="github">
   <diagram id="xOZ6pFFlx78OtIV-ZSv9" name="Page-1">
     <mxGraphModel dx="1185" dy="643" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="B6HmZtWwo_ITNAK4TB0--49" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="250" y="300" width="390" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="B6HmZtWwo_ITNAK4TB0--46" value="Prometheus Adapter" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;dashed=1;" vertex="1" parent="B6HmZtWwo_ITNAK4TB0--49">
+          <mxGeometry width="390" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="B6HmZtWwo_ITNAK4TB0--34" value="" style="group" vertex="1" connectable="0" parent="B6HmZtWwo_ITNAK4TB0--49">
+          <mxGeometry x="235" y="80" width="140" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="B6HmZtWwo_ITNAK4TB0--39" value="Adapter Service&lt;br&gt;&amp;lt;&amp;lt;Service&amp;gt;&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;strokeColor=#808080;" vertex="1" parent="B6HmZtWwo_ITNAK4TB0--34">
+          <mxGeometry x="-10" y="-39" width="140" height="146" as="geometry" />
+        </mxCell>
+        <mxCell id="B6HmZtWwo_ITNAK4TB0--32" value="Adapter&lt;br&gt;&amp;lt;&amp;lt;Deployment&amp;gt;&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;" vertex="1" parent="B6HmZtWwo_ITNAK4TB0--34">
+          <mxGeometry width="120" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="B6HmZtWwo_ITNAK4TB0--33" value="" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;rotation=45;direction=west;aspect=fixed;size=10;" vertex="1" parent="B6HmZtWwo_ITNAK4TB0--34">
+          <mxGeometry x="44.180000000000064" y="50" width="31.65" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="B6HmZtWwo_ITNAK4TB0--37" value="Adapter Config&lt;br&gt;&amp;lt;&amp;lt;ConfigMap&amp;gt;&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;" vertex="1" parent="B6HmZtWwo_ITNAK4TB0--49">
+          <mxGeometry x="25" y="120" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="B6HmZtWwo_ITNAK4TB0--40" value="configMap:" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="B6HmZtWwo_ITNAK4TB0--49" source="B6HmZtWwo_ITNAK4TB0--33" target="B6HmZtWwo_ITNAK4TB0--37">
+          <mxGeometry x="0.3376" y="-11" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="B6HmZtWwo_ITNAK4TB0--45" value="service:" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="B6HmZtWwo_ITNAK4TB0--49" source="B6HmZtWwo_ITNAK4TB0--42" target="B6HmZtWwo_ITNAK4TB0--39">
+          <mxGeometry x="0.0064" y="8" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="B6HmZtWwo_ITNAK4TB0--42" value="Adapter Api Service&lt;br&gt;&amp;lt;&amp;lt;ApiService&amp;gt;&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;" vertex="1" parent="B6HmZtWwo_ITNAK4TB0--49">
+          <mxGeometry x="27" y="53" width="120" height="50" as="geometry" />
+        </mxCell>
         <mxCell id="B6HmZtWwo_ITNAK4TB0--9" value="App To Monitor&lt;br&gt;&amp;lt;&amp;lt;Deployment&amp;gt;&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;" vertex="1" parent="1">
           <mxGeometry x="480" y="40" width="130" height="110" as="geometry" />
-        </mxCell>
-        <mxCell id="B6HmZtWwo_ITNAK4TB0--25" value="Prometheus Operator&lt;br&gt;&amp;lt;&amp;lt;MetricApiServer&amp;gt;&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;" vertex="1" parent="1">
-          <mxGeometry x="680" y="40" width="320" height="330" as="geometry" />
-        </mxCell>
-        <mxCell id="B6HmZtWwo_ITNAK4TB0--23" value="Collector Route&lt;br&gt;&amp;lt;&amp;lt;Route&amp;gt;&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;" vertex="1" parent="1">
-          <mxGeometry x="700" y="150" width="160" height="200" as="geometry" />
-        </mxCell>
-        <mxCell id="B6HmZtWwo_ITNAK4TB0--21" value="Collector Service&lt;br&gt;&amp;lt;&amp;lt;Service&amp;gt;&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;" vertex="1" parent="1">
-          <mxGeometry x="710" y="190" width="140" height="150" as="geometry" />
         </mxCell>
         <mxCell id="B6HmZtWwo_ITNAK4TB0--20" value="selector:" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="B6HmZtWwo_ITNAK4TB0--16" target="B6HmZtWwo_ITNAK4TB0--31">
           <mxGeometry x="-0.2643" y="-11" relative="1" as="geometry">
             <mxPoint x="564.8697005513422" y="111.58781745930514" as="targetPoint" />
             <mxPoint as="offset" />
           </mxGeometry>
-        </mxCell>
-        <mxCell id="B6HmZtWwo_ITNAK4TB0--16" value="App Monitor&lt;br&gt;&amp;lt;&amp;lt;ServiceMonitort&amp;gt;&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;" vertex="1" parent="1">
-          <mxGeometry x="700" y="85.81" width="160" height="50" as="geometry" />
-        </mxCell>
-        <mxCell id="B6HmZtWwo_ITNAK4TB0--19" value="serviceMonitorSelector:" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="B6HmZtWwo_ITNAK4TB0--18" target="B6HmZtWwo_ITNAK4TB0--16">
-          <mxGeometry x="0.1012" relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="840" y="325" />
-              <mxPoint x="930" y="325" />
-              <mxPoint x="930" y="111" />
-            </Array>
-            <mxPoint as="offset" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="B6HmZtWwo_ITNAK4TB0--18" value="Collector&lt;br&gt;&amp;lt;&amp;lt;Prometheus&amp;gt;&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;" vertex="1" parent="1">
-          <mxGeometry x="720" y="230" width="120" height="100" as="geometry" />
-        </mxCell>
-        <mxCell id="B6HmZtWwo_ITNAK4TB0--22" value="" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;rotation=45;direction=west;aspect=fixed;size=10;" vertex="1" parent="1">
-          <mxGeometry x="764.1800000000001" y="280" width="31.65" height="30" as="geometry" />
         </mxCell>
         <mxCell id="B6HmZtWwo_ITNAK4TB0--30" value="" style="group" vertex="1" connectable="0" parent="1">
           <mxGeometry x="250" y="40" width="170" height="110" as="geometry" />
@@ -61,6 +67,55 @@
         </mxCell>
         <mxCell id="B6HmZtWwo_ITNAK4TB0--31" value="" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;rotation=45;direction=west;aspect=fixed;size=10;" vertex="1" parent="1">
           <mxGeometry x="529.1800000000001" y="95.81" width="31.65" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="B6HmZtWwo_ITNAK4TB0--35" value="prometheus-url=" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="B6HmZtWwo_ITNAK4TB0--33">
+          <mxGeometry x="-0.2047" y="10" relative="1" as="geometry">
+            <mxPoint x="566.2182034355965" y="445" as="sourcePoint" />
+            <mxPoint x="780" y="350" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="B6HmZtWwo_ITNAK4TB0--50" value="scaleTargetRef:" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="B6HmZtWwo_ITNAK4TB0--47" target="B6HmZtWwo_ITNAK4TB0--1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="B6HmZtWwo_ITNAK4TB0--51" value="metricName:" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.483;entryY=0.14;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="B6HmZtWwo_ITNAK4TB0--47" target="B6HmZtWwo_ITNAK4TB0--42">
+          <mxGeometry x="-0.4545" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="B6HmZtWwo_ITNAK4TB0--47" value="App Autoscaler&lt;br&gt;&amp;lt;&amp;lt;HorizontalPodAutoscaler&amp;gt;&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="247.5" y="200" width="175" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="B6HmZtWwo_ITNAK4TB0--48" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="680" y="40" width="320" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="B6HmZtWwo_ITNAK4TB0--25" value="Prometheus Operator" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;dashed=1;" vertex="1" parent="B6HmZtWwo_ITNAK4TB0--48">
+          <mxGeometry width="320" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="B6HmZtWwo_ITNAK4TB0--23" value="Collector Route&lt;br&gt;&amp;lt;&amp;lt;Route&amp;gt;&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;strokeColor=#808080;" vertex="1" parent="B6HmZtWwo_ITNAK4TB0--48">
+          <mxGeometry x="20" y="110" width="160" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="B6HmZtWwo_ITNAK4TB0--21" value="Collector Service&lt;br&gt;&amp;lt;&amp;lt;Service&amp;gt;&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;strokeColor=#808080;" vertex="1" parent="B6HmZtWwo_ITNAK4TB0--48">
+          <mxGeometry x="30" y="150" width="140" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="B6HmZtWwo_ITNAK4TB0--16" value="App Monitor&lt;br&gt;&amp;lt;&amp;lt;ServiceMonitort&amp;gt;&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;" vertex="1" parent="B6HmZtWwo_ITNAK4TB0--48">
+          <mxGeometry x="30" y="45.81" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="B6HmZtWwo_ITNAK4TB0--19" value="serviceMonitorSelector:" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="B6HmZtWwo_ITNAK4TB0--48" source="B6HmZtWwo_ITNAK4TB0--18" target="B6HmZtWwo_ITNAK4TB0--16">
+          <mxGeometry x="0.1012" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="160" y="260" />
+              <mxPoint x="250" y="260" />
+              <mxPoint x="250" y="71" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="B6HmZtWwo_ITNAK4TB0--18" value="Collector&lt;br&gt;&amp;lt;&amp;lt;Prometheus&amp;gt;&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;" vertex="1" parent="B6HmZtWwo_ITNAK4TB0--48">
+          <mxGeometry x="40" y="190" width="120" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="B6HmZtWwo_ITNAK4TB0--22" value="" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;rotation=45;direction=west;aspect=fixed;size=10;" vertex="1" parent="B6HmZtWwo_ITNAK4TB0--48">
+          <mxGeometry x="84.18000000000006" y="240" width="31.65" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
