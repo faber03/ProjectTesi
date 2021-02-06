@@ -22,7 +22,7 @@ spec:
     contextDir: '/Neo4j/Neo4j-Prometheus/Neo4j'
     git:
       ref: main
-      uri: 'https://github.com/faber03/ProjectTest.git'
+      uri: 'https://github.com/faber03/ProjectTesi.git'
     type: Git
   strategy:
     dockerStrategy:
