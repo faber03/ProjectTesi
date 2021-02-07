@@ -1,0 +1,68 @@
+#------------------------------------------------------ServiceMonitor
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  #name: neo4j-monitor
+  name: sample-app-monitor
+  labels:
+    #app: neo4j
+    app: sample-app
+spec:
+  selector:
+    matchLabels:
+      #app: neo4j
+      app: sample-app
+  endpoints:
+    #- port: metrics
+    - port: exporter
+#-----------------------------------------------------------PROMETHEUS
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: prometheus
+---
+apiVersion: monitoring.coreos.com/v1
+kind: Prometheus
+metadata:
+  name: prometheus
+spec:
+  serviceAccountName: prometheus
+  serviceMonitorSelector:
+    matchLabels:
+      #app: neo4j
+      app: sample-app
+#  resources:
+#    requests:
+#      memory: 400Mi
+#  enableAdminAPI: false
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: prometheus
+spec:
+  ports:
+    - name: web
+      port: 9090
+      protocol: TCP
+      targetPort: web
+  selector:
+    prometheus: prometheus
+---
+#route
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    app: prometheus
+  name: prometheus
+spec:
+  port:
+    targetPort: web
+  path:
+  to:
+    kind: Service
+    name: prometheus
+    weight: 100
+  wildcardPolicy: None

@@ -1,0 +1,220 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  labels:
+    app.kubernetes.io/component: controller
+    app.kubernetes.io/name: prometheus-operator
+    app.kubernetes.io/version: v0.44.1
+  name: prometheus-operator-sm
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: aggregate-servicemonitors-admin-edit-view
+subjects:
+  - kind: ServiceAccount
+    name: prometheus-operator
+    namespace: prom
+  - kind: ServiceAccount
+    name: prometheus
+    namespace: prom
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  labels:
+    app.kubernetes.io/component: controller
+    app.kubernetes.io/name: prometheus-operator
+    app.kubernetes.io/version: v0.44.1
+  name: prometheus-operator-amg
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: aggregate-alertmanagerconfigs-admin-edit-view
+subjects:
+  - kind: ServiceAccount
+    name: prometheus-operator
+    namespace: prom
+  - kind: ServiceAccount
+    name: prometheus
+    namespace: prom
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  labels:
+    app.kubernetes.io/component: controller
+    app.kubernetes.io/name: prometheus-operator
+    app.kubernetes.io/version: v0.44.1
+  name: prometheus-operator-am
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: aggregate-alertmanagers-admin-edit-view
+subjects:
+  - kind: ServiceAccount
+    name: prometheus-operator
+    namespace: prom
+  - kind: ServiceAccount
+    name: prometheus
+    namespace: prom
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  labels:
+    app.kubernetes.io/component: controller
+    app.kubernetes.io/name: prometheus-operator
+    app.kubernetes.io/version: v0.44.1
+  name: prometheus-operator-pm
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: aggregate-podmonitors-admin-edit-view
+subjects:
+  - kind: ServiceAccount
+    name: prometheus-operator
+    namespace: prom
+  - kind: ServiceAccount
+    name: prometheus
+    namespace: prom
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  labels:
+    app.kubernetes.io/component: controller
+    app.kubernetes.io/name: prometheus-operator
+    app.kubernetes.io/version: v0.44.1
+  name: prometheus-operator-p
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: aggregate-probes-admin-edit-view
+subjects:
+  - kind: ServiceAccount
+    name: prometheus-operator
+    namespace: prom
+  - kind: ServiceAccount
+    name: prometheus
+    namespace: prom
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  labels:
+    app.kubernetes.io/component: controller
+    app.kubernetes.io/name: prometheus-operator
+    app.kubernetes.io/version: v0.44.1
+  name: prometheus-operator-pro
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: aggregate-prometheuses-admin-edit-view
+subjects:
+  - kind: ServiceAccount
+    name: prometheus-operator
+    namespace: prom
+  - kind: ServiceAccount
+    name: prometheus
+    namespace: prom
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  labels:
+    app.kubernetes.io/component: controller
+    app.kubernetes.io/name: prometheus-operator
+    app.kubernetes.io/version: v0.44.1
+  name: prometheus-operator-prorules
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: aggregate-prometheusesrules-admin-edit-view
+subjects:
+  - kind: ServiceAccount
+    name: prometheus-operator
+    namespace: prom
+  - kind: ServiceAccount
+    name: prometheus
+    namespace: prom
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  labels:
+    app.kubernetes.io/component: controller
+    app.kubernetes.io/name: prometheus-operator
+    app.kubernetes.io/version: v0.44.1
+  name: prometheus-operator-thanos
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: aggregate-thanosrulers-admin-edit-view
+subjects:
+  - kind: ServiceAccount
+    name: prometheus-operator
+    namespace: prom
+  - kind: ServiceAccount
+    name: prometheus
+    namespace: prom
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  labels:
+    app.kubernetes.io/component: controller
+    app.kubernetes.io/name: prometheus-operator
+    app.kubernetes.io/version: v0.44.1
+  name: prometheus-operator-cm
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: aggregate-configmaps-admin-edit-view
+subjects:
+  - kind: ServiceAccount
+    name: prometheus-operator
+    namespace: prom
+  - kind: ServiceAccount
+    name: prometheus
+    namespace: prom
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  labels:
+    app.kubernetes.io/component: controller
+    app.kubernetes.io/name: prometheus-operator
+    app.kubernetes.io/version: v0.44.1
+  name: prometheus-operator-ss
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: aggregate-statefulsets-admin-edit-view
+subjects:
+  - kind: ServiceAccount
+    name: prometheus-operator
+    namespace: prom
+  - kind: ServiceAccount
+    name: prometheus
+    namespace: prom
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  labels:
+    app.kubernetes.io/component: controller
+    app.kubernetes.io/name: prometheus-operator
+    app.kubernetes.io/version: v0.44.1
+  name: prometheus-operator-i
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: aggregate-ingresses-admin-edit-view
+subjects:
+  - kind: ServiceAccount
+    name: prometheus-operator
+    namespace: prom
+  - kind: ServiceAccount
+    name: prometheus
+    namespace: prom
+---

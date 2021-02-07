@@ -61,6 +61,8 @@ subjects:
   - kind: ServiceAccount
     name: custom-metrics-apiserver
     namespace: default
+  - kind: User
+    name: adeiasio
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 #apiVersion: rbac.authorization.k8s.io/v1beta1
