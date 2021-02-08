@@ -44,7 +44,7 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: custom-metrics-apiserver
-    namespace: prom
+    namespace: alfredo
 ---
 #Binding of extension-apiserver-authentication-reader to the custom-metrics-apiserver serviceaccount
 apiVersion: rbac.authorization.k8s.io/v1
@@ -52,7 +52,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: custom-metrics-auth-reader
-  namespace: kube-system
+    namespace: alfredo
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -60,9 +60,9 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: custom-metrics-apiserver
-    namespace: prom
+    namespace: alfredo
   - kind: User
-    name: adeiasio
+    name: luisa
 ---
 #Binding of custom-metrics-rsource-reader to custom-metrics-apiserver
 apiVersion: rbac.authorization.k8s.io/v1
@@ -77,7 +77,7 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: custom-metrics-apiserver
-    namespace: prom
+    namespace: alfredo
 ---
 #Bindinf of custom-metrics-server-resources to horizontal-pod-autoscaler
 apiVersion: rbac.authorization.k8s.io/v1
@@ -92,9 +92,9 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: horizontal-pod-autoscaler
-    namespace: prom
+    namespace: alfredo
   - kind: User
-    name: adeiasio
+    name: luisa
 ---
 
 #Additional role and bindings for the apiregistration
@@ -121,4 +121,4 @@ roleRef:
   name: aggregate-apiservices-admin-edit-view
 subjects:
   - kind: User
-    name: adeiasio
+    name: luisa
