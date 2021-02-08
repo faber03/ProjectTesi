@@ -1,0 +1,108 @@
+apiVersion: v1
+kind: Template
+labels:
+  template: prometheus-template
+message: Your template has been created.
+metadata:
+  name: prometheus-template
+objects:
+
+#SERVICE MONITOR
+- apiVersion: monitoring.coreos.com/v1
+  kind: ServiceMonitor
+  metadata:
+    name: ${NAME}
+    namespace: ${NAMESPACE}
+    labels:
+      app: ${NAME}
+  spec:
+    selector:
+      matchLabels:
+        app: ${APP_TO_MONITOR_NAME}
+    endpoints:
+      - port: ${APP_TO_MONITOR_ENDPONIT_PORT}
+
+#SERVICE ACCOUNT
+- apiVersion: v1
+  kind: ServiceAccount
+  metadata:
+    name: ${NAME}
+    namespace: ${NAMESPACE}
+    labels:
+      app: ${NAME}
+
+#PROMETHEUS
+- apiVersion: monitoring.coreos.com/v1
+  kind: Prometheus
+  metadata:
+    name: ${NAME}
+    namespace: ${NAMESPACE}
+    labels:
+      app: {NAME}
+  spec:
+    serviceAccountName: ${NAME}
+    serviceMonitorSelector:
+      matchLabels:
+        app: {NAME}
+  #  resources:
+  #    requests:
+  #      memory: 400Mi
+  #  enableAdminAPI: false
+
+#SERVICE
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: ${NAME}
+    namespace: {NAMESPACE}
+    labels:
+      app: ${NAME}
+  spec:
+    ports:
+      - name: web
+        port: 9090
+        protocol: TCP
+        targetPort: web
+    selector:
+      prometheus: ${NAME}
+
+#ROUTE
+- apiVersion: route.openshift.io/v1
+  kind: Route
+  metadata:
+    name: ${NAME}
+    namespace: ${NAMESPACE}
+    labels:
+      app: ${NAME}
+  spec:
+    port:
+      targetPort: web
+    path:
+    to:
+      kind: Service
+      name: ${NAME}
+      weight: 100
+    wildcardPolicy: None
+
+#PARAMETRI
+parameters:
+
+  - description: Name.
+    displayName: Name
+    name: NAME
+    value: "prometheus"
+
+  - description: Namespace.
+    displayName: Namespace
+    name: NAMESPACE
+    value: "myprometheus"
+
+  - description: App to monitor.
+    displayName: App to monitor
+    name: APP_TO_MONITOR_NAME
+    value: "sampleapp"
+
+  - description: App to monitor metrics endpoint port.
+    displayName: App to monitor metrics endpoint port
+    name: APP_TO_MONITOR_ENDPONIT_PORT
+    value: "exporter"

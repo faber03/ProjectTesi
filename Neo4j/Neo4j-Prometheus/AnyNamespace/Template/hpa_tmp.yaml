@@ -1,0 +1,68 @@
+apiVersion: v1
+kind: Template
+labels:
+  template: hpa-template
+message: Your template has been created.
+metadata:
+  name: hpa-template
+objects:
+
+- kind: HorizontalPodAutoscaler
+  apiVersion: autoscaling/v2beta1
+  metadata:
+    name: ${NAME}
+    namespace: ${NAMESPACE}
+    labels:
+      app: {NAME}
+  spec:
+    scaleTargetRef:
+      apiVersion: apps/v1
+      #kind: DeploymentConfig
+      kind: Deployment
+      name: ${APP_TO_SCALE_NAME} #sample-app
+    minReplicas: ${MIN_REPLICAS}
+    maxReplicas: ${MAX_REPLICAS}
+    metrics:
+      - type: Pods
+        pods:
+          #metricName: neo4j_neo4j_transaction_active
+          metricName: ${METRIC_NAME}
+          targetAverageValue: ${METRIC_TARGET_VALUE}
+
+#PARAMETRI
+parameters:
+
+  - description: Name.
+    displayName: Name
+    name: NAME
+    value: "sampleapp-hpa"
+
+  - description: Namespace.
+    displayName: Namespace
+    name: NAMESPACE
+    value: "myprometheus"
+
+  - description: App to scale name.
+    displayName: App to scale name
+    name: APP_TO_SCALE_NAME
+    value: "sampleapp"
+
+  - description: Min replicas.
+    displayName: Min replicas
+    name: MIN_REPLICAS
+    value: "1"
+
+  - description: Max replicas.
+    displayName: Max replicas
+    name: MAX_REPLICAS
+    value: "3"
+
+  - description: Metric target value .
+    displayName: Metric target value
+    name: METRIC_NAME
+    value: "nginx_http_requests_total"
+
+  - description: Metric target value .
+    displayName: Metric target value
+    name: METRIC_TARGET_VALUE
+    value: "20m"
