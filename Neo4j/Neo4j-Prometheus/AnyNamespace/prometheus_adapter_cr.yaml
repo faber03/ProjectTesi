@@ -36,7 +36,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 #apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRoleBinding
 metadata:
-  name: custom-metrics:system:auth-delegator
+  name: custom-metrics-prova-operator-adelucia:system:auth-delegator
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -44,15 +44,15 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: custom-metrics-apiserver
-    namespace: alfredo
+    namespace: prova-operator
 ---
 #Binding of extension-apiserver-authentication-reader to the custom-metrics-apiserver serviceaccount
 apiVersion: rbac.authorization.k8s.io/v1
 #apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: RoleBinding
 metadata:
-  name: custom-metrics-auth-reader
-    namespace: alfredo
+  name: custom-metrics-auth-reader-prova-operator-adelucia
+  namespace: prova-operator
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -60,16 +60,16 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: custom-metrics-apiserver
-    namespace: alfredo
+    namespace: prova-operator
   - kind: User
-    name: luisa
+    name: adelucia
 ---
 #Binding of custom-metrics-rsource-reader to custom-metrics-apiserver
 apiVersion: rbac.authorization.k8s.io/v1
 #apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRoleBinding
 metadata:
-  name: custom-metrics-resource-reader
+  name: custom-metrics-resource-reader-prova-operator-adelucia
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -77,14 +77,14 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: custom-metrics-apiserver
-    namespace: alfredo
+    namespace: prova-operator
 ---
 #Bindinf of custom-metrics-server-resources to horizontal-pod-autoscaler
 apiVersion: rbac.authorization.k8s.io/v1
 #apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRoleBinding
 metadata:
-  name: hpa-controller-custom-metrics
+  name: hpa-controller-custom-metrics-prova-operator-adelucia
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -92,9 +92,9 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: horizontal-pod-autoscaler
-    namespace: alfredo
+    namespace: prova-operator
   - kind: User
-    name: luisa
+    name: adelucia
 ---
 
 #Additional role and bindings for the apiregistration
@@ -121,4 +121,4 @@ roleRef:
   name: aggregate-apiservices-admin-edit-view
 subjects:
   - kind: User
-    name: luisa
+    name: adelucia
