@@ -1,0 +1,99 @@
+apiVersion: v1
+kind: Template
+labels:
+  template: sampleapp-template
+message: Your template has been created.
+metadata:
+  name: sampleapp-template
+objects:
+
+#DEPLOYEMENT
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    name: ${NAME}
+    namespace: ${NAMESPACE}
+    labels:
+      app: ${NAME}
+  spec:
+    replicas: 1
+    template:
+      metadata:
+        labels:
+          app: ${NAME}
+        annotations:
+          prometheus.io/scrape: 'true'
+      spec:
+        containers:
+          - name: nginx
+            image: 'bitnami/nginx:latest'
+            ports:
+              - containerPort: 80
+                protocol: TCP
+            imagePullPolicy: Always
+          - name: exporter
+            image: 'bitnami/nginx-exporter:latest'
+            command:
+              - /usr/bin/exporter
+              - '-nginx.scrape-uri'
+              - 'http://127.0.0.1:8080/status'
+            imagePullPolicy: Always
+
+#SERVICE
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: ${NAME}
+    namespace: ${NAMESPACE}
+    labels:
+      app: ${NAME}
+    annotations:
+      prometheus.io/scrape: "true"
+  spec:
+    ports:
+      - name: nginx
+        protocol: TCP
+        port: 80
+        targetPort: 8080
+      - name: ${METRICS_ENDPOINT_PORT}
+        protocol: TCP
+        port: 9113
+        targetPort: 9113
+    selector:
+      app: ${NAME}
+
+#ROUTE
+- apiVersion: route.openshift.io/v1
+  kind: Route
+  metadata:
+    name: ${NAME}
+    namespace: ${NAMESPACE}
+    labels:
+      app: ${NAME}
+  spec:
+    port:
+      targetPort: ${METRICS_ENDPOINT_PORT}
+    path: /metrics
+    to:
+      kind: Service
+      name: ${NAME}
+      weight: 100
+    wildcardPolicy: None
+
+#PARAMETRI
+parameters:
+
+  - description: Name.
+    displayName: Name
+    name: NAME
+    value: "sampleapp"
+
+  - description: Namespace.
+    displayName: Namespace
+    name: NAMESPACE
+    value: "myprometheus"
+
+  - description: Metrics endpoint port.
+    displayName: Metrics endpoint port
+    name: METRICS_ENDPOINT_PORT
+    value: "exporter"
