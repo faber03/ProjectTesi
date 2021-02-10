@@ -211,7 +211,7 @@ spec:
       serviceAccountName: custom-metrics-apiserver
       containers:
         - name: prometheus-adapter
-          image: directxman12/k8s-prometheus-adapter-amd64
+          image: "directxman12/k8s-prometheus-adapter-amd64
           args:
             - --secure-port=6443
             - --tls-cert-file=/var/run/serving-cert/tls.crt
