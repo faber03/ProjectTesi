@@ -5,7 +5,7 @@ metadata:
     app.kubernetes.io/component: controller
     app.kubernetes.io/name: prometheus-operator
     app.kubernetes.io/version: v0.44.1
-  name: prometheus-operator-sm
+  name: prometheus-operator-sm-prova-operator-adelucia
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -13,10 +13,10 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: prometheus-operator
-    namespace: alfredo
+    namespace: prova-operator
   - kind: ServiceAccount
     name: prometheus
-    namespace: alfredo
+    namespace: prova-operator
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -25,7 +25,7 @@ metadata:
     app.kubernetes.io/component: controller
     app.kubernetes.io/name: prometheus-operator
     app.kubernetes.io/version: v0.44.1
-  name: prometheus-operator-amg
+  name: prometheus-operator-amg-prova-operator-adelucia
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -33,10 +33,10 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: prometheus-operator
-    namespace: alfredo
+    namespace: prova-operator
   - kind: ServiceAccount
     name: prometheus
-    namespace: alfredo
+    namespace: prova-operator
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -45,7 +45,7 @@ metadata:
     app.kubernetes.io/component: controller
     app.kubernetes.io/name: prometheus-operator
     app.kubernetes.io/version: v0.44.1
-  name: prometheus-operator-am
+  name: prometheus-operator-am-prova-operator-adelucia
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -53,10 +53,10 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: prometheus-operator
-    namespace: alfredo
+    namespace: prova-operator
   - kind: ServiceAccount
     name: prometheus
-    namespace: alfredo
+    namespace: prova-operator
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -65,7 +65,7 @@ metadata:
     app.kubernetes.io/component: controller
     app.kubernetes.io/name: prometheus-operator
     app.kubernetes.io/version: v0.44.1
-  name: prometheus-operator-pm
+  name: prometheus-operator-pm-prova-operator-adelucia
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -73,10 +73,10 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: prometheus-operator
-    namespace: alfredo
+    namespace: prova-operator
   - kind: ServiceAccount
     name: prometheus
-    namespace: alfredo
+    namespace: prova-operator
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -85,7 +85,7 @@ metadata:
     app.kubernetes.io/component: controller
     app.kubernetes.io/name: prometheus-operator
     app.kubernetes.io/version: v0.44.1
-  name: prometheus-operator-p
+  name: prometheus-operator-p-prova-operator-adelucia
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -93,10 +93,10 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: prometheus-operator
-    namespace: alfredo
+    namespace: prova-operator
   - kind: ServiceAccount
     name: prometheus
-    namespace: alfredo
+    namespace: prova-operator
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -105,7 +105,7 @@ metadata:
     app.kubernetes.io/component: controller
     app.kubernetes.io/name: prometheus-operator
     app.kubernetes.io/version: v0.44.1
-  name: prometheus-operator-pro
+  name: prometheus-operator-pro-prova-operator-adelucia
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -113,10 +113,10 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: prometheus-operator
-    namespace: alfredo
+    namespace: prova-operator
   - kind: ServiceAccount
     name: prometheus
-    namespace: alfredo
+    namespace: prova-operator
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -125,7 +125,7 @@ metadata:
     app.kubernetes.io/component: controller
     app.kubernetes.io/name: prometheus-operator
     app.kubernetes.io/version: v0.44.1
-  name: prometheus-operator-prorules
+  name: prometheus-operator-prorules-prova-operator-adelucia
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -133,10 +133,10 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: prometheus-operator
-    namespace: alfredo
+    namespace: prova-operator
   - kind: ServiceAccount
     name: prometheus
-    namespace: alfredo
+    namespace: prova-operator
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -145,7 +145,7 @@ metadata:
     app.kubernetes.io/component: controller
     app.kubernetes.io/name: prometheus-operator
     app.kubernetes.io/version: v0.44.1
-  name: prometheus-operator-thanos
+  name: prometheus-operator-thanos-prova-operator-adelucia
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -153,10 +153,10 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: prometheus-operator
-    namespace: alfredo
+    namespace: prova-operator
   - kind: ServiceAccount
     name: prometheus
-    namespace: alfredo
+    namespace: prova-operator
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -165,7 +165,7 @@ metadata:
     app.kubernetes.io/component: controller
     app.kubernetes.io/name: prometheus-operator
     app.kubernetes.io/version: v0.44.1
-  name: prometheus-operator-cm
+  name: prometheus-operator-cm-prova-operator-adelucia
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -173,10 +173,10 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: prometheus-operator
-    namespace: alfredo
+    namespace: prova-operator
   - kind: ServiceAccount
     name: prometheus
-    namespace: alfredo
+    namespace: prova-operator
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -185,7 +185,7 @@ metadata:
     app.kubernetes.io/component: controller
     app.kubernetes.io/name: prometheus-operator
     app.kubernetes.io/version: v0.44.1
-  name: prometheus-operator-ss
+  name: prometheus-operator-ss-prova-operator-adelucia
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -193,10 +193,10 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: prometheus-operator
-    namespace: alfredo
+    namespace: prova-operator
   - kind: ServiceAccount
     name: prometheus
-    namespace: alfredo
+    namespace: prova-operator
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -205,7 +205,7 @@ metadata:
     app.kubernetes.io/component: controller
     app.kubernetes.io/name: prometheus-operator
     app.kubernetes.io/version: v0.44.1
-  name: prometheus-operator-i
+  name: prometheus-operator-i-prova-operator-adelucia
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -213,8 +213,8 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: prometheus-operator
-    namespace: alfredo
+    namespace: prova-operator
   - kind: ServiceAccount
     name: prometheus
-    namespace: alfredo
+    namespace: prova-operator
 ---
