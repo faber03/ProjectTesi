@@ -17,6 +17,9 @@
     external:
         helm install --name prometheus-adapter ./AutoscalingSampleApp/prometheus-adapter-helm-chart/prometheus-adapter
 
+        (per eliminarlo: helm del --purge prometheus-adapter)
+
+
 5) verificare api esposta:
 
     custom:
