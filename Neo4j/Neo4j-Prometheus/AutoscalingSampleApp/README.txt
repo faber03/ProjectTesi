@@ -29,4 +29,4 @@
     custom:
         oc apply -f ./AutoscalingSampleApp/my-deploy-hpa.yaml
     external:
-        
+        oc apply -f ./AutoscalingSampleApp/my-deploy-hpa-ext.yaml
