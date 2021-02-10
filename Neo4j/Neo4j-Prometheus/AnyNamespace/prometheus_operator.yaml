@@ -6,7 +6,7 @@ metadata:
     app.kubernetes.io/name: prometheus-operator
     app.kubernetes.io/version: v0.44.1
   name: prometheus-operator
-  namespace: prom
+  namespace: tesi-delucia
 spec:
   replicas: 1
   selector:
@@ -42,7 +42,7 @@ spec:
         beta.kubernetes.io/os: linux
       securityContext:
         runAsNonRoot: true
-        runAsUser: 1000630000 #65534
+        runAsUser: 1000200000 #65534
       serviceAccountName: prometheus-operator
 ---
 apiVersion: v1
@@ -53,7 +53,7 @@ metadata:
     app.kubernetes.io/name: prometheus-operator
     app.kubernetes.io/version: v0.44.1
   name: prometheus-operator
-  namespace: prom
+  namespace: tesi-delucia
 spec:
   clusterIP: None
   ports:

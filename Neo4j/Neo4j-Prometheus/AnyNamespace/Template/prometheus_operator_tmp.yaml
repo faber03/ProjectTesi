@@ -66,8 +66,8 @@ objects:
           beta.kubernetes.io/os: linux
         securityContext:
           runAsNonRoot: true
-          runAsUser: ${USER} #65534
-        serviceAccountName: ${SERVICEACCOUNT_NAME}
+          runAsUser: ${USER}
+        serviceAccountName: ${NAME}
 
 #SERVICE
 - apiVersion: v1
@@ -101,12 +101,12 @@ parameters:
   - description: Namespace.
     displayName: Namespace
     name: NAMESPACE
-    value: "myprometheus"
+    value: "tesi-delucia"
 
   - description: User.
     displayName: User
     name: USER
-    value: "1000630000"
+    value: "1000200000"
 
   - description: ServiceAccount Name.
     displayName: ServiceAccount Name

@@ -91,7 +91,7 @@ parameters:
   - description: Namespace.
     displayName: Namespace
     name: NAMESPACE
-    value: "myprometheus"
+    value: "tesi-delucia"
 
   - description: Metrics endpoint port.
     displayName: Metrics endpoint port

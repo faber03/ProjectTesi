@@ -1,0 +1,65 @@
+#-------------------------------------------APP
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sample-app2
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sample-app2
+      annotations:
+        prometheus.io/scrape: 'true'
+    spec:
+      containers:
+        - name: nginx
+          image: 'bitnami/nginx:latest'
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          imagePullPolicy: Always
+        - name: exporter
+          image: 'bitnami/nginx-exporter:latest'
+          command:
+            - /usr/bin/exporter
+            - '-nginx.scrape-uri'
+            - 'http://127.0.0.1:8080/status'
+          imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sample-app2
+  labels:
+    app: sample-app2
+  annotations:
+    prometheus.io/scrape: "true"
+spec:
+  ports:
+    - name: nginx
+      protocol: TCP
+      port: 80
+      targetPort: 8080
+    - name: exporter
+      protocol: TCP
+      port: 9113
+      targetPort: 9113
+  selector:
+    app: sample-app2
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    app: sample-app2
+  name: sample-app2
+spec:
+  port:
+    targetPort: exporter
+  path: /metrics
+  to:
+    kind: Service
+    name: sample-app2
+    weight: 100
+  wildcardPolicy: None

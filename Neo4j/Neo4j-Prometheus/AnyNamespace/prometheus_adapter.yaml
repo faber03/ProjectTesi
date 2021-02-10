@@ -2,13 +2,13 @@ kind: ServiceAccount
 apiVersion: v1
 metadata:
   name: custom-metrics-apiserver
-  namespace: prom
+  namespace: tesi-delucia
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: adapter-config
-  namespace: prom
+  namespace: tesi-delucia
 data:
   config.yaml: |
     rules:
@@ -31,7 +31,7 @@ metadata:
   labels:
     name: prometheus-adapter
   name: prometheus-adapter
-  namespace: prom
+  namespace: tesi-delucia
 spec:
   ports:
     - name: https
@@ -48,7 +48,7 @@ metadata:
 spec:
   service:
     name: prometheus-adapter
-    namespace: prom
+    namespace: tesi-delucia
   group: custom.metrics.k8s.io
   version: v1beta1
   insecureSkipTLSVerify: true
@@ -61,7 +61,7 @@ metadata:
   labels:
     app: prometheus-adapter
   name: prometheus-adapter
-  namespace: prom
+  namespace: tesi-delucia
 spec:
   replicas: 1
   selector:
@@ -84,7 +84,7 @@ spec:
             - --tls-private-key-file=/var/run/serving-cert/tls.key
             - --logtostderr=true
             #- --prometheus-url=http://prometheus.prom.svc:9090/
-            - --prometheus-url=http://prometheus-operated.prom.svc:9090/
+            - --prometheus-url=http://prometheus-operated.tesi-delucia.svc:9090/
             - --metrics-relist-interval=1m
             - --v=4
             - --config=/etc/adapter/config.yaml
