@@ -8,7 +8,7 @@ spec:
     #kind: DeploymentConfig
     kind: Deployment
     #name: neo4j
-    name: sample-app
+    name: sample-app2
 
   minReplicas: 1
   maxReplicas: 3

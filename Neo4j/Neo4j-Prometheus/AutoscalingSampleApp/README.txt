@@ -2,9 +2,11 @@
 
     oc apply -f ./PrometheusOperator/bundle.yaml
 
-2) deployare l'applicazione da monitorare in namespace "default"
+2) deployare l'applicazione da monitorare e, in caso di metriche external, una seconda app in namespace "default"
 
     oc apply -f ./AutoscalingSampleApp/my-deploy-sampleapp.yaml
+
+    oc apply -f ./AutoscalingSampleApp/my-deploy-sampleapp2.yaml    (in caso di metriche external)
 
 3) deployare i componenti di prometheus operator per il monitoraggio in namespace "default"
 
@@ -30,6 +32,6 @@
 6) associare al servizio monitorato l' HorizontalPodAutoscaler agganciato alla metrica esposta dal prometheus adapter:
 
     custom:
-        oc apply -f ./AutoscalingSampleApp/my-deploy-hpa.yaml
+        oc apply -f ./AutoscalingSampleApp/my-deploy-hpa.yaml   (agganciato alla stessa app monitorata, sample-app)
     external:
-        oc apply -f ./AutoscalingSampleApp/my-deploy-hpa-ext.yaml
+        oc apply -f ./AutoscalingSampleApp/my-deploy-hpa-ext.yaml (agganciato ad un'altra app, sample-app2)
