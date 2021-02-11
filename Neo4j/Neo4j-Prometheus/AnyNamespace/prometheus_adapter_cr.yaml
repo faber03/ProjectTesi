@@ -36,7 +36,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 #apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRoleBinding
 metadata:
-  name: custom-metrics-prova-operator-adelucia:system:auth-delegator
+  name: custom-metrics-tesi-delucia-adelucia:system:auth-delegator
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -44,15 +44,15 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: custom-metrics-apiserver
-    namespace: prova-operator
+    namespace: tesi-delucia
 ---
 #Binding of extension-apiserver-authentication-reader to the custom-metrics-apiserver serviceaccount
 apiVersion: rbac.authorization.k8s.io/v1
 #apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: RoleBinding
 metadata:
-  name: custom-metrics-auth-reader-prova-operator-adelucia
-  namespace: prova-operator
+  name: custom-metrics-auth-reader-tesi-delucia-adelucia
+  namespace: tesi-delucia
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -60,7 +60,7 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: custom-metrics-apiserver
-    namespace: prova-operator
+    namespace: tesi-delucia
   - kind: User
     name: adelucia
 ---
@@ -69,7 +69,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 #apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRoleBinding
 metadata:
-  name: custom-metrics-resource-reader-prova-operator-adelucia
+  name: custom-metrics-resource-reader-tesi-delucia-adelucia
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -77,14 +77,14 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: custom-metrics-apiserver
-    namespace: prova-operator
+    namespace: tesi-delucia
 ---
 #Bindinf of custom-metrics-server-resources to horizontal-pod-autoscaler
 apiVersion: rbac.authorization.k8s.io/v1
 #apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRoleBinding
 metadata:
-  name: hpa-controller-custom-metrics-prova-operator-adelucia
+  name: hpa-controller-custom-metrics-tesi-delucia-adelucia
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -92,7 +92,7 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: horizontal-pod-autoscaler
-    namespace: prova-operator
+    namespace: tesi-delucia
   - kind: User
     name: adelucia
 ---
