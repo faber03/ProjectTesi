@@ -21,7 +21,6 @@
 
         (per eliminarlo: helm del --purge prometheus-adapter)
 
-
 5) verificare api esposta:
 
     custom:
