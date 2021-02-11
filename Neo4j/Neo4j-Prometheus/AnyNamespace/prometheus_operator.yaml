@@ -6,7 +6,7 @@ metadata:
     app.kubernetes.io/name: prometheus-operator
     app.kubernetes.io/version: v0.44.1
   name: prometheus-operator
-  namespace: prova-operator
+  namespace: tesi-delucia
 spec:
   replicas: 1
   selector:
@@ -53,7 +53,7 @@ metadata:
     app.kubernetes.io/name: prometheus-operator
     app.kubernetes.io/version: v0.44.1
   name: prometheus-operator
-  namespace: prova-operator
+  namespace: tesi-delucia
 spec:
   clusterIP: None
   ports:

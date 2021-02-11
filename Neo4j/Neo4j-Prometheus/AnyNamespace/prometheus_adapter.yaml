@@ -84,7 +84,7 @@ spec:
             - --tls-private-key-file=/var/run/serving-cert/tls.key
             - --logtostderr=true
             #- --prometheus-url=http://prometheus.prom.svc:9090/
-            - --prometheus-url=http://prometheus-operated.prom.svc:9090/
+            - --prometheus-url=http://prometheus-operated.tesi-delucia.svc:9090/
             - --metrics-relist-interval=1m
             - --v=4
             - --config=/etc/adapter/config.yaml

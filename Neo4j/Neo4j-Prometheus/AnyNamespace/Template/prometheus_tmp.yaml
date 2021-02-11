@@ -14,7 +14,7 @@ objects:
     name: ${NAME}
     namespace: ${NAMESPACE}
     labels:
-      app: ${NAME}
+      app: ${APP_TO_MONITOR_NAME}
   spec:
     selector:
       matchLabels:
@@ -43,7 +43,7 @@ objects:
     serviceAccountName: ${NAME}
     serviceMonitorSelector:
       matchLabels:
-        app: {NAME}
+        app: {APP_TO_MONITOR_NAME}
   #  resources:
   #    requests:
   #      memory: 400Mi
@@ -95,7 +95,7 @@ parameters:
   - description: Namespace.
     displayName: Namespace
     name: NAMESPACE
-    value: "myprometheus"
+    value: "tesi-delucia"
 
   - description: App to monitor.
     displayName: App to monitor
