@@ -15,7 +15,7 @@ spec:
 
   metrics:
     - type: External
-  external:
-    #metricName: neo4j_neo4j_transaction_active
-    metricName: nginx_http_requests_per_second
-    targetValue: 20m
+      external:
+        #metricName: neo4j_neo4j_transaction_active
+        metricName: nginx_http_requests_per_second
+        targetValue: 20m
