@@ -102,7 +102,7 @@ spec:
       volumes:
         - name: volume-serving-cert
           secret:
-            secretName: prometheus-adapter-external-tls
+            secretName: prometheus-adapter-tls
         - name: config
           configMap:
             name: adapter-config-external
