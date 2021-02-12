@@ -1,0 +1,124 @@
+#Role to handle metrics
+apiVersion: rbac.authorization.k8s.io/v1
+#apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRole
+metadata:
+  name: resource-metrics-server-resources
+rules:
+  - apiGroups:
+      - metrics.k8s.io
+    resources: ["*"]
+    verbs: ["*"]
+---
+#Role to handle additional resources
+apiVersion: rbac.authorization.k8s.io/v1
+#apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRole
+metadata:
+  name: resource-metrics-resource-reader
+rules:
+  - apiGroups:
+      - ""
+    resources:
+      - namespaces
+      - pods
+      - services
+      - configmaps
+    verbs:
+      - get
+      - list
+      - watch
+---
+
+---
+#Binding of system:auth-delegator to the resource-metrics-apiserver serviceaccount
+apiVersion: rbac.authorization.k8s.io/v1
+#apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  name: resource-metrics-tesi-delucia-adelucia:system:auth-delegator
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: system:auth-delegator
+subjects:
+  - kind: ServiceAccount
+    name: resource-metrics-apiserver
+    namespace: tesi-delucia
+---
+#Binding of extension-apiserver-authentication-reader to the resource-metrics-apiserver serviceaccount
+apiVersion: rbac.authorization.k8s.io/v1
+#apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: RoleBinding
+metadata:
+  name: resource-metrics-auth-reader-tesi-delucia-adelucia
+  namespace: tesi-delucia
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: extension-apiserver-authentication-reader
+subjects:
+  - kind: ServiceAccount
+    name: resource-metrics-apiserver
+    namespace: tesi-delucia
+  - kind: User
+    name: adelucia
+---
+#Binding of resource-metrics-rsource-reader to resource-metrics-apiserver
+apiVersion: rbac.authorization.k8s.io/v1
+#apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  name: resource-metrics-resource-reader-tesi-delucia-adelucia
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: resource-metrics-resource-reader
+subjects:
+  - kind: ServiceAccount
+    name: resource-metrics-apiserver
+    namespace: tesi-delucia
+---
+#Bindinf of resource-metrics-server-resources to horizontal-pod-autoscaler
+apiVersion: rbac.authorization.k8s.io/v1
+#apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  name: hpa-controller-resource-metrics-tesi-delucia-adelucia
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: resource-metrics-server-resources
+subjects:
+  - kind: ServiceAccount
+    name: horizontal-pod-autoscaler
+    namespace: tesi-delucia
+  - kind: User
+    name: adelucia
+---
+
+#Additional role and bindings for the apiregistration
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: aggregate-apiservices-admin-edit-view
+  labels:
+    rbac.authorization.k8s.io/aggregate-to-admin: "true"
+    rbac.authorization.k8s.io/aggregate-to-edit: "true"
+    rbac.authorization.k8s.io/aggregate-to-view: "true"
+rules:
+  - apiGroups: ["apiregistration.k8s.io"]
+    resources: ["apiservices"]
+    verbs: ["get", "list", "watch", "create", "update", "patch", "delete", "deletecollection"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: prometheus-apiservices
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: aggregate-apiservices-admin-edit-view
+subjects:
+  - kind: User
+    name: adelucia

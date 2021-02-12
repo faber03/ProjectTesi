@@ -30,15 +30,15 @@ rbac:
   create: true
 
 psp:
-  # Specifies whether PSP resources should be created
-  create: false
+  # Specifies whether PSP resources should be created #keep always to false
+  create: false #keep always to false
 
 serviceAccount:
   # Specifies whether a service account should be created
   create: true
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
-  name:
+  name: prometheus #name for the service account
 # Custom DNS configuration to be added to prometheus-adapter pods
 dnsConfig: {}
 # nameservers:
@@ -124,7 +124,7 @@ service:
   type: ClusterIP
 
 tls:
-  enable: false
+  enable: false #keep to false
   ca: |-
     # Public CA file that signed the APIService
   key: |-
@@ -170,11 +170,12 @@ hostNetwork:
   # You would require this enabled if you use alternate overlay networking for pods and
   # API server unable to communicate with metrics-server. As an example, this is required
   # if you use Weave network on EKS. See also dnsPolicy
-  enabled: false
+  enabled: false #keep always to false
 
 # When hostNetwork is enabled, you probably want to set this to ClusterFirstWithHostNet
 # dnsPolicy: ClusterFirstWithHostNet
 
+#keep always to false
 podDisruptionBudget:
   # Specifies if PodDisruptionBudget should be enabled
   # When enabled, minAvailable or maxUnavailable should also be defined.
@@ -182,6 +183,7 @@ podDisruptionBudget:
   minAvailable:
   maxUnavailable: 1
 
+#keep always to false
 certManager:
   enabled: false
   caCertDuration: 43800h

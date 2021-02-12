@@ -3,10 +3,10 @@ apiVersion: rbac.authorization.k8s.io/v1
 #apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRole
 metadata:
-  name: custom-metrics-server-resources
+  name: external-metrics-server-resources
 rules:
   - apiGroups:
-      - custom.metrics.k8s.io
+      - external.metrics.k8s.io
     resources: ["*"]
     verbs: ["*"]
 ---
@@ -15,7 +15,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 #apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRole
 metadata:
-  name: custom-metrics-resource-reader
+  name: external-metrics-resource-reader
 rules:
   - apiGroups:
       - ""
@@ -36,14 +36,14 @@ apiVersion: rbac.authorization.k8s.io/v1
 #apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRoleBinding
 metadata:
-  name: custom-metrics-tesi-delucia-adelucia:system:auth-delegator
+  name: external-metrics-tesi-delucia-adelucia:system:auth-delegator
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
   name: system:auth-delegator
 subjects:
   - kind: ServiceAccount
-    name: custom-metrics-apiserver
+    name: external-metrics-apiserver
     namespace: tesi-delucia
 ---
 #Binding of extension-apiserver-authentication-reader to the custom-metrics-apiserver serviceaccount
@@ -51,7 +51,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 #apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: RoleBinding
 metadata:
-  name: custom-metrics-auth-reader-tesi-delucia-adelucia
+  name: external-metrics-auth-reader-tesi-delucia-adelucia
   namespace: tesi-delucia
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -59,7 +59,7 @@ roleRef:
   name: extension-apiserver-authentication-reader
 subjects:
   - kind: ServiceAccount
-    name: custom-metrics-apiserver
+    name: external-metrics-apiserver
     namespace: tesi-delucia
   - kind: User
     name: adelucia
@@ -69,14 +69,14 @@ apiVersion: rbac.authorization.k8s.io/v1
 #apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRoleBinding
 metadata:
-  name: custom-metrics-resource-reader-tesi-delucia-adelucia
+  name: external-metrics-resource-reader-tesi-delucia-adelucia
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: custom-metrics-resource-reader
+  name: external-metrics-resource-reader
 subjects:
   - kind: ServiceAccount
-    name: custom-metrics-apiserver
+    name: external-metrics-apiserver
     namespace: tesi-delucia
 ---
 #Bindinf of custom-metrics-server-resources to horizontal-pod-autoscaler
@@ -84,11 +84,11 @@ apiVersion: rbac.authorization.k8s.io/v1
 #apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRoleBinding
 metadata:
-  name: hpa-controller-custom-metrics-tesi-delucia-adelucia
+  name: hpa-controller-external-metrics-tesi-delucia-adelucia
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: custom-metrics-server-resources
+  name: external-metrics-server-resources
 subjects:
   - kind: ServiceAccount
     name: horizontal-pod-autoscaler
