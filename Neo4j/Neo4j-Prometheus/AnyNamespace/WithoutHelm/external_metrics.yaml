@@ -25,7 +25,7 @@ metadata:
   namespace: tesi-delucia
 data:
   config.yaml: |
-    rules:
+    externalRules:
     - seriesQuery: '{__name__="nginx_http_requests_total",namespace!="",pod!=""}'
       resources:
         overrides:
