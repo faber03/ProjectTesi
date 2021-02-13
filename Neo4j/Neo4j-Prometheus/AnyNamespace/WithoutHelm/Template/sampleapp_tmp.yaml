@@ -86,7 +86,7 @@ parameters:
   - description: Name.
     displayName: Name
     name: NAME
-    value: "sampleapp"
+    value: "sampleapp2"
 
   - description: Namespace.
     displayName: Namespace

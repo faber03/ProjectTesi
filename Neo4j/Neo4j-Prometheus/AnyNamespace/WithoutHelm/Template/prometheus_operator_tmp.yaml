@@ -1,114 +1,78 @@
 apiVersion: v1
-kind: Template
-labels:
-  template: prometheus-operator-template
-message: Your template has been created.
+kind: ServiceAccount
 metadata:
-  name: prometheus-operator-template
-objects:
-
-#SERVICE ACCOUNT
-- apiVersion: v1
-  kind: ServiceAccount
-  metadata:
-    labels:
-      app: ${NAME}
+  labels:
+    app.kubernetes.io/component: controller
+    app.kubernetes.io/name: prometheus-operator
+    app.kubernetes.io/version: v0.44.1
+  name: prometheus-operator
+  namespace: NAMESPACE
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/component: controller
+    app.kubernetes.io/name: prometheus-operator
+    app.kubernetes.io/version: v0.44.1
+  name: prometheus-operator
+  namespace: NAMESPACE
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
       app.kubernetes.io/component: controller
       app.kubernetes.io/name: prometheus-operator
-      app.kubernetes.io/version: v0.44.1
-    name: ${NAME}
-    namespace: ${NAMESPACE}
-
-#DEPLOYMENT
-- apiVersion: apps/v1
-  kind: Deployment
-  metadata:
-    labels:
-      app: ${NAME}
-      app.kubernetes.io/component: controller
-      app.kubernetes.io/name: prometheus-operator
-      app.kubernetes.io/version: v0.44.1
-    name: ${NAME}
-    namespace: ${NAMESPACE}
-  spec:
-    replicas: 1
-    selector:
-      matchLabels:
+  template:
+    metadata:
+      labels:
         app.kubernetes.io/component: controller
         app.kubernetes.io/name: prometheus-operator
-    template:
-      metadata:
-        labels:
-          app: ${NAME}
-          app.kubernetes.io/component: controller
-          app.kubernetes.io/name: prometheus-operator
-          app.kubernetes.io/version: v0.44.1
-      spec:
-        containers:
-          - args:
-              - --kubelet-service=kube-system/kubelet
-              - --prometheus-config-reloader=quay.io/prometheus-operator/prometheus-config-reloader:v0.44.1
-            image: quay.io/prometheus-operator/prometheus-operator:v0.44.1
-            name: prometheus-operator
-            ports:
-              - containerPort: 8080
-                name: http
-            resources:
-              limits:
-                cpu: 200m
-                memory: 200Mi
-              requests:
-                cpu: 100m
-                memory: 100Mi
-            securityContext:
-              allowPrivilegeEscalation: false
-        nodeSelector:
-          beta.kubernetes.io/os: linux
-        securityContext:
-          runAsNonRoot: true
-          runAsUser: ${USER}
-        serviceAccountName: ${NAME}
+        app.kubernetes.io/version: v0.44.1
+    spec:
+      containers:
+        - args:
+            - --kubelet-service=kube-system/kubelet
+            - --prometheus-config-reloader=quay.io/prometheus-operator/prometheus-config-reloader:v0.44.1
+          image: quay.io/prometheus-operator/prometheus-operator:v0.44.1
+          name: prometheus-operator
+          ports:
+            - containerPort: 8080
+              name: http
+          resources:
+            limits:
+              cpu: 200m
+              memory: 200Mi
+            requests:
+              cpu: 100m
+              memory: 100Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+      nodeSelector:
+        beta.kubernetes.io/os: linux
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: USER_ID
+      serviceAccountName: prometheus-operator
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/component: controller
+    app.kubernetes.io/name: prometheus-operator
+    app.kubernetes.io/version: v0.44.1
+  name: prometheus-operator
+  namespace: NAMESPACE
+spec:
+  clusterIP: None
+  ports:
+    - name: http
+      port: 8080
+      targetPort: http
+  selector:
+    app.kubernetes.io/component: controller
+    app.kubernetes.io/name: prometheus-operator
 
-#SERVICE
-- apiVersion: v1
-  kind: Service
-  metadata:
-    labels:
-      app: ${NAME}
-      app.kubernetes.io/component: controller
-      app.kubernetes.io/name: prometheus-operator
-      app.kubernetes.io/version: v0.44.1
-    name: ${NAME}
-    namespace: ${NAMESPACE}
-  spec:
-    clusterIP: None
-    ports:
-      - name: http
-        port: 8080
-        targetPort: http
-    selector:
-      app.kubernetes.io/component: controller
-      app.kubernetes.io/name: prometheus-operator
-
-#PARAMETRI
-parameters:
-
-  - description: Name.
-    displayName: Name
-    name: NAME
-    value: "prometheus-operator"
-
-  - description: Namespace.
-    displayName: Namespace
-    name: NAMESPACE
-    value: "tesi-delucia"
-
-  - description: User.
-    displayName: User
-    name: USER
-    value: "1000200000"
-
-  - description: ServiceAccount Name.
-    displayName: ServiceAccount Name
-    name: SERVICEACCOUNT_NAME
-    value: "prometheus-operator"
+# NAMESPACE: tesi-delucia
+# USER_ID: 1000200000
