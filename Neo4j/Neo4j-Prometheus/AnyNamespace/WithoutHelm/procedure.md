@@ -18,7 +18,8 @@ The following operations can be executed by any user, granted all the permission
 - Create the serviceaccount **oc apply -f prometheus_operator_serviceaccount.yaml**
 - Create the prometheus operator **oc apply -f prometheus_operator.yaml**
 - Then deploy the application to be monitored **oc apply -f sampleapp.yaml**
+- Then deploy the application to be scaled **oc apply -f sampleapp2.yaml**
 - Then use the operator to deploy an instance of prometheus **oc apply -f prometheus.yaml**
-- Then deploy the prometheus adapter **oc apply -f prometheus_adapter.yaml**
-- Deploy the autoscaler **oc apply -f hpa.yaml**
+- Then deploy the prometheus adapter **oc apply -f external_metrics.yaml**
+- Deploy the autoscaler **oc apply -f hpa_ext.yaml**
 

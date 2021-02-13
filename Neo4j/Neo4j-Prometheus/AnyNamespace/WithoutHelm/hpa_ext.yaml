@@ -11,11 +11,18 @@ spec:
     name: sample-app2
 
   minReplicas: 1
-  maxReplicas: 3
+  maxReplicas: 5
+
+  behavior:
+    scaleDown:
+      stabilizationWindowSeconds: 60
+
+#  scaleUp:
+#    stabilizationWindowSeconds: 0
 
   metrics:
     - type: External
       external:
         #metricName: neo4j_neo4j_transaction_active
         metricName: nginx_http_requests_per_second
-        targetValue: 20m
+        targetValue: 66m
