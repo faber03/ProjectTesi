@@ -36,7 +36,7 @@ data:
       name:
         matches: "neo4j_neo4j_transaction_active"
         as: "neo4j_neo4j_transaction_active"
-      metricsQuery: '1/(neo4j_neo4j_transaction_active + 1)'
+      metricsQuery: '1/avg_over_time(neo4j_neo4j_transaction_active[2m])'
 ---
 apiVersion: v1
 kind: Service
