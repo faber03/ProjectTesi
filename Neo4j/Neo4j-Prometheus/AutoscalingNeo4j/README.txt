@@ -23,7 +23,7 @@ http://prometheus-default.172.16.0.10.nip.io (n.b. accedere alla route tramite l
 oc apply -f ./AutoscalingNeo4j/my-deploy-prometheus-adapter.yaml
 
 9) verificare api esposta:
-oc get --raw "/apis/custom.metrics.k8s.io/v1beta1/namespaces/default/pods/*/neo4j_neo4j_transaction_active
+oc get --raw "https://172.16.0.10:8443/apis/external.metrics.k8s.io/v1beta1/namespaces/default/neo4j_neo4j_transaction_active
 
 10) associare al servizio monitorato l' HorizontalPodAutoscaler agganciato alla metrica esposta dal
 prometheus adapter:

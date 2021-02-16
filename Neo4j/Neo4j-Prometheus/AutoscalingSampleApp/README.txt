@@ -17,7 +17,7 @@
     custom:
         oc apply -f ./AutoscalingSampleApp/my-deploy-prometheus-adapter.yaml
     external:
-        helm install --name prometheus-adapter ./AutoscalingSampleApp/prometheus-adapter-helm-chart/prometheus-adapter
+        helm install --name prometheus-adapter ./AutoscalingSampleApp/prometheus-adapter-helm-chart
 
         (per eliminarlo: helm del --purge prometheus-adapter)
 
@@ -26,7 +26,7 @@
     custom:
         oc get --raw "/apis/custom.metrics.k8s.io/v1beta1/namespaces/default/pods/*/nginx_http_requests_per_second"
     external:
-        oc get --raw "/apis/external.metrics.k8s.io/v1beta1/namespaces/tesi-delucia/nginx_http_requests_per_second"
+        oc get --raw "/apis/external.metrics.k8s.io/v1beta1/namespaces/default/nginx_http_requests_per_second"
 
 6) associare al servizio monitorato l' HorizontalPodAutoscaler agganciato alla metrica esposta dal prometheus adapter:
 
