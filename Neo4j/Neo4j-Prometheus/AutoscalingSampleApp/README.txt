@@ -8,7 +8,7 @@
 
     oc apply -f ./AutoscalingSampleApp/my-deploy-sampleapp2.yaml    (in caso di metriche external)
 
-3) deployare i componenti di prometheus operator per il monitoraggio in namespace "default"
+3) deployare i componenti di prometheus operator per il monitoraggio di "sampleapp" in namespace "default"
 
     oc apply -f ./AutoscalingSampleApp/my-deploy-prometheus.yaml
 

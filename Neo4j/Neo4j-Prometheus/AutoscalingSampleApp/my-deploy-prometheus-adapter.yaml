@@ -5,7 +5,6 @@ metadata:
   namespace: default
 ---
 apiVersion: rbac.authorization.k8s.io/v1
-#apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRole
 metadata:
   name: custom-metrics-server-resources
@@ -16,7 +15,6 @@ rules:
     verbs: ["*"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
-#apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRole
 metadata:
   name: custom-metrics-resource-reader
@@ -34,7 +32,6 @@ rules:
       - watch
 ---
 apiVersion: rbac.authorization.k8s.io/v1
-#apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRoleBinding
 metadata:
   name: custom-metrics:system:auth-delegator
@@ -48,7 +45,6 @@ subjects:
     namespace: default
 ---
 apiVersion: rbac.authorization.k8s.io/v1
-#apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: RoleBinding
 metadata:
   name: custom-metrics-auth-reader
@@ -61,11 +57,8 @@ subjects:
   - kind: ServiceAccount
     name: custom-metrics-apiserver
     namespace: default
-  - kind: User
-    name: adeiasio
 ---
 apiVersion: rbac.authorization.k8s.io/v1
-#apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRoleBinding
 metadata:
   name: custom-metrics-resource-reader
@@ -79,7 +72,6 @@ subjects:
     namespace: default
 ---
 apiVersion: rbac.authorization.k8s.io/v1
-#apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRoleBinding
 metadata:
   name: hpa-controller-custom-metrics
@@ -92,24 +84,6 @@ subjects:
     name: horizontal-pod-autoscaler
     namespace: default
 ---
-#apiVersion: v1
-#kind: ConfigMap
-#metadata:
-#  name: adapter-config
-#  namespace: default
-#data:
-#  config.yaml: |
-#    rules:
-#    - seriesQuery: '{__name__="neo4j_neo4j_transaction_active",namespace!="",pod!=""}'
-#      resources:
-#        overrides:
-#          namespace: {resource: "namespace"}
-#          pod: {resource: "pod"}
-#          service: {resource: "service"}
-#      name:
-#        matches: "neo4j_neo4j_transaction_active"
-#        as: "neo4j_neo4j_transaction_active"
-#      metricsQuery: 'neo4j_neo4j_transaction_active'
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -161,34 +135,6 @@ spec:
   groupPriorityMinimum: 100
   versionPriority: 100
 ---
-#aggiungo
-#apiVersion: rbac.authorization.k8s.io/v1beta1
-#kind: ClusterRole
-#metadata:
-#  name: prometheus
-#rules:
-#  - apiGroups: [""]
-#    resources:
-#      - nodes
-#      - nodes/metrics
-#      - services
-#      - endpoints
-#      - pods
-#    verbs: ["get", "list", "watch"]
-#  - apiGroups: [""]
-#    resources:
-#      - configmaps
-#    verbs: ["get"]
-#  - apiGroups:
-#      - networking.k8s.io
-#    resources:
-#      - ingresses
-#    verbs: ["get", "list", "watch"]
-#  - nonResourceURLs: ["/metrics"]
-#    verbs: ["get"]
-
-
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -207,17 +153,15 @@ spec:
         app: prometheus-adapter
       name: prometheus-adapter
     spec:
-      #serviceAccountName: custom-metrics-apiserver
       serviceAccountName: custom-metrics-apiserver
       containers:
         - name: prometheus-adapter
-          image: "directxman12/k8s-prometheus-adapter-amd64
+          image: directxman12/k8s-prometheus-adapter-amd64
           args:
             - --secure-port=6443
             - --tls-cert-file=/var/run/serving-cert/tls.crt
             - --tls-private-key-file=/var/run/serving-cert/tls.key
             - --logtostderr=true
-            #- --prometheus-url=http://prometheus.default.svc:9090/
             - --prometheus-url=http://prometheus-operated.default.svc:9090/
             - --metrics-relist-interval=1m
             - --v=4
