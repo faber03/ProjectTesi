@@ -37,12 +37,12 @@ spec:
               cpu: 100m
               memory: 100Mi
           securityContext:
-            allowPrivilegeEscalation: false
+            allowPrivilegeEscalation: true
       nodeSelector:
         beta.kubernetes.io/os: linux
       securityContext:
         runAsNonRoot: true
-        runAsUser: 1000200000 #65534
+        runAsUser: 1000100000 #65534
       serviceAccountName: prometheus-operator
 ---
 apiVersion: v1

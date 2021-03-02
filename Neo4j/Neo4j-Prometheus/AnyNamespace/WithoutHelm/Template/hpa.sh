@@ -4,7 +4,7 @@ command=$1
 namespace=tesi-delucia
 app_to_scale=neo4j-connector
 min_replicas=1
-max_replicas=20
+max_replicas=100
 target_metrica_value=0.125
 
 sed -i "s/namespace: NAMESPACE/namespace: ${namespace}/" hpa_tmp.yaml

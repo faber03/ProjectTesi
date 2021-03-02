@@ -69,7 +69,7 @@ objects:
       name: ${NAME}
       namespace: ${NAMESPACE}
     spec:
-      replicas: 1
+      replicas: ${REPLICAS}
       selector:
         matchLabels:
           deploymentconfig: ${NAME}
@@ -136,7 +136,12 @@ parameters:
   - description: The name assigned to all of the frontend objects defined in this template.
     displayName: Name
     name: NAME
-    value: "neo4j-connector-burst"
+    value: "neo4j-connector"
+
+  - description: Replicas.
+    displayName: Replicas
+    name: REPLICAS
+    value: "150"
 
   - description: The URL of the repository with your application source code.
     displayName: Git Repository URL

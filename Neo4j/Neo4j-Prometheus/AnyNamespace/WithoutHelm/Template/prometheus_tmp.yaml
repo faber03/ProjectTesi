@@ -7,7 +7,7 @@ metadata:
   labels:
     app: prometheus
 spec:
-  selector:
+  selector: #Service dell'app da monitorare
     matchLabels:
       app: APP_TO_MONITOR_NAME
   endpoints:

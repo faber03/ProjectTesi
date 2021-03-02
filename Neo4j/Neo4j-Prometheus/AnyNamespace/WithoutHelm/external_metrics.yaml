@@ -36,6 +36,24 @@ data:
         matches: "^(.*)_total"
         as: "${1}_per_second"
       metricsQuery: 'sum(rate(<<.Series>>{<<.LabelMatchers>>}[2m])) by (<<.GroupBy>>)'
+#apiVersion: v1
+#kind: ConfigMap
+#metadata:
+#  name: adapter-config-external
+#  namespace: tesi-delucia
+#data:
+#  config.yaml: |
+#    externalRules:
+#    - seriesQuery: '{__name__="nginx_http_requests_total",namespace!="",pod!=""}'
+#      resources:
+#        overrides:
+#          namespace: {resource: "namespace"}
+#          pod: {resource: "pod"}
+#          service: {resource: "service"}
+#      name:
+#        matches: "nginx_http_requests_total"
+#        as: "nginx_http_requests_total"
+#      metricsQuery: 'sum(nginx_http_requests_total)'
 ---
 apiVersion: v1
 kind: Service
