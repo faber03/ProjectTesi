@@ -60,11 +60,11 @@
 
 5) deployare prometheus adapter
 
-    ...
+    bash prometheus_adapter.sh apply
 
 6) verificare api esposta:
 
-    ...
+    oc get --raw "http://master.unisannio.local:8443/apis/external.metrics.k8s.io/v1beta1/namespaces/tesi-delucia/neo4j_transaction_active"
 
 7) deployare l' HorizontalPodAutoscaler (APP_TO_SCALE_NAME = neo4j-connector)
 
