@@ -45,7 +45,7 @@ public class Generator {
                 "endTime.time.nano" +
                 "\n";
 
-        var links = new File("resources/all_links_edited.csv");
+        var links = new File("input/all_links_edited.csv");
         //var myReader = new Scanner(links);
 
 //        var csvMapper = new CsvMapper();
