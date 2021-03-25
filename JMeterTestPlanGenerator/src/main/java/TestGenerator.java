@@ -10,24 +10,28 @@ public class TestGenerator {
         var file = new File("output/testplan.jmx");
         var br = new BufferedWriter(new FileWriter(file));
 
-        var areaNames = new String[]{"Lyon", "Venissieux", "Vienne", "Meyzieu", "Caluire-et-Cuire",
-                                     "Saint-Genis-Laval", "Saint-Quentin-Fallavier", "Genas", "Ecully",
-                                     "Dardilly", "Sainte-Foy-les-Lyon", "Villefontaine", "Chassieu",
-                                     "Tassin-la-Demi-Lune", "Charvieu-Chavagneux", "Miribel", "Saint-Laurent-de-Mure",
-                                     "Oullins", "Montluel", "Heyrieux"};
+        var areaNames = new String[]{"Lyon", "Venissieux", "Vienne", "Meyzieu", "Caluire-et-Cuire", "Saint-Genis-Laval", "Saint-Quentin-Fallavier", "Genas", "Ecully", "Dardilly", "Sainte-Foy-les-Lyon", "Villefontaine", "Chassieu", "Tassin-la-Demi-Lune", "Charvieu-Chavagneux", "Miribel", "Saint-Laurent-de-Mure", "Oullins", "Montluel", "Heyrieux"};
+
         var testDurationSec = "33";
-        //var artemisServer = "tcp://172.18.10.146:30340";
-        var artemisServer = "tcp://localhost:61616";
+        var artemisServer = "tcp://172.18.10.147:30340";
+        //var artemisServer = "tcp://localhost:61616";
         var csvFolderPath = "./samples/";
+
         var testPlan = "" +
+                ////////
+                //Header
+                ////////
                 "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
                 "<jmeterTestPlan version=\"1.2\" properties=\"5.0\" jmeter=\"5.4.1\">\n" +
-                "  <hashTree>\n" +
+                "  <hashTree>\n";
+
+        var enabled = "true";
+        testPlan = testPlan +
 
                 //////////
                 //TestPlan
                 //////////
-                "    <TestPlan guiclass=\"TestPlanGui\" testclass=\"TestPlan\" testname=\"TestPlan\" enabled=\"true\">\n" +
+                "    <TestPlan guiclass=\"TestPlanGui\" testclass=\"TestPlan\" testname=\"TestPlan\" enabled=\"" + enabled + "\">\n" +
                 "      <stringProp name=\"TestPlan.comments\"></stringProp>\n" +
                 "      <boolProp name=\"TestPlan.functional_mode\">false</boolProp>\n" +
                 "      <boolProp name=\"TestPlan.tearDown_on_shutdown\">true</boolProp>\n" +
@@ -41,12 +45,13 @@ public class TestGenerator {
 
                         for(var areaName : areaNames)
                         {
+                            enabled = "true";
                             testPlan = testPlan +
 
                                     //////////////////////////
                                     //Concurrency Thread Group
                                     //////////////////////////
-                                    "      <com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup guiclass=\"com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroupGui\" testclass=\"com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup\" testname=\"ConcurrencyThreadGroup_"+ areaName +"\" enabled=\"true\">\n" +
+                                    "      <com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup guiclass=\"com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroupGui\" testclass=\"com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup\" testname=\"ConcurrencyThreadGroup_"+ areaName +"\" enabled=\"" + enabled + "\">\n" +
                                     "        <elementProp name=\"ThreadGroup.main_controller\" elementType=\"com.blazemeter.jmeter.control.VirtualUserController\"/>\n" +
                                     "        <stringProp name=\"ThreadGroup.on_sample_error\">continue</stringProp>\n" +
                                     "        <stringProp name=\"TargetLevel\">${__tstFeedback(shapingTimer,1,100,5)}</stringProp>\n" +
@@ -58,12 +63,16 @@ public class TestGenerator {
                                     "        <stringProp name=\"Unit\">M</stringProp>\n" +
                                     "      </com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup>\n" +
 
-                                    "      <hashTree>\n" + //-----------------------------------------START THREAD GROUP
+                                    "      <hashTree>\n";  //-----------------------------------------START THREAD GROUP
+
+                            enabled = "true";
+                            testPlan = testPlan +
 
                                     /////////////
                                     //JMS Sampler
                                     /////////////
-                                    "        <JMSSampler guiclass=\"JMSSamplerGui\" testclass=\"JMSSampler\" testname=\"Sampler_" + areaName + "\" enabled=\"true\">\n" +
+
+                                    "        <JMSSampler guiclass=\"JMSSamplerGui\" testclass=\"JMSSampler\" testname=\"Sampler_" + areaName + "\" enabled=\"" + enabled + "\">\n" +
                                     "          <stringProp name=\"JMSSampler.queueconnectionfactory\">ConnectionFactory</stringProp>\n" +
                                     "          <stringProp name=\"JMSSampler.SendQueue\">Q.REQ</stringProp>\n" +
                                     "          <stringProp name=\"JMSSampler.ReceiveQueue\"></stringProp>\n" +
@@ -87,12 +96,16 @@ public class TestGenerator {
                                     "            <collectionProp name=\"JMSProperties.properties\"/>\n" +
                                     "          </elementProp>\n" +
                                     "        </JMSSampler>\n" +
-                                    "        <hashTree/>\n" +
+                                    "        <hashTree/>\n";
+
+                            enabled = "true";
+                            testPlan = testPlan +
 
                                     /////////////
                                     //CSV DataSet
                                     /////////////
-                                    "        <CSVDataSet guiclass=\"TestBeanGUI\" testclass=\"CSVDataSet\" testname=\"Csv_" + areaName + "\" enabled=\"true\">\n" +
+
+                                    "        <CSVDataSet guiclass=\"TestBeanGUI\" testclass=\"CSVDataSet\" testname=\"Csv_" + areaName + "\" enabled=\"" + enabled + "\">\n" +
                                     "          <stringProp name=\"delimiter\">;</stringProp>\n" +
                                     "          <stringProp name=\"fileEncoding\"></stringProp>\n" +
                                     "          <stringProp name=\"filename\">" + csvFolderPath + areaName + ".csv</stringProp>\n" +
@@ -103,12 +116,16 @@ public class TestGenerator {
                                     "          <boolProp name=\"stopThread\">false</boolProp>\n" +
                                     "          <stringProp name=\"variableNames\"></stringProp>\n" +
                                     "        </CSVDataSet>\n" +
-                                    "        <hashTree/>" + "\n" +
+                                    "        <hashTree/>" + "\n";
+
+                            enabled = "false";
+                            testPlan = testPlan +
 
                                     ///////////////////
                                     //View Results Tree
                                     ///////////////////
-                                    "        <ResultCollector guiclass=\"ViewResultsFullVisualizer\" testclass=\"ResultCollector\" testname=\"View Results Tree\" enabled=\"true\">\n" +
+
+                                    "        <ResultCollector guiclass=\"ViewResultsFullVisualizer\" testclass=\"ResultCollector\" testname=\"View Results Tree\" enabled=\"" + enabled + "\">\n" +
                                     "          <boolProp name=\"ResultCollector.error_logging\">false</boolProp>\n" +
                                     "          <objProp>\n" +
                                     "            <name>saveConfig</name>\n" +
@@ -149,14 +166,27 @@ public class TestGenerator {
                                     "      </hashTree>\n"; //-------------------------------------------END THREAD GROUP
                         }
 
+                        enabled = "true";
                         testPlan = testPlan +
-                                "      <kg.apc.jmeter.timers.VariableThroughputTimer guiclass=\"kg.apc.jmeter.timers.VariableThroughputTimerGui\" testclass=\"kg.apc.jmeter.timers.VariableThroughputTimer\" testname=\"shapingTimer\" enabled=\"true\">\n" +
+
+                                //////////////////////////
+                                //Throughput Shaping Timer
+                                //////////////////////////
+                                "      <kg.apc.jmeter.timers.VariableThroughputTimer guiclass=\"kg.apc.jmeter.timers.VariableThroughputTimerGui\" testclass=\"kg.apc.jmeter.timers.VariableThroughputTimer\" testname=\"shapingTimer\" enabled=\"" + enabled + "\">\n" +
                                 "        <collectionProp name=\"load_profile\">\n" +
+
                                 "          <collectionProp name=\"176726940\">\n" +
-                                "            <stringProp name=\"1567\">10</stringProp>\n" +
-                                "            <stringProp name=\"1567\">10</stringProp>\n" +
-                                "            <stringProp name=\"1515111\">1800</stringProp>\n" +
+                                "            <stringProp name=\"1567\">20</stringProp>\n" +
+                                "            <stringProp name=\"1567\">20</stringProp>\n" +
+                                "            <stringProp name=\"1515111\">900</stringProp>\n" +
                                 "          </collectionProp>\n" +
+
+                                "          <collectionProp name=\"176726940\">\n" +
+                                "            <stringProp name=\"1567\">20</stringProp>\n" +
+                                "            <stringProp name=\"1567\">20</stringProp>\n" +
+                                "            <stringProp name=\"1515111\">900</stringProp>\n" +
+                                "          </collectionProp>\n" +
+
                                 "        </collectionProp>\n" +
                                 "      </kg.apc.jmeter.timers.VariableThroughputTimer>\n" +
                                 "      <hashTree/>\n" +
@@ -204,8 +234,15 @@ public class TestGenerator {
                                 "        <boolProp name=\"include_checkbox_state\">false</boolProp>\n" +
                                 "        <boolProp name=\"exclude_checkbox_state\">false</boolProp>\n" +
                                 "      </kg.apc.jmeter.vizualizers.CorrectedResultCollector>\n" +
-                                "      <hashTree/>\n" +
-                                "      <kg.apc.jmeter.vizualizers.CorrectedResultCollector guiclass=\"kg.apc.jmeter.vizualizers.ThreadsStateOverTimeGui\" testclass=\"kg.apc.jmeter.vizualizers.CorrectedResultCollector\" testname=\"ActiveThreadsOverTime\" enabled=\"true\">\n" +
+                                "      <hashTree/>\n";
+
+                        enabled = "true";
+                        testPlan = testPlan +
+
+                                //////////////////////////
+                                //Active Threads Over Time
+                                //////////////////////////
+                                "      <kg.apc.jmeter.vizualizers.CorrectedResultCollector guiclass=\"kg.apc.jmeter.vizualizers.ThreadsStateOverTimeGui\" testclass=\"kg.apc.jmeter.vizualizers.CorrectedResultCollector\" testname=\"ActiveThreadsOverTime\" enabled=\"" + enabled + "\">\n" +
                                 "        <boolProp name=\"ResultCollector.error_logging\">false</boolProp>\n" +
                                 "        <objProp>\n" +
                                 "          <name>saveConfig</name>\n" +
@@ -249,8 +286,15 @@ public class TestGenerator {
                                 "        <boolProp name=\"include_checkbox_state\">false</boolProp>\n" +
                                 "        <boolProp name=\"exclude_checkbox_state\">false</boolProp>\n" +
                                 "      </kg.apc.jmeter.vizualizers.CorrectedResultCollector>\n" +
-                                "      <hashTree/>\n" +
-                                "      <kg.apc.jmeter.vizualizers.CompositeResultCollector guiclass=\"kg.apc.jmeter.vizualizers.CompositeGraphGui\" testclass=\"kg.apc.jmeter.vizualizers.CompositeResultCollector\" testname=\"CompositeGraph\" enabled=\"true\">\n" +
+                                "      <hashTree/>\n";
+
+                        enabled = "true";
+                        testPlan = testPlan +
+
+                                ////////////////////////////
+                                //Composite Result Collector
+                                ////////////////////////////
+                                "      <kg.apc.jmeter.vizualizers.CompositeResultCollector guiclass=\"kg.apc.jmeter.vizualizers.CompositeGraphGui\" testclass=\"kg.apc.jmeter.vizualizers.CompositeResultCollector\" testname=\"CompositeGraph\" enabled=\"" + enabled + "\">\n" +
                                 "        <boolProp name=\"ResultCollector.error_logging\">false</boolProp>\n" +
                                 "        <objProp>\n" +
                                 "          <name>saveConfig</name>\n" +
@@ -302,8 +346,13 @@ public class TestGenerator {
                                 "          </collectionProp>\n" +
                                 "        </collectionProp>\n" +
                                 "      </kg.apc.jmeter.vizualizers.CompositeResultCollector>\n" +
-                                "      <hashTree/>" + "\n" +
+                                "      <hashTree/>" + "\n";
 
+                        testPlan = testPlan +
+
+                         ////////
+                         //Footer
+                         ////////
                         "    " + "</hashTree>" + "\n" +
                     "  " + "</hashTree>" + "\n" +
                 "</jmeterTestPlan>";

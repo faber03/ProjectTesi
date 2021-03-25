@@ -13,9 +13,12 @@ import java.text.Normalizer;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class Generator {
+public class SampleGenerator {
 
     public static void main(String[] args) throws IOException {
+
+        var queueNumber = 20;
+        var artemisServer = "http://172.18.10.147:30341";
 
         var areanames = new ArrayList<String>();
         var mapWriters = new HashMap<String,BufferedWriter>();
@@ -64,28 +67,29 @@ public class Generator {
         while (iterator.hasNext()) {
 
             Link item = iterator.next();
+            var easyAreaName = StringUtils.stripAccents(item.areaname);
 
-            if(!areanames.contains(item.areaname))
+            if(!areanames.contains(easyAreaName))
             {
-                areanames.add(item.areaname);
-                var file = new File("output/"+item.areaname+".csv");
+                areanames.add(easyAreaName);
+                var file = new File("output/" + easyAreaName + ".csv");
                 var br = new BufferedWriter(new FileWriter(file));
-                mapWriters.put(item.areaname, br);
-                mapLinks.put(item.areaname, new ArrayList<String>());
-                mapLinkCount.put(item.areaname, 0);
+                mapWriters.put(easyAreaName, br);
+                mapLinks.put(easyAreaName, new ArrayList<String>());
+                mapLinkCount.put(easyAreaName, 0);
 
                 br.write(header);
             }
 
-            var arealinks = mapLinks.get(item.areaname);
+            var arealinks = mapLinks.get(easyAreaName);
             if(!arealinks.contains(item.id))
             {
                 arealinks.add(item.id);
-                mapLinkCount.put(item.areaname, mapLinkCount.get(item.areaname) + 1);
+                mapLinkCount.put(easyAreaName, mapLinkCount.get(easyAreaName) + 1);
             }
 
             var timestamp = new Timestamp(System.currentTimeMillis());
-            var writer = mapWriters.get(item.areaname);
+            var writer = mapWriters.get(easyAreaName);
             var random = new Random();
 
             //random.nextInt(max - min) + min;
@@ -137,23 +141,43 @@ public class Generator {
                         Map.Entry::getValue,
                         (oldValue, newValue) -> oldValue, LinkedHashMap::new));
 
-        var file = new File("output/Info.txt");
+        var file = new File("output/queueInfo.txt");
         var br2 = new BufferedWriter(new FileWriter(file));
         var linkIterator = mapLinkCount.entrySet().iterator();
 
-        int i = 0;
+        int i = 1;
         Files.createDirectories(Path.of("output/selected/"));
+        String queueInfoNameList = "{";
+        String queueInfoQuery = "";
+        String queueInfoTopicList = "";
+        String queueInfoContent = "";
+        String queueInfoPurge = "";
         while (linkIterator.hasNext()) {
             var queue = linkIterator.next().getKey();
             var linkCount = linkIterator.next().getValue();
-            br2.write("queue: " + queue + " - links: " + linkCount + "\n");
 
-            if(i < 20)
-                Files.move(Path.of("output/"+queue+".csv"),Path.of("output/selected/" + StringUtils.stripAccents(queue) + ".csv"));
+            var easyQueueName = StringUtils.stripAccents(queue);
+            queueInfoContent = queueInfoContent + "queue " + i + ": " + StringUtils.stripAccents(easyQueueName) + " - links: " + linkCount + "\n";
+
+            if(i <= queueNumber) {
+                queueInfoNameList = queueInfoNameList + "\"" + easyQueueName + "\", ";
+                queueInfoQuery = queueInfoQuery + "\"neo4j.topic.cypher." + easyQueueName + "-Northbound\": \"MERGE ()-[s:STREET {linkId: event.linkId}]->() SET s.avgTravelTime = event.avgTravelTime,  s.sdTravelTime = event.sdTravelTime,  s.numVehicles = event.numVehicles,  s.timestamp = event.timestamp,  s.aggPeriod = duration({seconds: event.aggPeriod.seconds, nanoseconds: event.aggPeriod.nanos}),  s.startTime = localdatetime({year: event.startTime.date.year,month: event.startTime.date.month,day: event.startTime.date.day,hour: event.startTime.time.hour,minute: event.sample.startTime.time.minute,second: event.startTime.time.second,nanosecond: event.startTime.time.nano}),  s.endTime = localdatetime({year: event.endTime.date.year,month: event.endTime.date.month,day: event.endTime.date.day,hour: event.endTime.time.hour,minute: event.endTime.time.minute,second: event.endTime.time.second,nanosecond: event.endTime.time.nano})\",\n";
+                queueInfoTopicList = queueInfoTopicList + easyQueueName + "-Northbound,";
+                queueInfoPurge = queueInfoPurge + "curl -X POST -H \"Content-Type: application/json\" -d  '{ \"type\": \"EXEC\", \"mbean\": \"org.apache.activemq.artemis:address=\\\"" + easyQueueName + "-Northbound\\\",broker=\\\"0.0.0.0\\\",component=addresses,queue=\\\"" + easyQueueName + "-Northbound\\\",routing-type=\\\"anycast\\\",subcomponent=queues\", \"operation\": \"removeMessages(java.lang.String)\", \"arguments\": [ \"\" ] }' -u licit:licit  " + artemisServer + "/console/jolokia/exec\n" + "sleep 1\n";
+                Files.move(Path.of("output/" + queue + ".csv"), Path.of("output/selected/" + StringUtils.stripAccents(queue) + ".csv"));
+            }
 
             i++;
         }
 
+        queueInfoNameList = queueInfoNameList.substring(0, queueInfoNameList.lastIndexOf(",")) + "}";
+        queueInfoTopicList = "\"" + queueInfoTopicList.substring(0, queueInfoTopicList.lastIndexOf(",")) + "\"";
+
+        br2.write(queueInfoNameList + "\n\n");
+        br2.write(queueInfoTopicList + "\n\n");
+        br2.write(queueInfoQuery + "\n\n");
+        br2.write(queueInfoPurge + "\n\n");
+        br2.write(queueInfoContent);
         br2.close();
     }
 }
