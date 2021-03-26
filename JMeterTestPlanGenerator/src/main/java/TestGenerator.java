@@ -245,7 +245,7 @@ public class TestGenerator {
 
                         enabled = "true";
                         //var resultFilePath = "C:\\Users\\agost\\Desktop\\NuovaCartella2\\results\\result.csv";
-                        var resultFilePath = "\\jmeter\\result\\result.csv";
+                        var resultFilePath = "result/result.csv";
                         testPlan = testPlan +
 
                                 ///////////////////
@@ -290,7 +290,7 @@ public class TestGenerator {
                                 "      <hashTree/>\n";
 
                         enabled = "true";
-                        var outputFolder = "\\jmeter\\result\\graphs";
+                        var outputFolder = "result/graphs";
                         testPlan = testPlan +
 
                                 ///////////////////////////
