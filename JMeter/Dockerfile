@@ -32,7 +32,7 @@ EXPOSE 8080
 EXPOSE 80
 
 ADD lib apache-jmeter-5.4.1/lib
-ADD ext apache-jmeter-5.4.1/ext
+ADD ext apache-jmeter-5.4.1/lib/ext
 
 #COPY test.jmx test.jmx
 COPY startup.sh startup.sh
