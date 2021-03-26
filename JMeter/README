@@ -1,0 +1,25 @@
+- usare la nuova versione
+
+- aggiungere i plugin
+
+- verificare la dashboard
+
+- e poi devi aggiungere i tuoi jmx
+
+- e il build config, il deployment config e l'image stream devono essere modificati, il solito, il tuo namespace e così via
+
+--------------
+
+- we ti ho fatto io le modifiche ai nomi, namespace e così via
+
+- le cose che ti restano da modificare nei file yaml sono i trigger, se li vuoi cambiare
+
+- e poi nello specifico nel deployment config devi cambiare a seconda di come esegui il container
+
+-guarda qua per avere chiara la terminologia:
+
+    https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#notes
+
+- perchè in kubernetes il comando di ingresso è detto command mentre in docker entrypoint
+
+- e gli argomenti in kubernetes sono detti args e in docker cmd
