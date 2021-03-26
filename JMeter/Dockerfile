@@ -18,7 +18,9 @@ RUN mkdir /jmeter \
 
 WORKDIR /jmeter
 
-RUN   wget http://it.apache.contactlab.it//jmeter/binaries/apache-jmeter-5.4.1.tgz \
+#https://downloads.apache.org//jmeter/binaries/apache-jmeter-5.4.1.tgz
+#http://it.apache.contactlab.it//jmeter/binaries/apache-jmeter-5.4.1.tgz
+RUN   wget http://downloads.apache.org//jmeter/binaries/apache-jmeter-5.4.1.tgz \
       && tar -xzf apache-jmeter-5.4.1.tgz \
       && rm apache-jmeter-5.4.1.tgz
 

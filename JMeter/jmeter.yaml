@@ -26,7 +26,7 @@ spec:
   source:
     contextDir: '/JMeter'
     git:
-      ref: master
+      ref: main
 #      uri: 'git remote add origin https://github.com/faber03/JMeter.git'
       uri: 'https://github.com/faber03/ProjectTesi.git'
     type: Git
