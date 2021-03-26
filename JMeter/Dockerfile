@@ -1,5 +1,4 @@
-#FROM openjdk:8-jre-slim
-FROM openjdk:8u282-jre-slim-buster
+FROM openjdk:7-jre-slim
 
 MAINTAINER woland7
 
