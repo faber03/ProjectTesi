@@ -34,7 +34,7 @@
           <stringProp name="JMSSampler.timeout">2000</stringProp>
           <stringProp name="HTTPSamper.xml_data">{&quot;linkId&quot;:${linkId},&quot;timestamp&quot;:${timestamp},&quot;avgTravelTime&quot;:${avgTravelTime},&quot;sdTravelTime&quot;:${sdTravelTime},&quot;numVehicles&quot;:${numVehicles},&quot;aggPeriod&quot;:{&quot;seconds&quot;:${aggPeriod.seconds},&quot;nanos&quot;:${aggPeriod.nanos}},&quot;startTime&quot;:{&quot;date&quot;:{&quot;year&quot;:${startTime.date.year},&quot;month&quot;:${startTime.date.month},&quot;day&quot;:${startTime.date.day}},&quot;time&quot;:{&quot;hour&quot;:${startTime.time.hour},&quot;minute&quot;:${startTime.time.minute},&quot;second&quot;:${startTime.time.second},&quot;nano&quot;:${startTime.time.nano}}},&quot;endTime&quot;:{&quot;date&quot;:{&quot;year&quot;:${endTime.date.year},&quot;month&quot;:${endTime.date.month},&quot;day&quot;:${endTime.date.day}},&quot;time&quot;:{&quot;hour&quot;:${endTime.time.hour},&quot;minute&quot;:${endTime.time.minute},&quot;second&quot;:${endTime.time.second},&quot;nano&quot;:${endTime.time.nano}}}}</stringProp>
           <stringProp name="JMSSampler.initialContextFactory">org.apache.activemq.jndi.ActiveMQInitialContextFactory</stringProp>
-          <stringProp name="JMSSampler.contextProviderUrl">tcp://localhost:61616</stringProp>
+          <stringProp name="JMSSampler.contextProviderUrl">tcp://172.18.10.147:30340</stringProp>
           <elementProp name="JMSSampler.jndiProperties" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments">
               <elementProp name="queue.Q.REQ" elementType="Argument">
