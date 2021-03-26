@@ -1,0 +1,53 @@
+2021-03-26 15:38:32,924 INFO o.a.j.u.JMeterUtils: Setting Locale to en_EN
+2021-03-26 15:38:32,942 INFO o.a.j.JMeter: Loading user properties from: C:\Program Files\Apache\apache-jmeter-5.4.1\bin\user.properties
+2021-03-26 15:38:32,943 INFO o.a.j.JMeter: Loading system properties from: C:\Program Files\Apache\apache-jmeter-5.4.1\bin\system.properties
+2021-03-26 15:38:32,948 INFO o.a.j.JMeter: Copyright (c) 1998-2021 The Apache Software Foundation
+2021-03-26 15:38:32,948 INFO o.a.j.JMeter: Version 5.4.1
+2021-03-26 15:38:32,948 INFO o.a.j.JMeter: java.version=15.0.1
+2021-03-26 15:38:32,948 INFO o.a.j.JMeter: java.vm.name=Java HotSpot(TM) 64-Bit Server VM
+2021-03-26 15:38:32,949 INFO o.a.j.JMeter: os.name=Windows 10
+2021-03-26 15:38:32,949 INFO o.a.j.JMeter: os.arch=amd64
+2021-03-26 15:38:32,949 INFO o.a.j.JMeter: os.version=10.0
+2021-03-26 15:38:32,949 INFO o.a.j.JMeter: file.encoding=Cp1252
+2021-03-26 15:38:32,949 INFO o.a.j.JMeter: java.awt.headless=true
+2021-03-26 15:38:32,949 INFO o.a.j.JMeter: Max memory     =1073741824
+2021-03-26 15:38:32,949 INFO o.a.j.JMeter: Available Processors =8
+2021-03-26 15:38:32,955 INFO o.a.j.JMeter: Default Locale=English (EN)
+2021-03-26 15:38:32,956 INFO o.a.j.JMeter: JMeter  Locale=English (EN)
+2021-03-26 15:38:32,956 INFO o.a.j.JMeter: JMeterHome=C:\Program Files\Apache\apache-jmeter-5.4.1
+2021-03-26 15:38:32,956 INFO o.a.j.JMeter: user.dir  =G:\Workspaces\workspace-tesi\ProjectTesi\JMeter
+2021-03-26 15:38:32,956 INFO o.a.j.JMeter: PWD       =G:\Workspaces\workspace-tesi\ProjectTesi\JMeter
+2021-03-26 15:38:32,957 INFO o.a.j.JMeter: IP: 172.16.0.1 Name: AGOSTINO-PC FullName: AGOSTINO-PC
+2021-03-26 15:38:32,962 INFO o.a.j.s.FileServer: Default base='G:\Workspaces\workspace-tesi\ProjectTesi\JMeter'
+2021-03-26 15:38:32,963 INFO o.a.j.s.FileServer: Set new base='G:\Workspaces\workspace-tesi\ProjectTesi\JMeter'
+2021-03-26 15:38:33,098 INFO o.a.j.s.SaveService: Testplan (JMX) version: 2.2. Testlog (JTL) version: 2.2
+2021-03-26 15:38:33,121 INFO o.a.j.s.SaveService: Using SaveService properties version 5.0
+2021-03-26 15:38:33,124 INFO o.a.j.s.SaveService: Using SaveService properties file encoding UTF-8
+2021-03-26 15:38:33,126 INFO o.a.j.s.SaveService: Loading file: testplan.jmx
+2021-03-26 15:38:33,200 INFO o.a.j.JMeter: Creating summariser <summary>
+2021-03-26 15:38:33,204 INFO o.a.j.e.StandardJMeterEngine: Running the test!
+2021-03-26 15:38:33,206 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2021-03-26 15:38:33,206 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2021-03-26 15:38:33,211 INFO o.a.j.e.u.CompoundVariable: Note: Function class names must contain the string: '.functions.'
+2021-03-26 15:38:33,211 INFO o.a.j.e.u.CompoundVariable: Note: Function class names must not contain the string: '.gui.'
+2021-03-26 15:38:33,275 INFO o.a.j.JMeter: Running test (1616769513275)
+2021-03-26 15:38:33,289 INFO o.a.j.e.StandardJMeterEngine: Starting ThreadGroup: 1 : ConcurrencyThreadGroup_Lyon
+2021-03-26 15:38:33,290 INFO o.a.j.e.StandardJMeterEngine: Starting 1 threads for group ConcurrencyThreadGroup_Lyon.
+2021-03-26 15:38:33,290 INFO o.a.j.e.StandardJMeterEngine: Thread will continue on error
+2021-03-26 15:38:33,292 INFO o.a.j.e.StandardJMeterEngine: All thread groups have been started
+2021-03-26 15:38:33,292 INFO c.b.j.t.c.ConcurrencyThreadStarter: Start supplying threads
+2021-03-26 15:38:33,296 INFO o.a.j.s.SampleResult: Note: Sample TimeStamps are START times
+2021-03-26 15:38:33,297 INFO o.a.j.s.SampleResult: sampleresult.default.encoding is set to ISO-8859-1
+2021-03-26 15:38:33,297 INFO o.a.j.s.SampleResult: sampleresult.useNanoTime=true
+2021-03-26 15:38:33,297 INFO o.a.j.s.SampleResult: sampleresult.nanoThreadSleep=5000
+2021-03-26 15:38:33,323 INFO o.a.j.t.JMeterThread: Thread started: ConcurrencyThreadGroup_Lyon-ThreadStarter 1-1
+2021-03-26 15:38:33,678 INFO o.a.j.s.FileServer: Stored: ./samples/Lyon.csv Alias: ./samples/Lyon.csv@261845810
+2021-03-26 15:38:33,738 WARN k.a.j.t.VariableThroughputTimer: No free threads available in current Thread Group ConcurrencyThreadGroup_Lyon, made 0 samples/s for expected rps 3.0 samples/s, increase your number of threads
+2021-03-26 15:38:33,823 INFO o.a.j.r.Summariser: summary +      1 in 00:00:01 =    1.8/s Avg:    83 Min:    83 Max:    83 Err:     0 (0.00%) Active: 1 Started: 1 Finished: 0
+2021-03-26 15:38:34,301 INFO o.a.j.t.JMeterThread: Thread started: ConcurrencyThreadGroup_Lyon-ThreadStarter 1-2
+2021-03-26 15:38:35,304 INFO o.a.j.t.JMeterThread: Thread started: ConcurrencyThreadGroup_Lyon-ThreadStarter 1-3
+2021-03-26 15:38:35,304 INFO o.a.j.t.JMeterThread: Thread started: ConcurrencyThreadGroup_Lyon-ThreadStarter 1-4
+2021-03-26 15:38:35,304 INFO o.a.j.t.JMeterThread: Thread started: ConcurrencyThreadGroup_Lyon-ThreadStarter 1-5
+2021-03-26 15:38:35,305 INFO o.a.j.t.JMeterThread: Thread started: ConcurrencyThreadGroup_Lyon-ThreadStarter 1-6
+2021-03-26 15:38:55,415 INFO o.a.j.r.ResultCollector: Shutdown hook started
+2021-03-26 15:38:55,416 INFO o.a.j.r.ResultCollector: Shutdown hook ended
