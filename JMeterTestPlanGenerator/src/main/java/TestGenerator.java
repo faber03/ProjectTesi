@@ -10,8 +10,8 @@ public class TestGenerator {
         var file = new File("output/testplan.jmx");
         var br = new BufferedWriter(new FileWriter(file));
 
-        //var areaNames = new String[]{"Lyon", "Venissieux", "Vienne", "Meyzieu", "Caluire-et-Cuire", "Saint-Genis-Laval", "Saint-Quentin-Fallavier", "Genas", "Ecully", "Dardilly", "Sainte-Foy-les-Lyon", "Villefontaine", "Chassieu", "Tassin-la-Demi-Lune", "Charvieu-Chavagneux", "Miribel", "Saint-Laurent-de-Mure", "Oullins", "Montluel", "Heyrieux"};
-        var areaNames = new String[]{"Lyon"};
+        var areaNames = new String[]{"Lyon", "Venissieux", "Vienne", "Meyzieu", "Caluire-et-Cuire", "Saint-Genis-Laval", "Saint-Quentin-Fallavier", "Genas", "Ecully", "Dardilly", "Sainte-Foy-les-Lyon", "Villefontaine", "Chassieu", "Tassin-la-Demi-Lune", "Charvieu-Chavagneux", "Miribel", "Saint-Laurent-de-Mure", "Oullins", "Montluel", "Heyrieux"};
+        //var areaNames = new String[]{"Lyon"};
         var testDurationSec = "33";
         var artemisServer = "tcp://172.18.10.147:30340";
         //var artemisServer = "tcp://localhost:61616";
@@ -189,8 +189,15 @@ public class TestGenerator {
 
                                 "        </collectionProp>\n" +
                                 "      </kg.apc.jmeter.timers.VariableThroughputTimer>\n" +
-                                "      <hashTree/>\n" +
-                                "      <kg.apc.jmeter.vizualizers.CorrectedResultCollector guiclass=\"kg.apc.jmeter.vizualizers.TransactionsPerSecondGui\" testclass=\"kg.apc.jmeter.vizualizers.CorrectedResultCollector\" testname=\"TransactionsPerSecond\" enabled=\"true\">\n" +
+                                "      <hashTree/>\n";
+
+                        enabled = "false";
+                        testPlan = testPlan +
+
+                                /////////////////////////////
+                                //Transactions Per Second Gui
+                                /////////////////////////////
+                                "      <kg.apc.jmeter.vizualizers.CorrectedResultCollector guiclass=\"kg.apc.jmeter.vizualizers.TransactionsPerSecondGui\" testclass=\"kg.apc.jmeter.vizualizers.CorrectedResultCollector\" testname=\"TransactionsPerSecond\" enabled=\"" + enabled + "\">\n" +
                                 "        <boolProp name=\"ResultCollector.error_logging\">false</boolProp>\n" +
                                 "        <objProp>\n" +
                                 "          <name>saveConfig</name>\n" +
@@ -237,6 +244,87 @@ public class TestGenerator {
                                 "      <hashTree/>\n";
 
                         enabled = "true";
+                        //var resultFilePath = "C:\\Users\\agost\\Desktop\\NuovaCartella2\\results\\result.csv";
+                        var resultFilePath = "\\jmeter\\result\\result.csv";
+                        testPlan = testPlan +
+
+                                ///////////////////
+                                //View Results Tree - Global
+                                ///////////////////
+                                "      <ResultCollector guiclass=\"ViewResultsFullVisualizer\" testclass=\"ResultCollector\" testname=\"View Results Tree\" enabled=\"" + enabled + "\">\n" +
+                                "        <boolProp name=\"ResultCollector.error_logging\">false</boolProp>\n" +
+                                "        <objProp>\n" +
+                                "          <name>saveConfig</name>\n" +
+                                "          <value class=\"SampleSaveConfiguration\">\n" +
+                                "            <time>true</time>\n" +
+                                "            <latency>true</latency>\n" +
+                                "            <timestamp>true</timestamp>\n" +
+                                "            <success>true</success>\n" +
+                                "            <label>true</label>\n" +
+                                "            <code>true</code>\n" +
+                                "            <message>true</message>\n" +
+                                "            <threadName>true</threadName>\n" +
+                                "            <dataType>true</dataType>\n" +
+                                "            <encoding>false</encoding>\n" +
+                                "            <assertions>true</assertions>\n" +
+                                "            <subresults>true</subresults>\n" +
+                                "            <responseData>false</responseData>\n" +
+                                "            <samplerData>false</samplerData>\n" +
+                                "            <xml>false</xml>\n" +
+                                "            <fieldNames>true</fieldNames>\n" +
+                                "            <responseHeaders>false</responseHeaders>\n" +
+                                "            <requestHeaders>false</requestHeaders>\n" +
+                                "            <responseDataOnError>false</responseDataOnError>\n" +
+                                "            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>\n" +
+                                "            <assertionsResultsToSave>0</assertionsResultsToSave>\n" +
+                                "            <bytes>true</bytes>\n" +
+                                "            <sentBytes>true</sentBytes>\n" +
+                                "            <url>true</url>\n" +
+                                "            <threadCounts>true</threadCounts>\n" +
+                                "            <idleTime>true</idleTime>\n" +
+                                "            <connectTime>true</connectTime>\n" +
+                                "          </value>\n" +
+                                "        </objProp>\n" +
+                                "        <stringProp name=\"filename\">" + resultFilePath + "</stringProp>\n" +
+                                "      </ResultCollector>\n" +
+                                "      <hashTree/>\n";
+
+                        enabled = "true";
+                        var outputFolder = "\\jmeter\\result\\graphs";
+                        testPlan = testPlan +
+
+                                ///////////////////////////
+                                //Graphs Generator Listener
+                                ///////////////////////////
+                                "      <kg.apc.jmeter.listener.GraphsGeneratorListener guiclass=\"TestBeanGUI\" testclass=\"kg.apc.jmeter.listener.GraphsGeneratorListener\" testname=\"jp@gc - Graphs Generator\" enabled=\"" + enabled + "\">\n" +
+                                "        <boolProp name=\"aggregateRows\">false</boolProp>\n" +
+                                "        <boolProp name=\"autoScaleRows\">false</boolProp>\n" +
+                                "        <stringProp name=\"endOffset\"></stringProp>\n" +
+                                "        <stringProp name=\"excludeLabels\"></stringProp>\n" +
+                                "        <boolProp name=\"excludeSamplesWithRegex\">false</boolProp>\n" +
+                                "        <intProp name=\"exportMode\">2</intProp>\n" +
+                                "        <stringProp name=\"filePrefix\"></stringProp>\n" +
+                                "        <stringProp name=\"forceY\"></stringProp>\n" +
+                                "        <stringProp name=\"granulation\">1000</stringProp>\n" +
+                                "        <intProp name=\"graphHeight\">600</intProp>\n" +
+                                "        <intProp name=\"graphWidth\">800</intProp>\n" +
+                                "        <stringProp name=\"includeLabels\"></stringProp>\n" +
+                                "        <boolProp name=\"includeSamplesWithRegex\">false</boolProp>\n" +
+                                "        <stringProp name=\"limitRows\">150</stringProp>\n" +
+                                "        <stringProp name=\"lineWeight\"></stringProp>\n" +
+                                "        <stringProp name=\"lowCountLimit\"></stringProp>\n" +
+                                "        <stringProp name=\"outputBaseFolder\">" + outputFolder + "</stringProp>\n" +
+                                "        <boolProp name=\"paintGradient\">true</boolProp>\n" +
+                                "        <boolProp name=\"paintZeroing\">true</boolProp>\n" +
+                                "        <boolProp name=\"preventOutliers\">false</boolProp>\n" +
+                                "        <boolProp name=\"relativeTimes\">false</boolProp>\n" +
+                                "        <stringProp name=\"resultsFileName\">" + resultFilePath + "</stringProp>\n" +
+                                "        <stringProp name=\"startOffset\"></stringProp>\n" +
+                                "        <stringProp name=\"successFilter\"></stringProp>\n" +
+                                "      </kg.apc.jmeter.listener.GraphsGeneratorListener>\n" +
+                                "      <hashTree/>\n";
+
+                        enabled = "false";
                         testPlan = testPlan +
 
                                 //////////////////////////
@@ -288,7 +376,7 @@ public class TestGenerator {
                                 "      </kg.apc.jmeter.vizualizers.CorrectedResultCollector>\n" +
                                 "      <hashTree/>\n";
 
-                        enabled = "true";
+                        enabled = "false";
                         testPlan = testPlan +
 
                                 ////////////////////////////
