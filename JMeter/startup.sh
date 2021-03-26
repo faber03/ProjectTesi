@@ -12,4 +12,6 @@ jmeter -n -t testplan.jmx
 #echo "Sleep for 900 seconds [15 minutes] to give pipeline time to retrieve dashboard files."
 #sleep 900
 
+sleep infinity
+
 exit 0
