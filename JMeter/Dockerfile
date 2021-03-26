@@ -1,4 +1,5 @@
-FROM openjdk:8-jre-slim
+#FROM openjdk:8-jre-slim
+FROM openjdk:latest
 
 MAINTAINER woland7
 
