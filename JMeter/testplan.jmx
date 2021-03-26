@@ -1755,14 +1755,9 @@
       <kg.apc.jmeter.timers.VariableThroughputTimer guiclass="kg.apc.jmeter.timers.VariableThroughputTimerGui" testclass="kg.apc.jmeter.timers.VariableThroughputTimer" testname="shapingTimer" enabled="true">
         <collectionProp name="load_profile">
           <collectionProp name="176726940">
-            <stringProp name="1567">20</stringProp>
-            <stringProp name="1567">20</stringProp>
-            <stringProp name="1515111">900</stringProp>
-          </collectionProp>
-          <collectionProp name="176726940">
-            <stringProp name="1567">20</stringProp>
-            <stringProp name="1567">20</stringProp>
-            <stringProp name="1515111">900</stringProp>
+            <stringProp name="1567">10</stringProp>
+            <stringProp name="1567">10</stringProp>
+            <stringProp name="1515111">30</stringProp>
           </collectionProp>
         </collectionProp>
       </kg.apc.jmeter.timers.VariableThroughputTimer>

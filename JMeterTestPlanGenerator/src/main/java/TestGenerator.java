@@ -176,16 +176,16 @@ public class TestGenerator {
                                 "        <collectionProp name=\"load_profile\">\n" +
 
                                 "          <collectionProp name=\"176726940\">\n" +
-                                "            <stringProp name=\"1567\">20</stringProp>\n" +
-                                "            <stringProp name=\"1567\">20</stringProp>\n" +
-                                "            <stringProp name=\"1515111\">900</stringProp>\n" +
+                                "            <stringProp name=\"1567\">10</stringProp>\n" +
+                                "            <stringProp name=\"1567\">10</stringProp>\n" +
+                                "            <stringProp name=\"1515111\">30</stringProp>\n" +
                                 "          </collectionProp>\n" +
 
-                                "          <collectionProp name=\"176726940\">\n" +
-                                "            <stringProp name=\"1567\">20</stringProp>\n" +
-                                "            <stringProp name=\"1567\">20</stringProp>\n" +
-                                "            <stringProp name=\"1515111\">900</stringProp>\n" +
-                                "          </collectionProp>\n" +
+//                                "          <collectionProp name=\"176726940\">\n" +
+//                                "            <stringProp name=\"1567\">20</stringProp>\n" +
+//                                "            <stringProp name=\"1567\">20</stringProp>\n" +
+//                                "            <stringProp name=\"1515111\">900</stringProp>\n" +
+//                                "          </collectionProp>\n" +
 
                                 "        </collectionProp>\n" +
                                 "      </kg.apc.jmeter.timers.VariableThroughputTimer>\n" +
