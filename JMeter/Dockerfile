@@ -1,5 +1,5 @@
 #FROM openjdk:8-jre-slim
-FROM openjdk:latest
+FROM openjdk:8u282-jre-slim-buster
 
 MAINTAINER woland7
 
