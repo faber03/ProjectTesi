@@ -1,5 +1,6 @@
 #FROM openjdk:7-jre-slim
-FROM openjdk:8-jre-alpine
+#FROM openjdk:8-jre-alpine
+FROM openjdk:11-jre-slim
 
 MAINTAINER woland7
 
