@@ -213,12 +213,12 @@
         <stringProp name="limitRows">150</stringProp>
         <stringProp name="lineWeight"></stringProp>
         <stringProp name="lowCountLimit"></stringProp>
-        <stringProp name="outputBaseFolder">/home/agostino/Desktop/jmeterTest/result/graphs</stringProp>
+        <stringProp name="outputBaseFolder">result/graphs</stringProp>
         <boolProp name="paintGradient">true</boolProp>
         <boolProp name="paintZeroing">true</boolProp>
         <boolProp name="preventOutliers">false</boolProp>
         <boolProp name="relativeTimes">false</boolProp>
-        <stringProp name="resultsFileName">/home/agostino/Desktop/jmeterTest/result/result.csv</stringProp>
+        <stringProp name="resultsFileName">result/result.csv</stringProp>
         <stringProp name="startOffset"></stringProp>
         <stringProp name="successFilter"></stringProp>
       </kg.apc.jmeter.listener.GraphsGeneratorListener>
@@ -257,7 +257,7 @@
             <connectTime>true</connectTime>
           </value>
         </objProp>
-        <stringProp name="filename">/home/agostino/Desktop/jmeterTest/result/result.csv</stringProp>
+        <stringProp name="filename">result/result.csv</stringProp>
         <longProp name="interval_grouping">500</longProp>
         <boolProp name="graph_aggregated">false</boolProp>
         <stringProp name="include_sample_labels"></stringProp>
