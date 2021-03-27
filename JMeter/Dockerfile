@@ -1,17 +1,18 @@
-#FROM openjdk:7-jre-slim
-#FROM openjdk:8-jre-alpine
-FROM openjdk:11-jre-slim
+FROM openjdk:8-jre-slim
+#FROM openjdk:8
+#FROM openjdk:11-jre-slim
 
 MAINTAINER woland7
 
 RUN apt-get clean && \
     apt-get update && \
-    apt-get -qy install \
+    apt-get -qy install --no-install-recommends\
     wget \
     telnet \
     iputils-ping \
     unzip \
-    curl
+    curl \
+    fontconfig libfreetype6
 
 #Install JMeter
 
