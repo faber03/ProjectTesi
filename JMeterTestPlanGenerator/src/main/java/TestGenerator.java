@@ -46,6 +46,7 @@ public class TestGenerator {
                         for(var areaName : areaNames)
                         {
                             enabled = "true";
+                            if(true)
                             testPlan = testPlan +
 
                                     //////////////////////////
@@ -66,6 +67,7 @@ public class TestGenerator {
                                     "      <hashTree>\n";  //-----------------------------------------START THREAD GROUP
 
                             enabled = "true";
+                            if(true)
                             testPlan = testPlan +
 
                                     /////////////
@@ -99,6 +101,7 @@ public class TestGenerator {
                                     "        <hashTree/>\n";
 
                             enabled = "true";
+                            if(true)
                             testPlan = testPlan +
 
                                     /////////////
@@ -119,10 +122,11 @@ public class TestGenerator {
                                     "        <hashTree/>" + "\n";
 
                             enabled = "false";
+                            if(false)
                             testPlan = testPlan +
 
                                     ///////////////////
-                                    //View Results Tree
+                                    //View Results Tree - Local
                                     ///////////////////
 
                                     "        <ResultCollector guiclass=\"ViewResultsFullVisualizer\" testclass=\"ResultCollector\" testname=\"View Results Tree\" enabled=\"" + enabled + "\">\n" +
@@ -161,12 +165,15 @@ public class TestGenerator {
                                     "          </objProp>\n" +
                                     "          <stringProp name=\"filename\"></stringProp>\n" +
                                     "        </ResultCollector>\n" +
-                                    "        <hashTree/>\n" +
+                                    "        <hashTree/>\n";
+
+                            testPlan = testPlan +
 
                                     "      </hashTree>\n"; //-------------------------------------------END THREAD GROUP
                         }
 
                         enabled = "true";
+                        if(true)
                         testPlan = testPlan +
 
                                 //////////////////////////
@@ -176,9 +183,9 @@ public class TestGenerator {
                                 "        <collectionProp name=\"load_profile\">\n" +
 
                                 "          <collectionProp name=\"176726940\">\n" +
-                                "            <stringProp name=\"1567\">10</stringProp>\n" +
-                                "            <stringProp name=\"1567\">10</stringProp>\n" +
-                                "            <stringProp name=\"1515111\">30</stringProp>\n" +
+                                "            <stringProp name=\"1567\">9</stringProp>\n" +
+                                "            <stringProp name=\"1567\">9</stringProp>\n" +
+                                "            <stringProp name=\"1515111\">1800</stringProp>\n" +
                                 "          </collectionProp>\n" +
 
 //                                "          <collectionProp name=\"176726940\">\n" +
@@ -192,6 +199,7 @@ public class TestGenerator {
                                 "      <hashTree/>\n";
 
                         enabled = "false";
+                        if(false)
                         testPlan = testPlan +
 
                                 /////////////////////////////
@@ -246,6 +254,7 @@ public class TestGenerator {
                         enabled = "true";
                         //var resultFilePath = "C:\\Users\\agost\\Desktop\\NuovaCartella2\\results\\result.csv";
                         var resultFilePath = "result/result.csv";
+                        if(false)
                         testPlan = testPlan +
 
                                 ///////////////////
@@ -290,12 +299,67 @@ public class TestGenerator {
                                 "      <hashTree/>\n";
 
                         enabled = "true";
-                        var outputFolder = "result/graphs";
+                        resultFilePath = "result/result.csv";
+                        if(true)
                         testPlan = testPlan +
 
-                                ///////////////////////////
-                                //Graphs Generator Listener
-                                ///////////////////////////
+                                /////////////////////////////////////
+                                //jp@gc - Synthesis Report (filtered)
+                                /////////////////////////////////////
+                                "      <kg.apc.jmeter.vizualizers.CorrectedResultCollector guiclass=\"kg.apc.jmeter.vizualizers.SynthesisReportGui\" testclass=\"kg.apc.jmeter.vizualizers.CorrectedResultCollector\" testname=\"jp@gc - Synthesis Report (filtered)\" enabled=\"" + enabled + "\">\n" +
+                                "        <boolProp name=\"ResultCollector.error_logging\">false</boolProp>\n" +
+                                "        <objProp>\n" +
+                                "          <name>saveConfig</name>\n" +
+                                "          <value class=\"SampleSaveConfiguration\">\n" +
+                                "            <time>true</time>\n" +
+                                "            <latency>true</latency>\n" +
+                                "            <timestamp>true</timestamp>\n" +
+                                "            <success>true</success>\n" +
+                                "            <label>true</label>\n" +
+                                "            <code>true</code>\n" +
+                                "            <message>true</message>\n" +
+                                "            <threadName>true</threadName>\n" +
+                                "            <dataType>true</dataType>\n" +
+                                "            <encoding>false</encoding>\n" +
+                                "            <assertions>true</assertions>\n" +
+                                "            <subresults>true</subresults>\n" +
+                                "            <responseData>false</responseData>\n" +
+                                "            <samplerData>false</samplerData>\n" +
+                                "            <xml>false</xml>\n" +
+                                "            <fieldNames>true</fieldNames>\n" +
+                                "            <responseHeaders>false</responseHeaders>\n" +
+                                "            <requestHeaders>false</requestHeaders>\n" +
+                                "            <responseDataOnError>false</responseDataOnError>\n" +
+                                "            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>\n" +
+                                "            <assertionsResultsToSave>0</assertionsResultsToSave>\n" +
+                                "            <bytes>true</bytes>\n" +
+                                "            <sentBytes>true</sentBytes>\n" +
+                                "            <url>true</url>\n" +
+                                "            <threadCounts>true</threadCounts>\n" +
+                                "            <idleTime>true</idleTime>\n" +
+                                "            <connectTime>true</connectTime>\n" +
+                                "          </value>\n" +
+                                "        </objProp>\n" +
+                                "        <stringProp name=\"filename\">" + resultFilePath + "</stringProp>\n" +
+                                "        <longProp name=\"interval_grouping\">500</longProp>\n" +
+                                "        <boolProp name=\"graph_aggregated\">false</boolProp>\n" +
+                                "        <stringProp name=\"include_sample_labels\"></stringProp>\n" +
+                                "        <stringProp name=\"exclude_sample_labels\"></stringProp>\n" +
+                                "        <stringProp name=\"start_offset\"></stringProp>\n" +
+                                "        <stringProp name=\"end_offset\"></stringProp>\n" +
+                                "        <boolProp name=\"include_checkbox_state\">false</boolProp>\n" +
+                                "        <boolProp name=\"exclude_checkbox_state\">false</boolProp>\n" +
+                                "      </kg.apc.jmeter.vizualizers.CorrectedResultCollector>\n" +
+                                "      <hashTree/>\n";
+
+                        enabled = "true";
+                        var outputFolder = "result/graphs";
+                        if(true)
+                        testPlan = testPlan +
+
+                                ///////////////////////////////////
+                                //jp@gc - Graphs Generator Listener
+                                ///////////////////////////////////
                                 "      <kg.apc.jmeter.listener.GraphsGeneratorListener guiclass=\"TestBeanGUI\" testclass=\"kg.apc.jmeter.listener.GraphsGeneratorListener\" testname=\"jp@gc - Graphs Generator\" enabled=\"" + enabled + "\">\n" +
                                 "        <boolProp name=\"aggregateRows\">false</boolProp>\n" +
                                 "        <boolProp name=\"autoScaleRows\">false</boolProp>\n" +
@@ -325,6 +389,7 @@ public class TestGenerator {
                                 "      <hashTree/>\n";
 
                         enabled = "false";
+                        if(false)
                         testPlan = testPlan +
 
                                 //////////////////////////
@@ -377,6 +442,7 @@ public class TestGenerator {
                                 "      <hashTree/>\n";
 
                         enabled = "false";
+                        if(false)
                         testPlan = testPlan +
 
                                 ////////////////////////////
