@@ -18,3 +18,7 @@ modifiche da fare agli YAML
     N.B.
         - kubernetes il comando di ingresso è detto "command" mentre in docker "entrypoint"
         - gli argomenti in kubernetes sono detti "args" e in docker "cmd"
+
+avviare il test
+---------------
+oc apply -f jmeter.yaml

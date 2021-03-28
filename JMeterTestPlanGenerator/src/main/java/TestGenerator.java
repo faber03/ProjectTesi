@@ -12,7 +12,7 @@ public class TestGenerator {
 
         var areaNames = new String[]{"Lyon", "Venissieux", "Vienne", "Meyzieu", "Caluire-et-Cuire", "Saint-Genis-Laval", "Saint-Quentin-Fallavier", "Genas", "Ecully", "Dardilly", "Sainte-Foy-les-Lyon", "Villefontaine", "Chassieu", "Tassin-la-Demi-Lune", "Charvieu-Chavagneux", "Miribel", "Saint-Laurent-de-Mure", "Oullins", "Montluel", "Heyrieux"};
         //var areaNames = new String[]{"Lyon"};
-        var testDurationSec = "33";
+        var testDurationSec = "30";
         var artemisServer = "tcp://172.18.10.147:30340";
         //var artemisServer = "tcp://localhost:61616";
         var csvFolderPath = "./samples/";
@@ -55,7 +55,7 @@ public class TestGenerator {
                                     "      <com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup guiclass=\"com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroupGui\" testclass=\"com.blazemeter.jmeter.threads.concurrency.ConcurrencyThreadGroup\" testname=\"ConcurrencyThreadGroup_"+ areaName +"\" enabled=\"" + enabled + "\">\n" +
                                     "        <elementProp name=\"ThreadGroup.main_controller\" elementType=\"com.blazemeter.jmeter.control.VirtualUserController\"/>\n" +
                                     "        <stringProp name=\"ThreadGroup.on_sample_error\">continue</stringProp>\n" +
-                                    "        <stringProp name=\"TargetLevel\">${__tstFeedback(shapingTimer,1,100,5)}</stringProp>\n" +
+                                    "        <stringProp name=\"TargetLevel\">${__tstFeedback(shapingTimer,1,100,1)}</stringProp>\n" +
                                     "        <stringProp name=\"RampUp\"></stringProp>\n" +
                                     "        <stringProp name=\"Steps\"></stringProp>\n" +
                                     "        <stringProp name=\"Hold\">" + testDurationSec + "</stringProp>\n" +
@@ -173,6 +173,7 @@ public class TestGenerator {
                         }
 
                         enabled = "true";
+                        var rps = "10";
                         if(true)
                         testPlan = testPlan +
 
@@ -183,8 +184,8 @@ public class TestGenerator {
                                 "        <collectionProp name=\"load_profile\">\n" +
 
                                 "          <collectionProp name=\"176726940\">\n" +
-                                "            <stringProp name=\"1567\">9</stringProp>\n" +
-                                "            <stringProp name=\"1567\">9</stringProp>\n" +
+                                "            <stringProp name=\"1567\">" + rps +"</stringProp>\n" +
+                                "            <stringProp name=\"1567\">" + rps + "</stringProp>\n" +
                                 "            <stringProp name=\"1515111\">1800</stringProp>\n" +
                                 "          </collectionProp>\n" +
 
