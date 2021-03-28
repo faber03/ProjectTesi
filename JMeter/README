@@ -1,25 +1,20 @@
-- usare la nuova versione
+modifiche da fare agli YAML
+---------------------------
 
-- aggiungere i plugin
+- usare la nuova versione di jmeter
 
-- verificare la dashboard
+- aggiungere i plugin dal dockerfile
 
-- e poi devi aggiungere i tuoi jmx
+- aggiungere i jmx dal dockerfile
 
-- e il build config, il deployment config e l'image stream devono essere modificati, il solito, il tuo namespace e così via
+- al build config, deployment config e l'image stream devono essere modificati i namespace.
+  modificare i trigger, se necessario
 
---------------
-
-- we ti ho fatto io le modifiche ai nomi, namespace e così via
-
-- le cose che ti restano da modificare nei file yaml sono i trigger, se li vuoi cambiare
-
-- e poi nello specifico nel deployment config devi cambiare a seconda di come esegui il container
-
--guarda qua per avere chiara la terminologia:
+- in deployment config è possibile definire l'entrypoint e gli argomenti per eseguire il container
+  info sulla terminologia:
 
     https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#notes
 
-- perchè in kubernetes il comando di ingresso è detto command mentre in docker entrypoint
-
-- e gli argomenti in kubernetes sono detti args e in docker cmd
+    N.B.
+        - kubernetes il comando di ingresso è detto "command" mentre in docker "entrypoint"
+        - gli argomenti in kubernetes sono detti "args" e in docker "cmd"
