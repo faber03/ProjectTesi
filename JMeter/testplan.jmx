@@ -1017,7 +1017,7 @@
           <collectionProp name="176726940">
             <stringProp name="1567">20</stringProp>
             <stringProp name="1567">20</stringProp>
-            <stringProp name="1515111">300</stringProp>
+            <stringProp name="1515111">600</stringProp>
           </collectionProp>
         </collectionProp>
       </kg.apc.jmeter.timers.VariableThroughputTimer>
