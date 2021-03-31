@@ -183,17 +183,19 @@ public class TestGenerator {
                                 "      <kg.apc.jmeter.timers.VariableThroughputTimer guiclass=\"kg.apc.jmeter.timers.VariableThroughputTimerGui\" testclass=\"kg.apc.jmeter.timers.VariableThroughputTimer\" testname=\"shapingTimer\" enabled=\"" + enabled + "\">\n" +
                                 "        <collectionProp name=\"load_profile\">\n" +
 
-                                "          <collectionProp name=\"-2002903193\">\n" +
-                                "            <stringProp name=\"49\">1</stringProp>\n" +
-                                "            <stringProp name=\"1572\">15</stringProp>\n" +
-                                "            <stringProp name=\"1515111\">1800</stringProp>\n" +
-                                "          </collectionProp>\n" +
-
-//                                "          <collectionProp name=\"176726940\">\n" +
-//                                "            <stringProp name=\"1567\">20</stringProp>\n" +
-//                                "            <stringProp name=\"1567\">20</stringProp>\n" +
-//                                "            <stringProp name=\"1515111\">900</stringProp>\n" +
+//                                //RAMPA
+//                                "          <collectionProp name=\"-2002903193\">\n" +
+//                                "            <stringProp name=\"49\">1</stringProp>\n" +
+//                                "            <stringProp name=\"1572\">15</stringProp>\n" +
+//                                "            <stringProp name=\"1515111\">1800</stringProp>\n" +
 //                                "          </collectionProp>\n" +
+
+                                //COSTANTE
+                                "          <collectionProp name=\"176726940\">\n" +
+                                "            <stringProp name=\"1567\">3</stringProp>\n" +
+                                "            <stringProp name=\"1567\">3</stringProp>\n" +
+                                "            <stringProp name=\"1515111\">600</stringProp>\n" +
+                                "          </collectionProp>\n" +
 
                                 "        </collectionProp>\n" +
                                 "      </kg.apc.jmeter.timers.VariableThroughputTimer>\n" +
