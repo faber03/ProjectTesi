@@ -1014,9 +1014,9 @@
       </hashTree>
       <kg.apc.jmeter.timers.VariableThroughputTimer guiclass="kg.apc.jmeter.timers.VariableThroughputTimerGui" testclass="kg.apc.jmeter.timers.VariableThroughputTimer" testname="shapingTimer" enabled="true">
         <collectionProp name="load_profile">
-          <collectionProp name="176726940">
-            <stringProp name="1567">9</stringProp>
-            <stringProp name="1567">9</stringProp>
+          <collectionProp name="-2002903193">
+            <stringProp name="49">1</stringProp>
+            <stringProp name="1572">15</stringProp>
             <stringProp name="1515111">1800</stringProp>
           </collectionProp>
         </collectionProp>
