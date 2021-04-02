@@ -192,8 +192,8 @@ public class TestGenerator {
 
                                 //COSTANTE
                                 "          <collectionProp name=\"176726940\">\n" +
-                                "            <stringProp name=\"1567\">7</stringProp>\n" +
-                                "            <stringProp name=\"1567\">7</stringProp>\n" +
+                                "            <stringProp name=\"1567\">9</stringProp>\n" +
+                                "            <stringProp name=\"1567\">9</stringProp>\n" +
                                 "            <stringProp name=\"1515111\">1800</stringProp>\n" +
                                 "          </collectionProp>\n" +
 
