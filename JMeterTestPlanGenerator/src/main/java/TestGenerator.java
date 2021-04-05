@@ -13,7 +13,8 @@ public class TestGenerator {
         var areaNames = new String[]{"Lyon", "Venissieux", "Vienne", "Meyzieu", "Caluire-et-Cuire", "Saint-Genis-Laval", "Saint-Quentin-Fallavier", "Genas", "Ecully", "Dardilly", "Sainte-Foy-les-Lyon", "Villefontaine", "Chassieu", "Tassin-la-Demi-Lune", "Charvieu-Chavagneux", "Miribel", "Saint-Laurent-de-Mure", "Oullins", "Montluel", "Heyrieux"};
         //var areaNames = new String[]{"Lyon"};
         var testDurationSec = "30";
-        var artemisServer = "tcp://172.18.10.147:30340";
+        var artemisServer = "tcp://artemis-activemq-artemis-master-external:61616";
+        //var artemisServer = "tcp://172.18.10.147:30340";
         //var artemisServer = "tcp://localhost:61616";
         var csvFolderPath = "./samples/";
 
@@ -192,9 +193,9 @@ public class TestGenerator {
 
                                 //COSTANTE
                                 "          <collectionProp name=\"176726940\">\n" +
-                                "            <stringProp name=\"1567\">9</stringProp>\n" +
-                                "            <stringProp name=\"1567\">9</stringProp>\n" +
-                                "            <stringProp name=\"1515111\">1800</stringProp>\n" +
+                                "            <stringProp name=\"1567\">6</stringProp>\n" +
+                                "            <stringProp name=\"1567\">6</stringProp>\n" +
+                                "            <stringProp name=\"1515111\">180</stringProp>\n" +
                                 "          </collectionProp>\n" +
 
                                 "        </collectionProp>\n" +
