@@ -16,7 +16,7 @@ spec:
   metrics:
     - type: External
       external:
-        metricName: neo4j_neo4j_transaction_active
+        metricName: neo4j_metric
         targetValue: TARGET_METRICA_VALUE
 
 # NAMESPACE: tesi-delucia

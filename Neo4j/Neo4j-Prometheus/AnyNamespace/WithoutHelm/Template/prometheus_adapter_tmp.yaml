@@ -57,6 +57,24 @@ spec:
 #        as: "neo4j_transaction_active"
 #      metricsQuery: 'neo4j_transaction_active'
 
+#apiVersion: v1
+#kind: ConfigMap
+#metadata:
+#  name: adapter-config-external
+#  namespace: NAMESPACE
+#data:
+#  config.yaml: |
+#    externalRules:
+#    - seriesQuery: '{__name__=~"(neo4j_transaction_active|neo4j_transaction_terminated)",namespace!="",pod!=""}'
+#      resources:
+#        overrides:
+#          namespace: {resource: "namespace"}
+#          pod: {resource: "pod"}
+#          service: {resource: "service"}
+#      name:
+#        as: "neo4j_metric"
+#      metricsQuery: '1/(sum(deriv(neo4j_transaction_terminated[1m])))'
+
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -65,7 +83,7 @@ metadata:
 data:
   config.yaml: |
     externalRules:
-    - seriesQuery: '{__name__=~"(neo4j_transaction_active|neo4j_transaction_terminated)",namespace!="",pod!=""}'
+    - seriesQuery: '{__name__="neo4j_transaction_committed_write",namespace!="",pod!=""}'
       resources:
         overrides:
           namespace: {resource: "namespace"}
@@ -73,7 +91,7 @@ data:
           service: {resource: "service"}
       name:
         as: "neo4j_metric"
-      metricsQuery: '1/(1 + sum(deriv(neo4j_transaction_terminated[1m])))'
+      metricsQuery: 'clamp_max(1/(1.125*sum(rate(neo4j_transaction_committed_write[3m]))), 100)'
 ---
 #metricsQuery: '1/(1+(sum(avg_over_time(neo4j_transaction_active[1m])) - sum(deriv(neo4j_transaction_terminated[1m]))))'
 #seriesQuery: '{__name__=~"^neo4j_transaction_.*",namespace!="",pod!=""}'
