@@ -91,7 +91,7 @@ data:
           service: {resource: "service"}
       name:
         as: "neo4j_metric"
-      metricsQuery: 'clamp_max(1/(1.28*sum(rate(neo4j_transaction_committed_write[3m]))), 100)'
+      metricsQuery: 'clamp_max(1/(1.5*sum(rate(neo4j_transaction_committed_write[3m]))), 100)'
 ---
 #metricsQuery: '1/(1+(sum(avg_over_time(neo4j_transaction_active[1m])) - sum(deriv(neo4j_transaction_terminated[1m]))))'
 #seriesQuery: '{__name__=~"^neo4j_transaction_.*",namespace!="",pod!=""}'
