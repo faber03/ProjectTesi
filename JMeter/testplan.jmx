@@ -1021,23 +1021,23 @@
           </collectionProp>
           <collectionProp name="141290601">
             <stringProp name="51">3</stringProp>
-            <stringProp name="55">7</stringProp>
+            <stringProp name="55">9</stringProp>
             <stringProp name="1629">30</stringProp>
           </collectionProp>
           <collectionProp name="1951374668">
-            <stringProp name="55">7</stringProp>
-            <stringProp name="55">7</stringProp>
-            <stringProp name="50547">300</stringProp>
+            <stringProp name="55">9</stringProp>
+            <stringProp name="55">9</stringProp>
+            <stringProp name="50547">480</stringProp>
           </collectionProp>
           <collectionProp name="141431961">
-            <stringProp name="55">7</stringProp>
+            <stringProp name="55">9</stringProp>
             <stringProp name="51">3</stringProp>
             <stringProp name="1629">30</stringProp>
           </collectionProp>
           <collectionProp name="529271961">
             <stringProp name="51">3</stringProp>
             <stringProp name="51">3</stringProp>
-            <stringProp name="1508508">1140</stringProp>
+            <stringProp name="1508508">960</stringProp>
           </collectionProp>        </collectionProp>
       </kg.apc.jmeter.timers.VariableThroughputTimer>
       <hashTree/>
