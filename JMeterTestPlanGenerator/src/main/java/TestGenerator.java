@@ -184,12 +184,12 @@ public class TestGenerator {
                                 "      <kg.apc.jmeter.timers.VariableThroughputTimer guiclass=\"kg.apc.jmeter.timers.VariableThroughputTimerGui\" testclass=\"kg.apc.jmeter.timers.VariableThroughputTimer\" testname=\"shapingTimer\" enabled=\"" + enabled + "\">\n" +
                                 "        <collectionProp name=\"load_profile\">\n" +
 
-//                                //RAMPA
-//                                "          <collectionProp name=\"-2002903193\">\n" +
-//                                "            <stringProp name=\"49\">1</stringProp>\n" +
-//                                "            <stringProp name=\"1572\">12</stringProp>\n" +
-//                                "            <stringProp name=\"1515111\">1800</stringProp>\n" +
-//                                "          </collectionProp>\n" +
+                                //RAMPA
+                                "          <collectionProp name=\"-2002903193\">\n" +
+                                "            <stringProp name=\"49\">1</stringProp>\n" +
+                                "            <stringProp name=\"1572\">12</stringProp>\n" +
+                                "            <stringProp name=\"1515111\">1800</stringProp>\n" +
+                                "          </collectionProp>\n" +
 
 //                                //COSTANTE
 //                                "          <collectionProp name=\"176726940\">\n" +
@@ -198,32 +198,32 @@ public class TestGenerator {
 //                                "            <stringProp name=\"1515111\">180</stringProp>\n" +
 //                                "          </collectionProp>\n" +
 
-                                //BURST 7
-                                "          <collectionProp name=\"1951223884\">\n" +
-                                "            <stringProp name=\"51\">3</stringProp>\n" +
-                                "            <stringProp name=\"51\">3</stringProp>\n" +
-                                "            <stringProp name=\"50547\">300</stringProp>\n" +
-                                "          </collectionProp>\n" +
-                                "          <collectionProp name=\"141290601\">\n" +
-                                "            <stringProp name=\"51\">3</stringProp>\n" +
-                                "            <stringProp name=\"55\">7</stringProp>\n" +
-                                "            <stringProp name=\"1629\">30</stringProp>\n" +
-                                "          </collectionProp>\n" +
-                                "          <collectionProp name=\"1951374668\">\n" +
-                                "            <stringProp name=\"55\">7</stringProp>\n" +
-                                "            <stringProp name=\"55\">7</stringProp>\n" +
-                                "            <stringProp name=\"50547\">300</stringProp>\n" +
-                                "          </collectionProp>\n" +
-                                "          <collectionProp name=\"141431961\">\n" +
-                                "            <stringProp name=\"55\">7</stringProp>\n" +
-                                "            <stringProp name=\"51\">3</stringProp>\n" +
-                                "            <stringProp name=\"1629\">30</stringProp>\n" +
-                                "          </collectionProp>\n" +
-                                "          <collectionProp name=\"529271961\">\n" +
-                                "            <stringProp name=\"51\">3</stringProp>\n" +
-                                "            <stringProp name=\"51\">3</stringProp>\n" +
-                                "            <stringProp name=\"1508508\">1140</stringProp>\n" +
-                                "          </collectionProp>" +
+//                                //BURST 7
+//                                "          <collectionProp name=\"1951223884\">\n" +
+//                                "            <stringProp name=\"51\">3</stringProp>\n" +
+//                                "            <stringProp name=\"51\">3</stringProp>\n" +
+//                                "            <stringProp name=\"50547\">300</stringProp>\n" +
+//                                "          </collectionProp>\n" +
+//                                "          <collectionProp name=\"141290601\">\n" +
+//                                "            <stringProp name=\"51\">3</stringProp>\n" +
+//                                "            <stringProp name=\"55\">7</stringProp>\n" +
+//                                "            <stringProp name=\"1629\">30</stringProp>\n" +
+//                                "          </collectionProp>\n" +
+//                                "          <collectionProp name=\"1951374668\">\n" +
+//                                "            <stringProp name=\"55\">7</stringProp>\n" +
+//                                "            <stringProp name=\"55\">7</stringProp>\n" +
+//                                "            <stringProp name=\"50547\">300</stringProp>\n" +
+//                                "          </collectionProp>\n" +
+//                                "          <collectionProp name=\"141431961\">\n" +
+//                                "            <stringProp name=\"55\">7</stringProp>\n" +
+//                                "            <stringProp name=\"51\">3</stringProp>\n" +
+//                                "            <stringProp name=\"1629\">30</stringProp>\n" +
+//                                "          </collectionProp>\n" +
+//                                "          <collectionProp name=\"529271961\">\n" +
+//                                "            <stringProp name=\"51\">3</stringProp>\n" +
+//                                "            <stringProp name=\"51\">3</stringProp>\n" +
+//                                "            <stringProp name=\"1508508\">1140</stringProp>\n" +
+//                                "          </collectionProp>" +
 
                                 "        </collectionProp>\n" +
                                 "      </kg.apc.jmeter.timers.VariableThroughputTimer>\n" +
