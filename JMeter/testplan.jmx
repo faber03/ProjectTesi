@@ -1014,31 +1014,12 @@
       </hashTree>
       <kg.apc.jmeter.timers.VariableThroughputTimer guiclass="kg.apc.jmeter.timers.VariableThroughputTimerGui" testclass="kg.apc.jmeter.timers.VariableThroughputTimer" testname="shapingTimer" enabled="true">
         <collectionProp name="load_profile">
-          <collectionProp name="1951223884">
-            <stringProp name="51">3</stringProp>
-            <stringProp name="51">3</stringProp>
-            <stringProp name="50547">300</stringProp>
+          <collectionProp name="-2002903193">
+            <stringProp name="49">1</stringProp>
+            <stringProp name="1572">12</stringProp>
+            <stringProp name="1515111">1800</stringProp>
           </collectionProp>
-          <collectionProp name="141290601">
-            <stringProp name="51">3</stringProp>
-            <stringProp name="55">9</stringProp>
-            <stringProp name="1629">30</stringProp>
-          </collectionProp>
-          <collectionProp name="1951374668">
-            <stringProp name="55">9</stringProp>
-            <stringProp name="55">9</stringProp>
-            <stringProp name="50547">480</stringProp>
-          </collectionProp>
-          <collectionProp name="141431961">
-            <stringProp name="55">9</stringProp>
-            <stringProp name="51">3</stringProp>
-            <stringProp name="1629">30</stringProp>
-          </collectionProp>
-          <collectionProp name="529271961">
-            <stringProp name="51">3</stringProp>
-            <stringProp name="51">3</stringProp>
-            <stringProp name="1508508">960</stringProp>
-          </collectionProp>        </collectionProp>
+        </collectionProp>
       </kg.apc.jmeter.timers.VariableThroughputTimer>
       <hashTree/>
       <kg.apc.jmeter.vizualizers.CorrectedResultCollector guiclass="kg.apc.jmeter.vizualizers.SynthesisReportGui" testclass="kg.apc.jmeter.vizualizers.CorrectedResultCollector" testname="jp@gc - Synthesis Report (filtered)" enabled="true">
