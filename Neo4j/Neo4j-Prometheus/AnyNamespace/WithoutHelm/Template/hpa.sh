@@ -5,7 +5,7 @@ namespace=tesi-delucia
 app_to_scale=kafka-connect-neo4j-cp-kafka-connect-neo4j
 min_replicas=1
 max_replicas=3
-target_metrica_value=5.988
+target_metrica_value=5988m
 
 sed -i "s/namespace: NAMESPACE/namespace: ${namespace}/" hpa_tmp.yaml
 sed -i "s/name: APP_TO_SCALE/name: ${app_to_scale}/" hpa_tmp.yaml
