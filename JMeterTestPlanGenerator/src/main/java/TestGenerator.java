@@ -10,10 +10,11 @@ public class TestGenerator {
         var file = new File("output/testplan.jmx");
         var br = new BufferedWriter(new FileWriter(file));
 
-        var areaNames = new String[]{"Lyon", "Venissieux", "Vienne", "Meyzieu", "Caluire-et-Cuire", "Saint-Genis-Laval", "Saint-Quentin-Fallavier", "Genas", "Ecully", "Dardilly", "Sainte-Foy-les-Lyon", "Villefontaine", "Chassieu", "Tassin-la-Demi-Lune", "Charvieu-Chavagneux", "Miribel", "Saint-Laurent-de-Mure", "Oullins", "Montluel", "Heyrieux"};
-        //var areaNames = new String[]{"Lyon"};
+        //var areaNames = new String[]{"Lyon", "Venissieux", "Vienne", "Meyzieu", "Caluire-et-Cuire", "Saint-Genis-Laval", "Saint-Quentin-Fallavier", "Genas", "Ecully", "Dardilly", "Sainte-Foy-les-Lyon", "Villefontaine", "Chassieu", "Tassin-la-Demi-Lune", "Charvieu-Chavagneux", "Miribel", "Saint-Laurent-de-Mure", "Oullins", "Montluel", "Heyrieux"};
+        var areaNames = new String[]{"Lyon"};
         var testDurationSec = "30";
-        var artemisServer = "tcp://artemis-activemq-artemis-master-external:61616";
+        //var artemisServer = "tcp://artemis-activemq-artemis-master-external:61616";
+        var artemisServer = "tcp://artemis-activemq-artemis-master.tesi-delucia.svc:61616";
         //var artemisServer = "tcp://172.18.10.147:30340";
         //var artemisServer = "tcp://localhost:61616";
         var csvFolderPath = "./samples/";
