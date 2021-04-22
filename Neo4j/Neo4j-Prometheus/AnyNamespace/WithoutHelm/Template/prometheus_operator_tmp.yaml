@@ -30,6 +30,9 @@ spec:
         app.kubernetes.io/name: prometheus-operator
         app.kubernetes.io/version: v0.44.1
     spec:
+      nodeSelector:
+        kubernetes.io/hostname: compute2
+        beta.kubernetes.io/os: linux
       containers:
         - args:
             - --kubelet-service=kube-system/kubelet
@@ -48,8 +51,8 @@ spec:
               memory: 100Mi
           securityContext:
             allowPrivilegeEscalation: true
-      nodeSelector:
-        beta.kubernetes.io/os: linux
+#      nodeSelector:
+#        beta.kubernetes.io/os: linux
       securityContext:
         runAsNonRoot: true
         runAsUser: USER_ID

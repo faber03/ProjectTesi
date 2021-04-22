@@ -7,6 +7,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.sql.Array;
 import java.sql.Timestamp;
 import java.text.Normalizer;
@@ -49,7 +50,8 @@ public class SampleGenerator {
                 "\n";
 
         var links = new File("input/all_links_edited.csv");
-        //var myReader = new Scanner(links);
+
+//        var myReader = new Scanner(links);
 
 //        var csvMapper = new CsvMapper();
 //        var schema = CsvSchema.emptySchema().withHeader();
@@ -60,20 +62,24 @@ public class SampleGenerator {
                 .withSkipFirstDataRow(true)
                 .withColumnSeparator(';').withoutQuoteChar();
 
-        MappingIterator<Link> iterator = mapper
+        MappingIterator<Link> iteratorLinks = mapper
                 .readerFor(Link.class)
                 .with(sclema).readValues(links);
 
-        while (iterator.hasNext()) {
+        while (iteratorLinks.hasNext()) {
 
-            Link item = iterator.next();
+            Link item = iteratorLinks.next();
             var easyAreaName = StringUtils.stripAccents(item.areaname);
 
+            var outputSelectedDir = new File("output/selected");
+            var outputGeneratedDir = new File("output/generated");
+            outputSelectedDir.mkdirs();
+            outputGeneratedDir.mkdirs();
             if(!areanames.contains(easyAreaName))
             {
                 areanames.add(easyAreaName);
-                var file = new File("output/" + easyAreaName + ".csv");
-                var br = new BufferedWriter(new FileWriter(file));
+                var file = new File("output/generated/" + easyAreaName + ".csv");
+                var br = new BufferedWriter(new FileWriter(file, false));
                 mapWriters.put(easyAreaName, br);
                 mapLinks.put(easyAreaName, new ArrayList<String>());
                 mapLinkCount.put(easyAreaName, 0);
@@ -99,12 +105,14 @@ public class SampleGenerator {
             var startTime_time_hour = random.nextInt(23 - 0) + 0;
             var startTime_time_minute = random.nextInt(59 - 0) + 0;
             var startTime_time_second = random.nextInt(59 - 0) + 0;
+            var avgTravelTime = (random.nextFloat() * (5F - 0.1)) + 0.1;
             var endTime_time_minute = random.nextInt(59 - startTime_time_hour) + startTime_time_hour;
             var endTime_time_second = random.nextInt(59 - startTime_time_second) + startTime_time_second;
+
             writer.write(item.id +
                     ";" +
                     timestamp.getTime() + ";" +     //timestamp
-                    "0.1849680004119873;"+          //avgTravelTime
+                    avgTravelTime + ";"+          //avgTravelTime - 0.1849680004119873
                     "0.0;" +                        //sdTravelTime
                     "1;" +                          //numVehicles
                     aggPeriod_seconds + ";" +       //aggPeriod.seconds - 179
@@ -142,7 +150,7 @@ public class SampleGenerator {
                         (oldValue, newValue) -> oldValue, LinkedHashMap::new));
 
         var file = new File("output/queueInfo.txt");
-        var br2 = new BufferedWriter(new FileWriter(file));
+        var br2 = new BufferedWriter(new FileWriter(file, false));
         var linkIterator = mapLinkCount.entrySet().iterator();
 
         int i = 1;
@@ -152,6 +160,7 @@ public class SampleGenerator {
         String queueInfoTopicList = "";
         String queueInfoContent = "";
         String queueInfoPurge = "";
+        String queueInfoDelete = "";
         while (linkIterator.hasNext()) {
             var queue = linkIterator.next().getKey();
             var linkCount = linkIterator.next().getValue();
@@ -164,7 +173,8 @@ public class SampleGenerator {
                 queueInfoQuery = queueInfoQuery + "\"neo4j.topic.cypher." + easyQueueName + "-Northbound\": \"MERGE ()-[s:STREET {linkId: event.linkId}]->() SET s.avgTravelTime = event.avgTravelTime,  s.sdTravelTime = event.sdTravelTime,  s.numVehicles = event.numVehicles,  s.timestamp = event.timestamp,  s.aggPeriod = duration({seconds: event.aggPeriod.seconds, nanoseconds: event.aggPeriod.nanos}),  s.startTime = localdatetime({year: event.startTime.date.year,month: event.startTime.date.month,day: event.startTime.date.day,hour: event.startTime.time.hour,minute: event.sample.startTime.time.minute,second: event.startTime.time.second,nanosecond: event.startTime.time.nano}),  s.endTime = localdatetime({year: event.endTime.date.year,month: event.endTime.date.month,day: event.endTime.date.day,hour: event.endTime.time.hour,minute: event.endTime.time.minute,second: event.endTime.time.second,nanosecond: event.endTime.time.nano})\",\n";
                 queueInfoTopicList = queueInfoTopicList + easyQueueName + "-Northbound,";
                 queueInfoPurge = queueInfoPurge + "curl -X POST -H \"Content-Type: application/json\" -d  '{ \"type\": \"EXEC\", \"mbean\": \"org.apache.activemq.artemis:address=\\\"" + easyQueueName + "-Northbound\\\",broker=\\\"0.0.0.0\\\",component=addresses,queue=\\\"" + easyQueueName + "-Northbound\\\",routing-type=\\\"anycast\\\",subcomponent=queues\", \"operation\": \"removeMessages(java.lang.String)\", \"arguments\": [ \"\" ] }' -u licit:licit  " + artemisServer + "/console/jolokia/exec\n" + "sleep 1\n";
-                Files.move(Path.of("output/" + queue + ".csv"), Path.of("output/selected/" + StringUtils.stripAccents(queue) + ".csv"));
+                queueInfoDelete = queueInfoDelete + "curl -u licit:licit " + artemisServer + "/console/jolokia/exec/org.apache.activemq.artemis:broker=%220.0.0.0%22/destroyQueue\\(java.lang.String\\)/" + easyQueueName + "-Northbound\n" + "sleep 1\n";
+                Files.move(Path.of("output/generated/" + queue + ".csv"), Path.of("output/selected/" + StringUtils.stripAccents(queue) + ".csv"), StandardCopyOption.REPLACE_EXISTING);
             }
 
             i++;
@@ -177,6 +187,7 @@ public class SampleGenerator {
         br2.write(queueInfoTopicList + "\n\n");
         br2.write(queueInfoQuery + "\n\n");
         br2.write(queueInfoPurge + "\n\n");
+        br2.write(queueInfoDelete + "\n\n");
         br2.write(queueInfoContent);
         br2.close();
     }

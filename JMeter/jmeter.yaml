@@ -82,6 +82,8 @@ spec:
         app: jmeter-testsuite
         deploymentconfig: jmeter-testsuite
     spec:
+      nodeSelector:
+        kubernetes.io/hostname: compute2
       containers:
         - image: jmeter-testsuite:latest
           name: jmeter-testsuite
