@@ -186,19 +186,19 @@ public class TestGenerator {
                                 "      <kg.apc.jmeter.timers.VariableThroughputTimer guiclass=\"kg.apc.jmeter.timers.VariableThroughputTimerGui\" testclass=\"kg.apc.jmeter.timers.VariableThroughputTimer\" testname=\"shapingTimer\" enabled=\"" + enabled + "\">\n" +
                                 "        <collectionProp name=\"load_profile\">\n" +
 
-                                //RAMPA
-                                "          <collectionProp name=\"-2002903193\">\n" +
-                                "            <stringProp name=\"49\">1</stringProp>\n" +
-                                "            <stringProp name=\"1572\">12</stringProp>\n" +
-                                "            <stringProp name=\"1515111\">1800</stringProp>\n" +
-                                "          </collectionProp>\n" +
-
-//                                //COSTANTE
-//                                "          <collectionProp name=\"176726940\">\n" +
-//                                "            <stringProp name=\"1567\">6</stringProp>\n" +
-//                                "            <stringProp name=\"1567\">6</stringProp>\n" +
-//                                "            <stringProp name=\"1515111\">180</stringProp>\n" +
+//                                //RAMPA
+//                                "          <collectionProp name=\"-2002903193\">\n" +
+//                                "            <stringProp name=\"49\">1</stringProp>\n" +
+//                                "            <stringProp name=\"1572\">12</stringProp>\n" +
+//                                "            <stringProp name=\"1515111\">1800</stringProp>\n" +
 //                                "          </collectionProp>\n" +
+
+                                //COSTANTE
+                                "          <collectionProp name=\"176726940\">\n" +
+                                "            <stringProp name=\"1567\">12</stringProp>\n" +
+                                "            <stringProp name=\"1567\">12</stringProp>\n" +
+                                "            <stringProp name=\"1515111\">2700</stringProp>\n" +
+                                "          </collectionProp>\n" +
 
 //                                //BURST 7
 //                                "          <collectionProp name=\"1951223884\">\n" +

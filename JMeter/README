@@ -21,4 +21,4 @@ modifiche da fare agli YAML
 
 avviare il test
 ---------------
-oc apply -f jmeter.yaml
+oc -f jmeter.yaml apply
