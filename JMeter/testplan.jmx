@@ -18,7 +18,7 @@
         <stringProp name="TargetLevel">${__tstFeedback(shapingTimer,1,100,1)}</stringProp>
         <stringProp name="RampUp"></stringProp>
         <stringProp name="Steps"></stringProp>
-        <stringProp name="Hold">30</stringProp>
+        <stringProp name="Hold">20</stringProp>
         <stringProp name="LogFilename"></stringProp>
         <stringProp name="Iterations"></stringProp>
         <stringProp name="Unit">M</stringProp>
