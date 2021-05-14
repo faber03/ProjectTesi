@@ -19,6 +19,21 @@ spec:
     spec:
       nodeSelector:
         kubernetes.io/hostname: compute3
+      initContainers:
+        - name: init-plugins
+          image: "appropriate/curl:latest"
+          imagePullPolicy: "IfNotPresent"
+          volumeMounts:
+            - name: plugins
+              mountPath: /plugins
+          command:
+            - "/bin/sh"
+            - "-c"
+            - |
+              curl -L https://github.com/neo4j-contrib/neo4j-graph-algorithms/releases/download/3.5.4.0/graph-algorithms-algo-3.5.4.0.jar -O
+              cp graph-algorithms-algo-3.5.4.0.jar /plugins/
+              curl -L https://github.com/neo4j-contrib/neo4j-apoc-procedures/releases/download/3.4.0.4/apoc-3.4.0.4-all.jar -O
+              cp apoc-3.4.0.4-all.jar /plugins/
       containers:
         #----------------
         # neo4j container
@@ -37,12 +52,19 @@ spec:
               value: "true"
             - name: NEO4J_metrics_prometheus_endpoint #metrics.prometheus.endpoint=0.0.0.0:2004
               value: "0.0.0.0:2004"
+#            - name: NEO4J_dbms_memory_heap_initial__size
+#              value: "64M"
             - name: NEO4J_dbms_memory_heap_max__size
               value: "5G"
+#              value: "64M"
             - name: NEO4J_dbms_mode
               value: SINGLE
 #            - name: AUTH_ENABLED
 #              value: "true"
+            - name: NEO4J_dbms_security_procedures_unrestricted
+              value: "apoc.\\*,algo.\\*"
+            - name: NEO4J_apoc_export_file_enabled
+              value: "true"
           ports:
             - containerPort: 7474
               name: browser
@@ -56,6 +78,8 @@ spec:
           volumeMounts:
             - mountPath: "/data"
               name: datadir
+            - mountPath: "/plugins"
+              name: plugins
           resources:
             limits: # 1,9 core tetto massimo (limit >= request altrimenti il pod non si avvia) - overbooking
               cpu: 5000m #1900m
@@ -64,6 +88,8 @@ spec:
       volumes:
         #neo4j volumes
         - name: datadir
+          emptyDir: {}
+        - name: plugins
           emptyDir: {}
   volumeClaimTemplates:
     - metadata:
