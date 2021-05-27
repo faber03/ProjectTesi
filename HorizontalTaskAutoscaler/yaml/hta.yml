@@ -115,7 +115,7 @@ spec:
     - imageChangeParams:
         automatic: true
         containerNames:
-          - ${NAME}
+          - hta #${NAME}
         from:
           kind: ImageStreamTag
           name: 'hta:latest' #${NAME}:latest'

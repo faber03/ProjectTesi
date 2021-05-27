@@ -244,7 +244,7 @@ parameters:
 - description: The URL of the repository with your application source code.
   displayName: Git Repository URL
   name: SOURCE_REPOSITORY_URL
-  value: "https://github.com/faber03/ProjectTest.git"
+  value: "https://github.com/faber03/ProjectTesi.git"
 
 - description: The repository directory subpath of Dockerfile.
   displayName: Git Repository subpath

@@ -57,9 +57,10 @@ public class Autoscaler {
                                                neo4jJmxPassword != null ? neo4jJmxPassword :"Neo4j"};
         environment.put (JMXConnector.CREDENTIALS, credentials);
 
+        JMXServiceURL url = new JMXServiceURL("service:jmx:rmi:///jndi/rmi://" + "localhost:32766" + "/jmxrmi");
         //JMXServiceURL url = new JMXServiceURL("service:jmx:rmi:///jndi/rmi://" + "compute3.unisannio.local:32766" + "/jmxrmi");
-        JMXServiceURL url =
-                new JMXServiceURL("service:jmx:rmi:///jndi/rmi://" + (neo4jJmxHost != null ? neo4jJmxHost : "localhost:3637") + "/jmxrmi");
+//        JMXServiceURL url =
+//                new JMXServiceURL("service:jmx:rmi:///jndi/rmi://" + (neo4jJmxHost != null ? neo4jJmxHost : "localhost:3637") + "/jmxrmi");
         //new JMXServiceURL("service:jmx:rmi:///jndi/rmi://:9999/jmxrmi");
 
         JMXConnector jmxc = JMXConnectorFactory.connect(url, environment);
@@ -91,7 +92,7 @@ public class Autoscaler {
         }
 
         // Construct the ObjectName for the Hello MBean
-        ObjectName mbeanName = new ObjectName("neo4j.metrics:name=neo4j.transaction.active");
+        ObjectName mbeanName = new ObjectName("neo4j.metrics:name=org.neo4j.transaction.active");
 
         var mbeanProxy =
                 newMBeanProxy(mbsc, mbeanName, TransactionActiveMBean.class, true);

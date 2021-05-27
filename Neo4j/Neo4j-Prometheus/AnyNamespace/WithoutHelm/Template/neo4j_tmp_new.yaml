@@ -48,6 +48,7 @@ spec:
               value: "neo4j/password"
             - name: NEO4J_dbms_connector_bolt_address
               value: "0.0.0.0:7687"
+
             - name: NEO4J_metrics_prometheus_enabled  #metrics.prometheus.enabled=true
               value: "true"
             - name: NEO4J_metrics_prometheus_endpoint #metrics.prometheus.endpoint=0.0.0.0:2004
@@ -60,33 +61,33 @@ spec:
 #
 #            - name: NEO4J_dbms_jvm_additional
 #              value: "-Dcom.sun.management.jmxremote=true"
-            - name: NEO4J_dbms_jvm_additional
-              value: "-Dcom.sun.management.jmxremote.port=3637" #3637
+#            - name: NEO4J_dbms_jvm_additional
+#              value: "-Dcom.sun.management.jmxremote.port=3637" #3637
 #            - name: NEO4J_dbms_jvm_additional
 #              value: "-Dcom.sun.management.jmxremote.rmi.port=3001"
 #            - name: NEO4J_dbms_jvm_additional
 #              value: "-Djava.rmi.server.hostname=127.0.0.1"
 #
-            - name: NEO4J_dbms_jvm_additional
-              value: "-Dcom.sun.management.jmxremote.authenticate=false"
+#            - name: NEO4J_dbms_jvm_additional
+#              value: "-Dcom.sun.management.jmxremote.authenticate=false"
 #            - name: NEO4J_dbms_jvm_additional
 #              value: "-Dcom.sun.management.jmxremote.local.only=false"
-            - name: NEO4J_dbms_jvm_additional
-              value: "-Dcom.sun.management.jmxremote.ssl=false"
+#            - name: NEO4J_dbms_jvm_additional
+#              value: "-Dcom.sun.management.jmxremote.ssl=false"
 #
-            - name: NEO4J_dbms_jvm_additional
-              value: "-Dcom.sun.management.jmxremote.password.file=/var/lib/neo4j/conf/jmx.password"
-            - name: NEO4J_dbms_jvm_additional
-              value: "-Dcom.sun.management.jmxremote.access.file=/var/lib/neo4j/conf/jmx.access"
+#            - name: NEO4J_dbms_jvm_additional
+#              value: "-Dcom.sun.management.jmxremote.password.file=/var/lib/neo4j/conf/jmx.password"
+#            - name: NEO4J_dbms_jvm_additional
+#              value: "-Dcom.sun.management.jmxremote.access.file=/var/lib/neo4j/conf/jmx.access"
 
             - name: NEO4J_dbms_memory_heap_initial__size #lower to start 33M (no prometheus), 40M (con prometheus)
               value: "180M"
             - name: NEO4J_dbms_memory_heap_max__size #64 no, 128 ...
               value: "180M" # value: "64M"
+#            - name: NEO4J_dbms_jvm_additional
+#              value: "-XX:NewRatio=2" #old = 2/3 di heap, young = 1/3 di heap (l'old è 2 volte la young)
             - name: NEO4J_dbms_jvm_additional
-              value: "-XX:NewRatio=2" #old = 2/3 di heap, young = 1/3 di heap (l'old è 2 volte la young)
-            - name: NEO4J_dbms_jvm_additional
-              value: "-XX:+CrashOnOutOfMemoryError"
+              value: "-XX:+CrashOnOutOfMemoryError -Djava.rmi.server.hostname=0.0.0.0 -Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.port=32766 -Dcom.Sun.management.jmxremote.local.only=false -Dcom.sun.management.jmxremote.rmi.port=32766 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.password.file=/var/lib/neo4j/conf/jmx.password -Dcom.sun.management.jmxremote.access.file=/var/lib/neo4j/conf/jmx.access -Djava.rmi.server.hostname=127.0.0.1"
               #value: "-XX:+ExitOnOutOfMemoryError"
 
             - name: NEO4J_dbms_mode
@@ -108,7 +109,7 @@ spec:
 #              name: https
             - containerPort: 2004
               name: metrics
-            - containerPort: 3637 #32766
+            - containerPort: 32766 #3637 #32766
               name: jmx
           volumeMounts:
             - mountPath: "/data"
@@ -162,8 +163,8 @@ spec:
       name: bolt
 #    - protocol: TCP
 #      nodePort: 32766
-#      port: 3637
-#      targetPort: 3637
+#      port: 32766 #3637
+#      targetPort: 32766 #3637
 #      name: jmx
 ---
 #service
@@ -181,9 +182,9 @@ spec:
       protocol: TCP
       targetPort: 2004
     - name: jmx
-      port: 3637
+      port: 32766 #3637
       protocol: TCP
-      targetPort: 3637
+      targetPort: 32766 #3637
   selector:
     app: neo4j
 ---
