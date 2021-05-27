@@ -1,0 +1,179 @@
+
+#image stream
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  labels:
+    app: hta #${NAME}
+  name: hta #${NAME}
+  namespace: tesi-delucia #${NAMESPACE}
+---
+#build config
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  labels:
+    app: hta #${NAME}
+  name: hta #${NAME}
+  namespace: tesi-delucia #${NAMESPACE}
+spec:
+  nodeSelector: null
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'hta:latest' #'${NAME}:latest'
+  postCommit: {}
+  resources: {}
+  runPolicy: Serial
+  source:
+    contextDir: '/HorizontalTaskAutoscaler' #${SOURCE_REPOSITORY_CONTEXT_DIR}
+    git:
+      ref: main
+      uri: 'https://github.com/faber03/ProjectTesi.git' #'${SOURCE_REPOSITORY_URL}'
+    type: Git
+  strategy:
+    #dockerStrategy:
+    #dockerfilePath: Neo4j/Dockerfile
+    # from:
+    #   kind: DockerImage
+    #   name: 'mysql:8.0.20'
+    type: Docker
+  triggers:
+    - imageChange:
+        lastTriggeredImageID: #>-
+        #docker.io/openshift/wildfly-101-centos7@sha256:7775d40f77e22897dc760b76f1656f67ef6bd5561b4d74fbb030b977f61d48e8
+      type: ImageChange
+    - type: ConfigChange
+    - generic:
+        secret: 9fdf619e0aea935a
+      type: Generic
+    - github:
+        secret: 43ac13d4078565c4
+      type: GitHub
+---
+#deployment
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  labels:
+    app: hta #${NAME}
+  name: hta #${NAME}
+  namespace: tesi-delucia #${NAMESPACE}
+spec:
+  replicas: 1
+  selector:
+    deploymentconfig: hta #${NAME}
+  strategy:
+    activeDeadlineSeconds: 21600
+    resources: {}
+    rollingParams:
+      intervalSeconds: 1
+      maxSurge: 25%
+      maxUnavailable: 25%
+      timeoutSeconds: 600
+      updatePeriodSeconds: 1
+    type: Recreate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: hta #${NAME}
+        deploymentconfig: hta #${NAME}
+    spec:
+      containers:
+        #mysql container
+        - image: 'hta:latest' #'${NAME}:latest'
+          name: hta #${NAME}
+#              ports:
+#                - containerPort: 7474
+#                  protocol: TCP
+#                - containerPort: 7687
+#                  protocol: TCP
+#                - containerPort: 7473
+#                  protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          env:
+            - name: NEO4J_JMX_USERNAME
+              value: 'monitor' #${NEO4J_JMX_USERNAME}
+            - name: NEO4J_JMX_PASSWORD
+              value: 'Neo4j' #${NEO4J_JMX_PASSWORD}
+#                - name: NEO4J_PASSWORD
+#                  value: ${NEO4J_PASSWORD}
+            - name: NEO4J_JMX_HOST
+              value: 'neo4j:3637' #${NEO4J_JMX_HOST}
+#                - name: NEO4J_DBNAME
+#                  value: ${NEO4J_DBNAME}
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+  test: false
+  triggers:
+    - imageChangeParams:
+        automatic: true
+        containerNames:
+          - ${NAME}
+        from:
+          kind: ImageStreamTag
+          name: 'hta:latest' #${NAME}:latest'
+          namespace: tesi-delucia ##${NAMESPACE}
+      type: ImageChange
+    - type: ConfigChange
+
+#parametri
+#parameters:
+#  - description: The name assigned to all of the frontend objects defined in this template.
+#    displayName: Name
+#    name: NAME
+#    value: "jmx-monitor"
+
+#  - description: The URL of the repository with your application source code.
+#    displayName: Git Repository URL
+#    name: SOURCE_REPOSITORY_URL
+#    value: "https://github.com/faber03/ProjectTesi.git"
+
+#  - description: The repository directory subpath of Dockerfile.
+#    displayName: Git Repository subpath
+#    name: SOURCE_REPOSITORY_CONTEXT_DIR
+#    value: "/JmxMonitor"
+
+#  - description: The OpenShift Namespace where the ImageStream resides.
+#    displayName: Namespace
+#    name: NAMESPACE
+#    #value: "custom-prometheus"
+#    value: "default"
+
+  #environment variables
+#  - description: Neo4j username.
+#    displayName: Neo4j username
+#    name: NEO4J_USERNAME
+#    value: "neo4j"
+
+#  - description: Neo4j password.
+#    displayName: Neo4j password
+#    name: NEO4J_PASSWORD
+#    value: "password"
+
+#  - description: Neo4j host.
+#    displayName: Neo4j host
+#    name: NEO4J_JMX_HOST
+#    #value: "neo4j:3637"
+#    value: "neo4j-prometheus:3637"
+
+#  - description: Neo4j jmx username.
+#    displayName: Neo4j jmx username
+#    name: NEO4J_JMX_USERNAME
+#    value: "monitor"
+
+#  - description: Neo4j jmx password.
+#    displayName: Neo4j jmx password
+#    name: NEO4J_JMX_PASSWORD
+#    value: "password"
+
+#  - description: Neo4j db name.
+#    displayName: Neo4j db name
+#    name: NEO4J_DBNAME
+#    value: "neo4j"

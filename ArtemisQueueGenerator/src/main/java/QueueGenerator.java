@@ -32,7 +32,7 @@ public class QueueGenerator {
         session.start();
 
         //var areaNames = new String[]{"Lyon", "Venissieux", "Vienne", "Meyzieu", "Caluire-et-Cuire", "Saint-Genis-Laval", "Saint-Quentin-Fallavier", "Genas", "Ecully", "Dardilly", "Sainte-Foy-les-Lyon", "Villefontaine", "Chassieu", "Tassin-la-Demi-Lune", "Charvieu-Chavagneux", "Miribel", "Saint-Laurent-de-Mure", "Oullins", "Montluel", "Heyrieux"};
-        var areaNames = new String[]{"Lyon"};
+        var areaNames = new String[]{"Lyon", "Venissieux"};
         var NORTHBOUND_SUFFIX = "-Northbound";
         for(var areaName: areaNames)
             session.createQueue(new SimpleString(areaName + NORTHBOUND_SUFFIX), RoutingType.ANYCAST, new SimpleString(areaName + NORTHBOUND_SUFFIX), true);

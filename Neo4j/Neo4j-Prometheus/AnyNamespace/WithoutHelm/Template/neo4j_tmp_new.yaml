@@ -52,13 +52,46 @@ spec:
               value: "true"
             - name: NEO4J_metrics_prometheus_endpoint #metrics.prometheus.endpoint=0.0.0.0:2004
               value: "0.0.0.0:2004"
-#            - name: NEO4J_dbms_memory_heap_initial__size
-#              value: "64M"
-            - name: NEO4J_dbms_memory_heap_max__size
-              value: "5G"
-#              value: "64M"
+
+            - name: NEO4J_metrics_enabled
+              value: "true"
+            - name: NEO4J_metrics_jmx_enabled
+              value: "true"
+#
+#            - name: NEO4J_dbms_jvm_additional
+#              value: "-Dcom.sun.management.jmxremote=true"
+            - name: NEO4J_dbms_jvm_additional
+              value: "-Dcom.sun.management.jmxremote.port=3637" #3637
+#            - name: NEO4J_dbms_jvm_additional
+#              value: "-Dcom.sun.management.jmxremote.rmi.port=3001"
+#            - name: NEO4J_dbms_jvm_additional
+#              value: "-Djava.rmi.server.hostname=127.0.0.1"
+#
+            - name: NEO4J_dbms_jvm_additional
+              value: "-Dcom.sun.management.jmxremote.authenticate=false"
+#            - name: NEO4J_dbms_jvm_additional
+#              value: "-Dcom.sun.management.jmxremote.local.only=false"
+            - name: NEO4J_dbms_jvm_additional
+              value: "-Dcom.sun.management.jmxremote.ssl=false"
+#
+            - name: NEO4J_dbms_jvm_additional
+              value: "-Dcom.sun.management.jmxremote.password.file=/var/lib/neo4j/conf/jmx.password"
+            - name: NEO4J_dbms_jvm_additional
+              value: "-Dcom.sun.management.jmxremote.access.file=/var/lib/neo4j/conf/jmx.access"
+
+            - name: NEO4J_dbms_memory_heap_initial__size #lower to start 33M (no prometheus), 40M (con prometheus)
+              value: "180M"
+            - name: NEO4J_dbms_memory_heap_max__size #64 no, 128 ...
+              value: "180M" # value: "64M"
+            - name: NEO4J_dbms_jvm_additional
+              value: "-XX:NewRatio=2" #old = 2/3 di heap, young = 1/3 di heap (l'old è 2 volte la young)
+            - name: NEO4J_dbms_jvm_additional
+              value: "-XX:+CrashOnOutOfMemoryError"
+              #value: "-XX:+ExitOnOutOfMemoryError"
+
             - name: NEO4J_dbms_mode
               value: SINGLE
+
 #            - name: AUTH_ENABLED
 #              value: "true"
             - name: NEO4J_dbms_security_procedures_unrestricted
@@ -75,6 +108,8 @@ spec:
 #              name: https
             - containerPort: 2004
               name: metrics
+            - containerPort: 3637 #32766
+              name: jmx
           volumeMounts:
             - mountPath: "/data"
               name: datadir
@@ -125,6 +160,11 @@ spec:
       port: 7687
       targetPort: 7687
       name: bolt
+#    - protocol: TCP
+#      nodePort: 32766
+#      port: 3637
+#      targetPort: 3637
+#      name: jmx
 ---
 #service
 apiVersion: v1
@@ -140,6 +180,10 @@ spec:
       port: 2004
       protocol: TCP
       targetPort: 2004
+    - name: jmx
+      port: 3637
+      protocol: TCP
+      targetPort: 3637
   selector:
     app: neo4j
 ---
