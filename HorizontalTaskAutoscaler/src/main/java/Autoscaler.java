@@ -92,7 +92,7 @@ public class Autoscaler {
         }
 
         // Construct the ObjectName for the Hello MBean
-        ObjectName mbeanName = new ObjectName("neo4j.metrics:name=org.neo4j.transaction.active");
+        ObjectName mbeanName = new ObjectName("neo4j.metrics:name=neo4j.neo4j.transaction.active");
 
         var mbeanProxy =
                 newMBeanProxy(mbsc, mbeanName, TransactionActiveMBean.class, true);

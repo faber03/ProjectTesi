@@ -1,4 +1,4 @@
-FROM neo4j:4.1.3-enterprise
+FROM neo4j:3.4.5-enterprise
 
 #ENV MYSQL_ROOT_PASSWORD DEFAULT_PASS
 #ENV NEO4J_AUTH=none
