@@ -54,7 +54,7 @@ public class Autoscaler {
         //  Provide credentials required by server for user authentication
         HashMap environment = new HashMap();
         String[]  credentials = new String[] { neo4jJmxUsername != null ? neo4jJmxUsername : "monitor",
-                                               neo4jJmxPassword != null ? neo4jJmxPassword :"Neo4j"};
+                                               neo4jJmxPassword != null ? neo4jJmxPassword :"password"};
         environment.put (JMXConnector.CREDENTIALS, credentials);
 
         JMXServiceURL url = new JMXServiceURL("service:jmx:rmi:///jndi/rmi://" + "localhost:32766" + "/jmxrmi");

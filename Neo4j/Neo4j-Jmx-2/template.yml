@@ -1,279 +1,202 @@
-apiVersion: v1
-kind: Template
-labels:
-  template: neo4j-template #${NAMESPACE}-template
-message: Your template has been created.
-metadata:
-  name: neo4j-template #${NAMESPACE}-template
-objects:
-
 #image stream
-- apiVersion: image.openshift.io/v1
-  kind: ImageStream
-  metadata:
-    labels:
-      app: ${NAME}
-    name: ${NAME}
-    namespace: ${NAMESPACE}
-
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  labels:
+    app: neo4j #neo4j
+  name: neo4j #neo4j
+  namespace: tesi-delucia #tesi-delucia
+---
 #build config
-- apiVersion: build.openshift.io/v1
-  kind: BuildConfig
-  metadata:
-    labels:
-      app: ${NAME}
-    name: ${NAME}
-    namespace: ${NAMESPACE}
-  spec:
-    nodeSelector: null
-    output:
-      to:
-        kind: ImageStreamTag
-        name: '${NAME}:latest'
-    postCommit: {}
-    resources: {}
-    runPolicy: Serial
-    source:
-      contextDir: ${SOURCE_REPOSITORY_CONTEXT_DIR}
-      git:
-        ref: main
-        uri: '${SOURCE_REPOSITORY_URL}'
-      type: Git
-    strategy:
-      #dockerStrategy:
-        #dockerfilePath: Neo4j/Dockerfile
-        # from:
-        #   kind: DockerImage
-        #   name: 'mysql:8.0.20'
-      type: Docker
-    triggers:
-      - imageChange:
-          lastTriggeredImageID: #>-
-            #docker.io/openshift/wildfly-101-centos7@sha256:7775d40f77e22897dc760b76f1656f67ef6bd5561b4d74fbb030b977f61d48e8
-        type: ImageChange
-      - type: ConfigChange
-      - generic:
-          secret: 9fdf619e0aea935a
-        type: Generic
-      - github:
-          secret: 43ac13d4078565c4
-        type: GitHub
-
-#route http
-# - apiVersion: route.openshift.io/v1
-#   kind: Route
-#   metadata:
-#     labels:
-#       app: ${NAME}
-#     name: ${NAME}-http
-#     namespace: ${NAMESPACE}
-#   spec:
-#     port:
-#       targetPort: http
-#     to:
-#       kind: Service
-#       name: ${NAME}
-#       weight: 100
-#     wildcardPolicy: None
-
-#route bolt
-# - apiVersion: route.openshift.io/v1
-#   kind: Route
-#   metadata:
-#     labels:
-#       app: ${NAME}
-#     name: ${NAME}-bolt
-#     namespace: ${NAMESPACE}
-#   spec:
-#     port:
-#       targetPort: bolt
-#     to:
-#       kind: Service
-#       name: ${NAME}
-#       weight: 100
-#     wildcardPolicy: None
-
-#route https
-# - apiVersion: route.openshift.io/v1
-#   kind: Route
-#   metadata:
-#     labels:
-#       app: ${NAME}
-#     name: ${NAME}-https
-#     namespace: ${NAMESPACE}
-#   spec:
-#     port:
-#       targetPort: https
-#     to:
-#       kind: Service
-#       name: ${NAME}
-#       weight: 100
-#     wildcardPolicy: None
-
-#route jmx
-# - apiVersion: route.openshift.io/v1
-#   kind: Route
-#   metadata:
-#     labels:
-#       app: ${NAME}
-#     name: ${NAME}-jmx
-#     namespace: ${NAMESPACE}
-#   spec:
-#     port:
-#       targetPort: jmx
-#     to:
-#       kind: Service
-#       name: ${NAME}
-#       weight: 100
-#     wildcardPolicy: None
-
-#service
-- apiVersion: v1
-  kind: Service
-  metadata:
-    labels:
-      app: ${NAME}
-    name: ${NAME}
-    namespace: ${NAMESPACE}
-  spec:
-    #type: LoadBalancer
-    ports:
-      - name: http
-        port: 7474
-        protocol: TCP
-        targetPort: 7474
-      - name: bolt
-        port: 7687
-        protocol: TCP
-        targetPort: 7687
-      - name: https
-        port: 7473
-        protocol: TCP
-        targetPort: 7473
-      - name: jmx
-        port: 32766
-        protocol: TCP
-        targetPort: 32766
-    selector:
-      deploymentconfig: ${NAME}
-
-#deployment
-- apiVersion: apps.openshift.io/v1
-  kind: DeploymentConfig
-  metadata:
-    labels:
-      app: ${NAME}
-    name: ${NAME}
-    namespace: ${NAMESPACE}
-  spec:
-    replicas: 1
-    selector:
-      deploymentconfig: ${NAME}
-    strategy:
-      activeDeadlineSeconds: 21600
-      resources: {}
-      rollingParams:
-        intervalSeconds: 1
-        maxSurge: 25%
-        maxUnavailable: 25%
-        timeoutSeconds: 600
-        updatePeriodSeconds: 1
-      type: Recreate
-    template:
-      metadata:
-        creationTimestamp: null
-        labels:
-          app: ${NAME}
-          deploymentconfig: ${NAME}
-      spec:
-        containers:
-          #mysql container
-          - image: '${NAME}:latest'
-            name: ${NAME}
-            ports:
-              - containerPort: 7474
-                protocol: TCP
-              - containerPort: 7687
-                protocol: TCP
-              - containerPort: 7473
-                protocol: TCP
-              - containerPort: 32766
-                protocol: TCP
-            resources: {}
-            terminationMessagePath: /dev/termination-log
-            terminationMessagePolicy: File
-            env:
-              - name: NEO4J_AUTH
-                value: ${NEO4J_AUTH}
-            volumeMounts:
-              - mountPath: ${MOUNT_PATH_DATA}
-                name: db-data
-              - mountPath: ${MOUNT_PATH_LOGS}
-                name: db-logs
-              - mountPath: ${MOUNT_PATH_CONF}
-                name: db-conf
-        volumes:
-          - name: db-data
-          - name: db-logs
-          - name: db-conf
-        dnsPolicy: ClusterFirst
-        restartPolicy: Always
-        schedulerName: default-scheduler
-        securityContext: {}
-        terminationGracePeriodSeconds: 30
-    test: false
-    triggers:
-    - imageChangeParams:
-          automatic: true
-          containerNames:
-            - ${NAME}
-          from:
-            kind: ImageStreamTag
-            name: '${NAME}:latest'
-            namespace: ${NAMESPACE}
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  labels:
+    app: neo4j
+  name: neo4j
+  namespace: tesi-delucia
+spec:
+  nodeSelector: null
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'neo4j:latest'
+  postCommit: {}
+  resources: {}
+  runPolicy: Serial
+  source:
+    contextDir: '/Neo4j/Neo4j-Jmx-2' #${SOURCE_REPOSITORY_CONTEXT_DIR}
+    git:
+      ref: main
+      uri: 'https://github.com/faber03/ProjectTesi.git'
+    type: Git
+  strategy:
+    #dockerStrategy:
+      #dockerfilePath: Neo4j/Dockerfile
+      # from:
+      #   kind: DockerImage
+      #   name: 'mysql:8.0.20'
+    type: Docker
+  triggers:
+    - imageChange:
+        lastTriggeredImageID: #>-
+          #docker.io/openshift/wildfly-101-centos7@sha256:7775d40f77e22897dc760b76f1656f67ef6bd5561b4d74fbb030b977f61d48e8
       type: ImageChange
     - type: ConfigChange
+    - generic:
+        secret: 9fdf619e0aea935a
+      type: Generic
+    - github:
+        secret: 43ac13d4078565c4
+      type: GitHub
+---
+#service
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: neo4j
+  name: neo4j
+  namespace: tesi-delucia
+spec:
+  #type: LoadBalancer
+  ports:
+    - name: http
+      port: 7474
+      protocol: TCP
+      targetPort: 7474
+    - name: bolt
+      port: 7687
+      protocol: TCP
+      targetPort: 7687
+    - name: https
+      port: 7473
+      protocol: TCP
+      targetPort: 7473
+    - name: jmx
+      port: 32766
+      protocol: TCP
+      targetPort: 32766
+  selector:
+    deploymentconfig: neo4j
+---
+#deployment
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  labels:
+    app: neo4j
+  name: neo4j
+  namespace: tesi-delucia
+spec:
+  replicas: 1
+  selector:
+    deploymentconfig: neo4j
+  strategy:
+    activeDeadlineSeconds: 21600
+    resources: {}
+    rollingParams:
+      intervalSeconds: 1
+      maxSurge: 25%
+      maxUnavailable: 25%
+      timeoutSeconds: 600
+      updatePeriodSeconds: 1
+    type: Recreate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: neo4j
+        deploymentconfig: neo4j
+    spec:
+      containers:
+        #mysql container
+        - image: 'neo4j:latest'
+          name: neo4j
+          ports:
+            - containerPort: 7474
+              protocol: TCP
+            - containerPort: 7687
+              protocol: TCP
+            - containerPort: 7473
+              protocol: TCP
+            - containerPort: 32766
+              protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          env:
+            - name: NEO4J_AUTH
+              value: 'neo4j/password' #${NEO4J_AUTH}
+          volumeMounts:
+            - mountPath: '/neo4j/data' #${MOUNT_PATH_DATA}
+              name: db-data
+            - mountPath: '/neo4j/logs' #${MOUNT_PATH_LOGS}
+              name: db-logs
+            - mountPath: '/neo4j/conf' #${MOUNT_PATH_CONF}
+              name: db-conf
+      volumes:
+        - name: db-data
+        - name: db-logs
+        - name: db-conf
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+  test: false
+  triggers:
+  - imageChangeParams:
+        automatic: true
+        containerNames:
+          - neo4j
+        from:
+          kind: ImageStreamTag
+          name: 'neo4j:latest'
+          namespace: tesi-delucia
+    type: ImageChange
+  - type: ConfigChange
 
 #parametri
-parameters:
-- description: The name assigned to all of the frontend objects defined in this template.
-  displayName: Name
-  name: NAME
-  value: "neo4j"
-
-- description: The URL of the repository with your application source code.
-  displayName: Git Repository URL
-  name: SOURCE_REPOSITORY_URL
-  value: "https://github.com/faber03/ProjectTesi.git"
-
-- description: The repository directory subpath of Dockerfile.
-  displayName: Git Repository subpath
-  name: SOURCE_REPOSITORY_CONTEXT_DIR
-  value: "/Neo4j/Neo4j-Jmx-2"
-
-- description: The OpenShift Namespace where the ImageStream resides.
-  displayName: Namespace
-  name: NAMESPACE
-  value: "tesi-delucia"
-
-- description: Mounth path data
-  displayName: Mounth path data
-  name: MOUNT_PATH_DATA
-  value: "/neo4j/data"
-
-- description: Mounth path logs.
-  displayName: Mounth path logs
-  name: MOUNT_PATH_LOGS
-  value: "/neo4j/logs"
-
-- description: Mounth path conf.
-  displayName: Mounth path conf
-  name: MOUNT_PATH_CONF
-  value: "/neo4j/conf"
-
-#environment
-- description: Authorization.
-  displayName: Authorization
-  name: NEO4J_AUTH
-  #value: "none"
-  value: "neo4j/password"
+#parameters:
+#- description: The name assigned to all of the frontend objects defined in this template.
+#  displayName: Name
+#  name: NAME
+#  value: "neo4j"
+#
+#- description: The URL of the repository with your application source code.
+#  displayName: Git Repository URL
+#  name: SOURCE_REPOSITORY_URL
+#  value: "https://github.com/faber03/ProjectTesi.git"
+#
+#- description: The repository directory subpath of Dockerfile.
+#  displayName: Git Repository subpath
+#  name: SOURCE_REPOSITORY_CONTEXT_DIR
+#  value: "/Neo4j/Neo4j-Jmx-2"
+#
+#- description: The OpenShift Namespace where the ImageStream resides.
+#  displayName: Namespace
+#  name: NAMESPACE
+#  value: "tesi-delucia"
+#
+#- description: Mounth path data
+#  displayName: Mounth path data
+#  name: MOUNT_PATH_DATA
+#  value: "/neo4j/data"
+#
+#- description: Mounth path logs.
+#  displayName: Mounth path logs
+#  name: MOUNT_PATH_LOGS
+#  value: "/neo4j/logs"
+#
+#- description: Mounth path conf.
+#  displayName: Mounth path conf
+#  name: MOUNT_PATH_CONF
+#  value: "/neo4j/conf"
+#
+##environment
+#- description: Authorization.
+#  displayName: Authorization
+#  name: NEO4J_AUTH
+#  #value: "none"
+#  value: "neo4j/password"
