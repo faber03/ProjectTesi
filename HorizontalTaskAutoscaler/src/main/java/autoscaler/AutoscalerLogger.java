@@ -14,7 +14,7 @@ public class AutoscalerLogger {
 
     public AutoscalerLogger(String filePath) throws IOException {
 
-        this.fileWriter = Files.newBufferedWriter(Path.of(filePath), new StandardOpenOption[]{StandardOpenOption.CREATE});
+        this.fileWriter = Files.newBufferedWriter(Path.of(filePath));
         logHeader();
     }
 
