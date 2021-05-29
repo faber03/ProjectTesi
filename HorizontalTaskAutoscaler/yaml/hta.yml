@@ -122,7 +122,7 @@ spec:
             - name: SCALING_MIN
               value: '1'
             - name: LIFETIME_SEC
-              value: '-1'
+              value: '60'
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler

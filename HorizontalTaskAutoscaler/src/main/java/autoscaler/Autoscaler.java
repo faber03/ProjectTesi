@@ -61,6 +61,9 @@ public class Autoscaler {
 
             sleep(config.metricReadingDelayMsec);
         }
+
+        echo("lifetime of " + config.lifetimeSec + " sec has expired, you need to manually restart...");
+        sleepInfinity();
     }
 
     private static void scaleDown() throws Exception {
@@ -106,6 +109,12 @@ public class Autoscaler {
 
     private static void echo(String msg) {
         System.out.println("\n" + "["+ java.time.LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")) + "] "+ msg);
+    }
+
+    private static void sleepInfinity() throws InterruptedException {
+        while (true) {
+            Thread.sleep(Long.MAX_VALUE);
+        }
     }
 //    public static void main(String[] args) throws Exception {
 //
