@@ -4,8 +4,8 @@ public class AutoscalerConfiguration {
 
     private final long NEO4J_OLDGEN_MAX = 110000000;//106000000;
     private final long NEO4J_OLDGEN_MIN = 60000000;//55000000;
-    private final long STABILIZATION_DELAY = 30000;
-    private final long METRIC_READING_DELAY = 5000;
+    private final long STABILIZATION_DELAY_MSEC = 30000;
+    private final long METRIC_READING_DELAY_MSEC = 5000;
     private final int SCALING_STEP = 1;
     private final int SCALING_MAX = 7;
     private final int SCALING_MIN = 1;
@@ -58,21 +58,21 @@ public class AutoscalerConfiguration {
         var stabDelay = System.getenv("STABILIZATION_DELAY_MSEC");
         try
         {
-            this.stabilizationDelayMsec = stabDelay != null ? Long.parseLong(stabDelay) : STABILIZATION_DELAY;
+            this.stabilizationDelayMsec = stabDelay != null ? Long.parseLong(stabDelay) : STABILIZATION_DELAY_MSEC;
         }
         catch (NumberFormatException e)
         {
-            this.stabilizationDelayMsec = STABILIZATION_DELAY;
+            this.stabilizationDelayMsec = STABILIZATION_DELAY_MSEC;
         }
 
         var readDelay = System.getenv("METRIC_READING_DELAY_MSEC");
         try
         {
-            this.metricReadingDelayMsec = readDelay != null ? Long.parseLong(readDelay) : METRIC_READING_DELAY;
+            this.metricReadingDelayMsec = readDelay != null ? Long.parseLong(readDelay) : METRIC_READING_DELAY_MSEC;
         }
         catch (NumberFormatException e)
         {
-            this.metricReadingDelayMsec = METRIC_READING_DELAY;
+            this.metricReadingDelayMsec = METRIC_READING_DELAY_MSEC;
         }
 
         var scalStep = System.getenv("SCALING_STEP");

@@ -96,15 +96,33 @@ spec:
           terminationMessagePolicy: File
           env:
             - name: NEO4J_JMX_USERNAME
-              value: 'monitor' #${NEO4J_JMX_USERNAME}
+              value: 'monitor'
             - name: NEO4J_JMX_PASSWORD
-              value: 'Neo4j' #${NEO4J_JMX_PASSWORD}
-#                - name: NEO4J_PASSWORD
-#                  value: ${NEO4J_PASSWORD}
+              value: 'Neo4j'
             - name: NEO4J_JMX_HOST
-              value: 'neo4j:3637' #${NEO4J_JMX_HOST}
-#                - name: NEO4J_DBNAME
-#                  value: ${NEO4J_DBNAME}
+              value: 'neo4j.tesi-delucia.svc:32766'
+            - name: KAFKA_CONNECT_HOST
+              value: 'kafka-connect-neo4j-cp-kafka-connect-neo4j.tesi-delucia.svc:8083'
+            - name: KAFKA_CONNECTOR_NAME
+              value: 'neo4j-sink'
+            - name: LOG_PATH
+              value: './log.txt'
+            - name: NEO4J_OLDGEN_MAX
+              value: '110000000'
+            - name: NEO4J_OLDGEN_MIN
+              value: '60000000'
+            - name: STABILIZATION_DELAY_MSEC
+              value: '30000'
+            - name: METRIC_READING_DELAY_MSEC
+              value: '5000'
+            - name: SCALING_STEP
+              value: '1'
+            - name: SCALING_MAX
+              value: '7'
+            - name: SCALING_MIN
+              value: '1'
+            - name: LIFETIME_SEC
+              value: '-1'
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
@@ -122,58 +140,3 @@ spec:
           namespace: tesi-delucia ##${NAMESPACE}
       type: ImageChange
     - type: ConfigChange
-
-#parametri
-#parameters:
-#  - description: The name assigned to all of the frontend objects defined in this template.
-#    displayName: Name
-#    name: NAME
-#    value: "jmx-monitor"
-
-#  - description: The URL of the repository with your application source code.
-#    displayName: Git Repository URL
-#    name: SOURCE_REPOSITORY_URL
-#    value: "https://github.com/faber03/ProjectTesi.git"
-
-#  - description: The repository directory subpath of Dockerfile.
-#    displayName: Git Repository subpath
-#    name: SOURCE_REPOSITORY_CONTEXT_DIR
-#    value: "/JmxMonitor"
-
-#  - description: The OpenShift Namespace where the ImageStream resides.
-#    displayName: Namespace
-#    name: NAMESPACE
-#    #value: "custom-prometheus"
-#    value: "default"
-
-  #environment variables
-#  - description: Neo4j username.
-#    displayName: Neo4j username
-#    name: NEO4J_USERNAME
-#    value: "neo4j"
-
-#  - description: Neo4j password.
-#    displayName: Neo4j password
-#    name: NEO4J_PASSWORD
-#    value: "password"
-
-#  - description: Neo4j host.
-#    displayName: Neo4j host
-#    name: NEO4J_JMX_HOST
-#    #value: "neo4j:3637"
-#    value: "neo4j-prometheus:3637"
-
-#  - description: Neo4j jmx username.
-#    displayName: Neo4j jmx username
-#    name: NEO4J_JMX_USERNAME
-#    value: "monitor"
-
-#  - description: Neo4j jmx password.
-#    displayName: Neo4j jmx password
-#    name: NEO4J_JMX_PASSWORD
-#    value: "password"
-
-#  - description: Neo4j db name.
-#    displayName: Neo4j db name
-#    name: NEO4J_DBNAME
-#    value: "neo4j"
