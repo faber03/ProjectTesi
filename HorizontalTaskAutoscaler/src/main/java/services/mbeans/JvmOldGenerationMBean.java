@@ -1,4 +1,6 @@
-public interface TransactionActiveMBean {
+package services.mbeans;
+
+public interface JvmOldGenerationMBean {
     //-----------
     // operations
     //-----------
@@ -11,9 +13,10 @@ public interface TransactionActiveMBean {
     //-----------
     // attributes
     //-----------
+    public javax.management.openmbean.CompositeDataSupport getUsage();
 
-    public Number getNumber();
-    public Object getValue();
+    //public Number getNumber();
+    //public Object getValue();
 
     // a read-only attribute called Name of type String
 //    public String getName();
