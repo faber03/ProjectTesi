@@ -30,14 +30,14 @@ public class AutoscalerLogger {
     }
 
     public void log(long currentOldGem, long maxOldGen, long minOldGen, int currentNumberOfTasks, int scalingMax, int scalingMin) throws IOException {
-        fileWriter.write(java.time.LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")) + SEPARATOR +
-                currentOldGem + SEPARATOR +
-                maxOldGen+ SEPARATOR +
-                minOldGen + SEPARATOR +
-                currentNumberOfTasks + SEPARATOR +
-                scalingMax + SEPARATOR +
-                scalingMin + "\n");
-        fileWriter.flush();
+//        fileWriter.write(java.time.LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")) + SEPARATOR +
+//                currentOldGem + SEPARATOR +
+//                maxOldGen+ SEPARATOR +
+//                minOldGen + SEPARATOR +
+//                currentNumberOfTasks + SEPARATOR +
+//                scalingMax + SEPARATOR +
+//                scalingMin + "\n");
+//        fileWriter.flush();
     }
 
 }
