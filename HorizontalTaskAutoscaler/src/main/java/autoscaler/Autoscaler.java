@@ -27,8 +27,8 @@ public class Autoscaler {
 
         config = new AutoscalerConfiguration();
 
-        logger = new AutoscalerLogger("C:\\Users\\agost\\Desktop\\logTest\\log.txt");
-        //logger = new AutoscalerLogger(config.logPath);
+        //logger = new AutoscalerLogger("C:\\Users\\agost\\Desktop\\logTest\\log.txt");
+        logger = new AutoscalerLogger(config.logPath);
 
         _kafkaConnectService = new KafkaConnectNeo4jService(config.kafkaConnectHost, config.kafkaConnectorName);
         _neo4jJmxService = new Neo4jJmxService(config.neo4jJmxHost, config.neo4jJmxUsername, config.neo4jJmxPassword);
