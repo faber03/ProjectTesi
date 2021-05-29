@@ -8,4 +8,4 @@ ADD jar/hta-jar-with-dependencies.jar hta-jar-with-dependencies.jar
 #EXPOSE 8085
 
 #comandi per l'esecuzione del jar caricato
-ENTRYPOINT ["java", "-jar", "hta-jar-with-dependencies.jar"]
+ENTRYPOINT ["java", "-jar", "hta-jar-with-dependencies.jar", "sleep infinity"]

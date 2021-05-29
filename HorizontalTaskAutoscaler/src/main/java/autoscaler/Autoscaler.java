@@ -41,7 +41,7 @@ public class Autoscaler {
         echo("running...");
 
         var endTime = (Instant.now()).plusSeconds(config.lifetimeSec);
-        while(config.lifetimeSec == -1 ? true : (Instant.now()).isAfter(endTime)) {
+        while(config.lifetimeSec == -1 ? true : (Instant.now()).isBefore(endTime)) {
 
             var oldGen = _neo4jJmxService.getJvmOldGenerationValue();
             logger.log(oldGen, config.neo4jOldGenMaxValue, config.neo4jOldGenMinValue, currentNumberOfTasks, config.scalingMax, config.scalingMin);
