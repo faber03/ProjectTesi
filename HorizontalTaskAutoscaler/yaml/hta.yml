@@ -106,7 +106,7 @@ spec:
             - name: KAFKA_CONNECTOR_NAME
               value: 'neo4j-sink'
             - name: LOG_PATH
-              value: './log.txt'
+              value: 'log.txt'
             - name: NEO4J_OLDGEN_MAX
               value: '110000000'
             - name: NEO4J_OLDGEN_MIN
