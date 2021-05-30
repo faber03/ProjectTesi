@@ -15,19 +15,14 @@ import static javax.management.JMX.newMBeanProxy;
 
 public class Neo4jJmxService implements INeo4jJmxService{
 
-    private final String NEO4j_JMX_USERNAME = "monitor";
-    private final String NEO4j_JMX_PASSWORD = "Neo4j";
-    //private final String NEO4j_JMX_HOST = "localhost:3637";
-    private final String NEO4j_JMX_HOST = "localhost:32766";
-
     private MBeanServerConnection mbsc;
     private JvmOldGenerationMBean jvmOldGenMbeanProxy;
 
     public Neo4jJmxService(String neo4jJmxHost, String neo4jJmxUsername, String neo4jJmxPassword) throws IOException {
         HashMap environment = new HashMap();
-        String[]  credentials = new String[] { neo4jJmxUsername != null ? neo4jJmxUsername : NEO4j_JMX_USERNAME, neo4jJmxPassword != null ? neo4jJmxPassword : NEO4j_JMX_PASSWORD};
+        String[]  credentials = new String[] { neo4jJmxUsername, neo4jJmxPassword };
         environment.put (JMXConnector.CREDENTIALS, credentials);
-        JMXServiceURL url = new JMXServiceURL("service:jmx:rmi:///jndi/rmi://" + (neo4jJmxHost != null ? neo4jJmxHost : NEO4j_JMX_HOST) + "/jmxrmi");
+        JMXServiceURL url = new JMXServiceURL("service:jmx:rmi:///jndi/rmi://" + neo4jJmxHost + "/jmxrmi");
         JMXConnector jmxc = JMXConnectorFactory.connect(url, environment);
         this.mbsc = jmxc.getMBeanServerConnection();
     }
@@ -39,5 +34,4 @@ public class Neo4jJmxService implements INeo4jJmxService{
 
         return (long)this.jvmOldGenMbeanProxy.getUsage().get("used");
     }
-
 }

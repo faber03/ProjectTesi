@@ -10,16 +10,13 @@ import java.net.URL;
 
 public class KafkaConnectNeo4jService implements IKafkaConnectNeo4jService {
 
-    private final String KAFKA_CONNECT_HOSTNAME = "connect-neo4j-tesi-delucia.router.default.svc.cluster.local";
-    private final String CONNECTOR_NAME = "neo4j-sink";
-
     private String kafkaConnectHostname;
     private String connectorName;
 
     public KafkaConnectNeo4jService(String kafkaConnectHostname, String connectorName)
     {
-        this.kafkaConnectHostname = kafkaConnectHostname != null ? kafkaConnectHostname : KAFKA_CONNECT_HOSTNAME;
-        this.connectorName = connectorName != null ? connectorName : CONNECTOR_NAME;
+        this.kafkaConnectHostname = kafkaConnectHostname;
+        this.connectorName = connectorName;
     }
 
     public ConnectorConfiguration getConnectorConfiguration() throws Exception {
@@ -76,6 +73,4 @@ public class KafkaConnectNeo4jService implements IKafkaConnectNeo4jService {
         } in .close();
         return response.toString();
     }
-
-
 }

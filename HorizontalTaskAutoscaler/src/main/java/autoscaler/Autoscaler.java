@@ -49,6 +49,7 @@ public class Autoscaler {
             echo("current old generation is " + oldGen + " B");
 
             if((Instant.now()).isAfter(nextScalingTime)) {
+
                 if (oldGen > config.neo4jOldGenMaxValue) {
                     echo("old generation greather than " + config.neo4jOldGenMaxValue + " B, scaling down of " + config.scalingStep + "...");
                     scaleDown();
@@ -116,70 +117,4 @@ public class Autoscaler {
             Thread.sleep(Long.MAX_VALUE);
         }
     }
-//    public static void main(String[] args) throws Exception {
-//
-//        String neo4jJmxHost = System.getenv("NEO4J_JMX_HOST");
-//        String neo4jJmxUsername = System.getenv("NEO4J_JMX_USERNAME");
-//        String neo4jJmxPassword = System.getenv("NEO4J_JMX_PASSWORD");
-//
-//        echo("\nCreate an RMI connector client and " +
-//                "connect it to the RMI connector server");
-//
-//        //  Provide credentials required by server for user authentication
-//        HashMap environment = new HashMap();
-//        String[]  credentials = new String[] { neo4jJmxUsername != null ? neo4jJmxUsername : "monitor",
-//                                               neo4jJmxPassword != null ? neo4jJmxPassword :"Neo4j"};
-//        environment.put (JMXConnector.CREDENTIALS, credentials);
-//
-//        //JMXServiceURL url = new JMXServiceURL("service:jmx:rmi:///jndi/rmi://" + "localhost:32766" + "/jmxrmi");
-//        //JMXServiceURL url = new JMXServiceURL("service:jmx:rmi:///jndi/rmi://" + "compute3.unisannio.local:32766" + "/jmxrmi");
-//        JMXServiceURL url =
-//                new JMXServiceURL("service:jmx:rmi:///jndi/rmi://" + (neo4jJmxHost != null ? neo4jJmxHost : "localhost:3637") + "/jmxrmi");
-//        //new JMXServiceURL("service:jmx:rmi:///jndi/rmi://:9999/jmxrmi");
-//
-//        JMXConnector jmxc = JMXConnectorFactory.connect(url, environment);
-//
-//        // Get an MBeanServerConnection
-//        echo("\nGet an MBeanServerConnection");
-//        MBeanServerConnection mbsc = jmxc.getMBeanServerConnection();
-//
-//        // Get domains from MBeanServer
-//        echo("\nDomains:");
-//        String domains[] = mbsc.getDomains();
-//        Arrays.sort(domains);
-//        for (String domain : domains) {
-//            echo("\tDomain = " + domain);
-//        }
-//
-//        // Get MBeanServer's default domain
-//        echo("\nMBeanServer default domain = " + mbsc.getDefaultDomain());
-//
-//        // Get MBean count
-//        echo("\nMBean count = " + mbsc.getMBeanCount());
-//
-//        // Query MBean names
-//        echo("\nQuery MBeanServer MBeans:");
-//        Set<ObjectName> names =
-//                new TreeSet<ObjectName>(mbsc.queryNames(null, null));
-//        for (ObjectName name : names) {
-//            echo("\tObjectName = " + name);
-//        }
-//
-//        // Construct the ObjectName for the Hello MBean
-//        ObjectName mbeanName = new ObjectName("java.lang:type=MemoryPool,name=PS Old Gen");
-//
-//        var info = mbsc.getMBeanInfo(mbeanName);
-//
-//        var mbeanProxy =
-//                newMBeanProxy(mbsc, mbeanName, JvmOldGeneration.class, true);
-//
-//
-//        //var temp = mbeanProxy.getUsage().get("used");
-//
-//        while(true) {
-//            sleep(2000);
-//            echo("\nOld generation = " + mbeanProxy.getUsage().get("used"));
-//        }
-//
-//    }
 }
