@@ -14,7 +14,7 @@ public class AutoscalerConfiguration {
     private final int SCALING_STEP = 1;
     private final int SCALING_MAX = 7;
     private final int SCALING_MIN = 1;
-    private final int LIFETIME_SEC = 3200;
+    private final int LIFETIME_SEC = -1;
     private final String LOG_PATH = "log.txt";
 
     public String neo4jJmxHost;
