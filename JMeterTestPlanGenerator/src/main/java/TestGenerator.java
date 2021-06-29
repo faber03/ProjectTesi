@@ -12,8 +12,7 @@ public class TestGenerator {
 
         //var areaNames = new String[]{"Lyon", "Venissieux", "Vienne", "Meyzieu", "Caluire-et-Cuire", "Saint-Genis-Laval", "Saint-Quentin-Fallavier", "Genas", "Ecully", "Dardilly", "Sainte-Foy-les-Lyon", "Villefontaine", "Chassieu", "Tassin-la-Demi-Lune", "Charvieu-Chavagneux", "Miribel", "Saint-Laurent-de-Mure", "Oullins", "Montluel", "Heyrieux"};
         var areaNames = new String[]{"Lyon"};
-        var testDurationSec = "40";
-        //var artemisServer = "tcp://artemis-activemq-artemis-master-external:61616";
+        var testDurationSec = "3660";
         var artemisServer = "tcp://artemis-activemq-artemis-master.tesi-delucia.svc:61616";
         //var artemisServer = "tcp://172.18.10.147:30340";
         //var artemisServer = "tcp://localhost:61616";
@@ -85,7 +84,8 @@ public class TestGenerator {
                                     "          <boolProp name=\"JMSSampler.useReqMsgIdAsCorrelId\">true</boolProp>\n" +
                                     "          <stringProp name=\"JMSSampler.timeout\">2000</stringProp>\n" +
 //                                    "          <stringProp name=\"HTTPSamper.xml_data\">{&quot;linkId&quot;:${linkId},&quot;timestamp&quot;:${timestamp},&quot;avgTravelTime&quot;:${avgTravelTime},&quot;sdTravelTime&quot;:${sdTravelTime},&quot;numVehicles&quot;:${numVehicles},&quot;aggPeriod&quot;:{&quot;seconds&quot;:${aggPeriod.seconds},&quot;nanos&quot;:${aggPeriod.nanos}},&quot;startTime&quot;:{&quot;date&quot;:{&quot;year&quot;:${startTime.date.year},&quot;month&quot;:${startTime.date.month},&quot;day&quot;:${startTime.date.day}},&quot;time&quot;:{&quot;hour&quot;:${startTime.time.hour},&quot;minute&quot;:${startTime.time.minute},&quot;second&quot;:${startTime.time.second},&quot;nano&quot;:${startTime.time.nano}}},&quot;endTime&quot;:{&quot;date&quot;:{&quot;year&quot;:${endTime.date.year},&quot;month&quot;:${endTime.date.month},&quot;day&quot;:${endTime.date.day}},&quot;time&quot;:{&quot;hour&quot;:${endTime.time.hour},&quot;minute&quot;:${endTime.time.minute},&quot;second&quot;:${endTime.time.second},&quot;nano&quot;:${endTime.time.nano}}}}</stringProp>\n" +
-                                    "          <stringProp name=\"HTTPSamper.xml_data\">{&quot;linkId&quot;:${linkId},&quot;timestamp&quot;:${__time()},&quot;avgTravelTime&quot;:${__javaScript((Math.random() * (5) - 1).toFixed(2) * 1,)},&quot;sdTravelTime&quot;:${sdTravelTime},&quot;numVehicles&quot;:${numVehicles},&quot;aggPeriod&quot;:{&quot;seconds&quot;:${__Random(0,300)},&quot;nanos&quot;:${aggPeriod.nanos}},&quot;startTime&quot;:{&quot;date&quot;:{&quot;year&quot;:${startTime.date.year},&quot;month&quot;:${__Random(1,12)},&quot;day&quot;:${__Random(1,28)}},&quot;time&quot;:{&quot;hour&quot;:${__Random(0,23)},&quot;minute&quot;:${__Random(0,59)},&quot;second&quot;:${__Random(0,59)},&quot;nano&quot;:${startTime.time.nano}}},&quot;endTime&quot;:{&quot;date&quot;:{&quot;year&quot;:${endTime.date.year},&quot;month&quot;:${__Random(1,12)},&quot;day&quot;:${__Random(1,28)}},&quot;time&quot;:{&quot;hour&quot;:${__Random(0,23)},&quot;minute&quot;:${__Random(0,59)},&quot;second&quot;:${__Random(0,59)},&quot;nano&quot;:${endTime.time.nano}}}}</stringProp>\n" +
+//                                    "          <stringProp name=\"HTTPSamper.xml_data\">{&quot;linkId&quot;:${linkId},&quot;timestamp&quot;:${__time()},&quot;avgTravelTime&quot;:${__javaScript((Math.random() * (5) - 1).toFixed(2) * 1,)},&quot;sdTravelTime&quot;:${sdTravelTime},&quot;numVehicles&quot;:${numVehicles},&quot;aggPeriod&quot;:{&quot;seconds&quot;:${__Random(0,300)},&quot;nanos&quot;:${aggPeriod.nanos}},&quot;startTime&quot;:{&quot;date&quot;:{&quot;year&quot;:${startTime.date.year},&quot;month&quot;:${__Random(1,12)},&quot;day&quot;:${__Random(1,28)}},&quot;time&quot;:{&quot;hour&quot;:${__Random(0,23)},&quot;minute&quot;:${__Random(0,59)},&quot;second&quot;:${__Random(0,59)},&quot;nano&quot;:${startTime.time.nano}}},&quot;endTime&quot;:{&quot;date&quot;:{&quot;year&quot;:${endTime.date.year},&quot;month&quot;:${__Random(1,12)},&quot;day&quot;:${__Random(1,28)}},&quot;time&quot;:{&quot;hour&quot;:${__Random(0,23)},&quot;minute&quot;:${__Random(0,59)},&quot;second&quot;:${__Random(0,59)},&quot;nano&quot;:${endTime.time.nano}}}}</stringProp>\n" +
+                                    "          <stringProp name=\"HTTPSamper.xml_data\">{&quot;linkId&quot;:${osmid1},&quot;timestamp&quot;:${osmid2},&quot;avgTravelTime&quot;:0,&quot;sdTravelTime&quot;:0,&quot;numVehicles&quot;:0,&quot;aggPeriod&quot;:{&quot;seconds&quot;:0,&quot;nanos&quot;:0},&quot;startTime&quot;:{&quot;date&quot;:{&quot;year&quot;:0,&quot;month&quot;:0,&quot;day&quot;:0},&quot;time&quot;:{&quot;hour&quot;:0,&quot;minute&quot;:0,&quot;second&quot;:0,&quot;nano&quot;:0}},&quot;endTime&quot;:{&quot;date&quot;:{&quot;year&quot;:0,&quot;month&quot;:0,&quot;day&quot;:0},&quot;time&quot;:{&quot;hour&quot;:0,&quot;minute&quot;:0,&quot;second&quot;:0,&quot;nano&quot;:0}}}</stringProp>\n" +
                                     "          <stringProp name=\"JMSSampler.initialContextFactory\">org.apache.activemq.jndi.ActiveMQInitialContextFactory</stringProp>\n" +
                                     "          <stringProp name=\"JMSSampler.contextProviderUrl\">" + artemisServer + "</stringProp>\n" +
                                     "          <elementProp name=\"JMSSampler.jndiProperties\" elementType=\"Arguments\" guiclass=\"ArgumentsPanel\" testclass=\"Arguments\" testname=\"User Defined Variables\" enabled=\"true\">\n" +
@@ -114,7 +114,8 @@ public class TestGenerator {
                                     "        <CSVDataSet guiclass=\"TestBeanGUI\" testclass=\"CSVDataSet\" testname=\"Csv_" + areaName + "\" enabled=\"" + enabled + "\">\n" +
                                     "          <stringProp name=\"delimiter\">;</stringProp>\n" +
                                     "          <stringProp name=\"fileEncoding\"></stringProp>\n" +
-                                    "          <stringProp name=\"filename\">" + csvFolderPath + areaName + ".csv</stringProp>\n" +
+//                                    "          <stringProp name=\"filename\">" + csvFolderPath + areaName + ".csv</stringProp>\n" +
+                                    "          <stringProp name=\"filename\">" + csvFolderPath + "final_node_modified.csv</stringProp>\n" +
                                     "          <boolProp name=\"ignoreFirstLine\">false</boolProp>\n" +
                                     "          <boolProp name=\"quotedData\">false</boolProp>\n" +
                                     "          <boolProp name=\"recycle\">true</boolProp>\n" +
@@ -181,7 +182,7 @@ public class TestGenerator {
                         testPlan = testPlan +
 
                                 //////////////////////////
-                                //Throughput Shaping Timer
+                                //Throughput Shaping Timer - Global
                                 //////////////////////////
                                 "      <kg.apc.jmeter.timers.VariableThroughputTimer guiclass=\"kg.apc.jmeter.timers.VariableThroughputTimerGui\" testclass=\"kg.apc.jmeter.timers.VariableThroughputTimer\" testname=\"shapingTimer\" enabled=\"" + enabled + "\">\n" +
                                 "        <collectionProp name=\"load_profile\">\n" +
@@ -193,12 +194,12 @@ public class TestGenerator {
 //                                "            <stringProp name=\"1515111\">1800</stringProp>\n" +
 //                                "          </collectionProp>\n" +
 
-                                //COSTANTE
-                                "          <collectionProp name=\"176726940\">\n" +
-                                "            <stringProp name=\"1567\">12</stringProp>\n" +
-                                "            <stringProp name=\"1567\">12</stringProp>\n" +
-                                "            <stringProp name=\"1515111\">2700</stringProp>\n" +
-                                "          </collectionProp>\n" +
+//                                //COSTANTE
+//                                "          <collectionProp name=\"176726940\">\n" +
+//                                "            <stringProp name=\"1567\">12</stringProp>\n" +
+//                                "            <stringProp name=\"1567\">12</stringProp>\n" +
+//                                "            <stringProp name=\"1515111\">2700</stringProp>\n" +
+//                                "          </collectionProp>\n" +
 
 //                                //BURST 7
 //                                "          <collectionProp name=\"1951223884\">\n" +
@@ -225,7 +226,74 @@ public class TestGenerator {
 //                                "            <stringProp name=\"51\">3</stringProp>\n" +
 //                                "            <stringProp name=\"51\">3</stringProp>\n" +
 //                                "            <stringProp name=\"1508508\">1140</stringProp>\n" +
-//                                "          </collectionProp>" +
+//                                "          </collectionProp>\n" +
+
+                                //3 BURST
+                                " <collectionProp name=\"1951484180\">\n" +
+                                "            <stringProp name=\"49\">1</stringProp>\n" +
+                                "            <stringProp name=\"49\">1</stringProp>\n" +
+                                "            <stringProp name=\"51570\">420</stringProp>\n" +
+                                "          </collectionProp>\n" +
+                                "          <collectionProp name=\"1867492667\">\n" +
+                                "            <stringProp name=\"1\">1</stringProp>\n" +
+                                "            <stringProp name=\"55\">7</stringProp>\n" +
+                                "            <stringProp name=\"48687\">120</stringProp>\n" +
+                                "          </collectionProp>\n" +
+                                "          <collectionProp name=\"1952481140\">\n" +
+                                "            <stringProp name=\"55\">7</stringProp>\n" +
+                                "            <stringProp name=\"55\">7</stringProp>\n" +
+                                "            <stringProp name=\"51570\">420</stringProp>\n" +
+                                "          </collectionProp>\n" +
+                                "          <collectionProp name=\"1926029657\">\n" +
+                                "            <stringProp name=\"55\">7</stringProp>\n" +
+                                "            <stringProp name=\"49\">1</stringProp>\n" +
+                                "            <stringProp name=\"48687\">120</stringProp>\n" +
+                                "          </collectionProp>\n" +
+                                "          <collectionProp name=\"1893881840\">\n" +
+                                "            <stringProp name=\"1\">1</stringProp>\n" +
+                                "            <stringProp name=\"49\">1</stringProp>\n" +
+                                "            <stringProp name=\"51570\">420</stringProp>\n" +
+                                "          </collectionProp>\n" +
+                                "          <collectionProp name=\"1867492667\">\n" +
+                                "            <stringProp name=\"1\">1</stringProp>\n" +
+                                "            <stringProp name=\"55\">7</stringProp>\n" +
+                                "            <stringProp name=\"48687\">120</stringProp>\n" +
+                                "          </collectionProp>\n" +
+                                "          <collectionProp name=\"1952481140\">\n" +
+                                "            <stringProp name=\"55\">7</stringProp>\n" +
+                                "            <stringProp name=\"55\">7</stringProp>\n" +
+                                "            <stringProp name=\"51570\">420</stringProp>\n" +
+                                "          </collectionProp>\n" +
+                                "          <collectionProp name=\"1926029657\">\n" +
+                                "            <stringProp name=\"55\">7</stringProp>\n" +
+                                "            <stringProp name=\"49\">1</stringProp>\n" +
+                                "            <stringProp name=\"48687\">120</stringProp>\n" +
+                                "          </collectionProp>\n" +
+                                "          <collectionProp name=\"1951484180\">\n" +
+                                "            <stringProp name=\"49\">1</stringProp>\n" +
+                                "            <stringProp name=\"49\">1</stringProp>\n" +
+                                "            <stringProp name=\"51570\">420</stringProp>\n" +
+                                "          </collectionProp>\n" +
+                                "          <collectionProp name=\"1925095007\">\n" +
+                                "            <stringProp name=\"49\">1</stringProp>\n" +
+                                "            <stringProp name=\"55\">7</stringProp>\n" +
+                                "            <stringProp name=\"48687\">120</stringProp>\n" +
+                                "          </collectionProp>\n" +
+                                "          <collectionProp name=\"1952481140\">\n" +
+                                "            <stringProp name=\"55\">7</stringProp>\n" +
+                                "            <stringProp name=\"55\">7</stringProp>\n" +
+                                "            <stringProp name=\"51570\">420</stringProp>\n" +
+                                "          </collectionProp>\n" +
+                                "          <collectionProp name=\"1926029657\">\n" +
+                                "            <stringProp name=\"55\">7</stringProp>\n" +
+                                "            <stringProp name=\"49\">1</stringProp>\n" +
+                                "            <stringProp name=\"48687\">120</stringProp>\n" +
+                                "          </collectionProp>\n" +
+                                "          <collectionProp name=\"1951484180\">\n" +
+                                "            <stringProp name=\"49\">1</stringProp>\n" +
+                                "            <stringProp name=\"49\">1</stringProp>\n" +
+                                "            <stringProp name=\"51570\">420</stringProp>\n" +
+                                "          </collectionProp>\n" +
 
                                 "        </collectionProp>\n" +
                                 "      </kg.apc.jmeter.timers.VariableThroughputTimer>\n" +
@@ -236,7 +304,7 @@ public class TestGenerator {
                         testPlan = testPlan +
 
                                 /////////////////////////////
-                                //Transactions Per Second Gui
+                                //Transactions Per Second Gui - Global
                                 /////////////////////////////
                                 "      <kg.apc.jmeter.vizualizers.CorrectedResultCollector guiclass=\"kg.apc.jmeter.vizualizers.TransactionsPerSecondGui\" testclass=\"kg.apc.jmeter.vizualizers.CorrectedResultCollector\" testname=\"TransactionsPerSecond\" enabled=\"" + enabled + "\">\n" +
                                 "        <boolProp name=\"ResultCollector.error_logging\">false</boolProp>\n" +
